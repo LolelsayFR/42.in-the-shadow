@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://v46t58f07j5k"]
+
+[node name="MainMenu" type="Control" unique_id=1100912923]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1414307110]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.0015625
+anchor_top = -0.024074074
+anchor_right = 1.0015625
+anchor_bottom = 1.0240741
+offset_left = 3.0
+offset_top = 26.0
+offset_right = -3.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+theme_override_constants/margin_bottom = 100
+metadata/_edit_use_anchors_ = true
+
+[node name="Hbox" type="HBoxContainer" parent="MarginContainer" unique_id=684080327]
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="MarginContainer/Hbox" unique_id=584923406]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="Play_Resume" type="Button" parent="MarginContainer/Hbox/Left" unique_id=1197896855]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Play "
+alignment = 2
+icon_alignment = 2
+
+[node name="Level selector" type="Button" parent="MarginContainer/Hbox/Left" unique_id=7803038]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Level selector "
+alignment = 2
+icon_alignment = 2
+
+[node name="Settings" type="Button" parent="MarginContainer/Hbox/Left" unique_id=1114551379]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Settings "
+alignment = 2
+icon_alignment = 2
+
+[node name="Spacer" type="Control" parent="MarginContainer/Hbox" unique_id=656128862]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Quit" type="VBoxContainer" parent="MarginContainer/Hbox" unique_id=1325915461]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="Quit" type="Button" parent="MarginContainer/Hbox/Quit" unique_id=1651234476]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " Quit"
+alignment = 0
+icon_alignment = 2

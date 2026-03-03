@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://cjc85bq70jau6"]
+
+[ext_resource type="Script" uid="uid://dw15lfstwpxas" path="res://Scenes/Interface/pause.gd" id="1_44ev6"]
+[ext_resource type="StyleBox" uid="uid://gmdnusvelryd" path="res://Materials/ui_corner.tres" id="2_b7eou"]
+[ext_resource type="Material" uid="uid://dnac7erwr6mhh" path="res://Materials/ui_back.tres" id="3_n2f5q"]
+
+[node name="Pause" type="Control" unique_id=999868135]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_44ev6")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=146021844]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_b7eou")
+
+[node name="Blur" type="PanelContainer" parent="PanelContainer" unique_id=496516750]
+material = ExtResource("3_n2f5q")
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="PanelContainer/Blur" unique_id=507686551]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="TitlePage" type="Label" parent="PanelContainer/Blur/Left" unique_id=1846658056]
+layout_mode = 2
+theme_override_font_sizes/font_size = 140
+text = "Pause"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="PanelContainer/Blur/Left" unique_id=1603790070]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="buttons" type="HBoxContainer" parent="PanelContainer/Blur/Left" unique_id=1978323230]
+layout_mode = 2
+
+[node name="Play_Resume" type="Button" parent="PanelContainer/Blur/Left/buttons" unique_id=1830303633]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Resume "
+alignment = 2
+icon_alignment = 2
+
+[node name="Settings" type="Button" parent="PanelContainer/Blur/Left/buttons" unique_id=83314747]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Settings"
+icon_alignment = 2
+
+[node name="Quit" type="Button" parent="PanelContainer/Blur/Left/buttons" unique_id=2074436420]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " Quit"
+alignment = 0
+icon_alignment = 2
+
+[connection signal="pressed" from="PanelContainer/Blur/Left/buttons/Play_Resume" to="." method="_on_play_resume_pressed"]
+[connection signal="pressed" from="PanelContainer/Blur/Left/buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="PanelContainer/Blur/Left/buttons/Quit" to="." method="_on_quit_pressed"]

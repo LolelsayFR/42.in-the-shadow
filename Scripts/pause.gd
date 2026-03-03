@@ -11,14 +11,18 @@ func _process(delta: float) -> void:
 	pass
 
 
-func _on_close_button_pressed() -> void:
+func _on_play_resume_pressed() -> void:
 	visible = false
-	if G.gameState == G.INGAME_SETTINGS:
-		G.gameState = G.PAUSE
-	elif G.gameState == G.SETTINGS:
-		G.gameState = G.MAIN
+	G.gameState = G.INGAME
 	pass # Replace with function body.
 
-func on_open_button_pressed() -> void:
-	G.gameState = G.SETTINGS
+
+func _on_settings_pressed() -> void:
+	$"../Settings".on_open_button_pressed()
+	G.gameState = G.INGAME_SETTINGS
+	pass # Replace with function body.
+
+
+func _on_main_pressed() -> void:
+	G.gameState = G.MAIN
 	pass # Replace with function body.

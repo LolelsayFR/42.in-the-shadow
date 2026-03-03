@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dab0gieaovehl"]
 
 [ext_resource type="PackedScene" uid="uid://53oegibh436i" path="res://Prefabs/gameObject.res" id="1_6s75p"]
-[ext_resource type="Script" uid="uid://d068nh4r4f361" path="res://Scripts/scn_script/in_game.gd" id="1_t7vm8"]
+[ext_resource type="Script" uid="uid://d068nh4r4f361" path="res://Scripts/in_game.gd" id="1_t7vm8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t7vm8"]
 

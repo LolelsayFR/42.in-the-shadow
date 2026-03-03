@@ -11,17 +11,21 @@ func _process(delta: float) -> void:
 	pass
 
 
+
+func _on_quit_pressed() -> void:
+	pass # Replace with function body.
+
+
 func _on_play_resume_pressed() -> void:
-	visible = false
 	G.gameState = G.INGAME
 	pass # Replace with function body.
 
 
 func _on_settings_pressed() -> void:
-	$"../Settings".on_open_button_pressed()
+	G.gameState = G.SETTINGS
 	pass # Replace with function body.
 
 
-func _on_quit_pressed() -> void:
-	get_tree().quit()
+func _on_level_selector_pressed() -> void:
+	G.gameState = G.LVL_SELECTOR
 	pass # Replace with function body.

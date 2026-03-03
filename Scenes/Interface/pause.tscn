@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cjc85bq70jau6"]
 
-[ext_resource type="Script" uid="uid://dw15lfstwpxas" path="res://Scenes/Interface/pause.gd" id="1_44ev6"]
+[ext_resource type="Script" uid="uid://dw15lfstwpxas" path="res://Scripts/pause.gd" id="1_44ev6"]
 [ext_resource type="StyleBox" uid="uid://gmdnusvelryd" path="res://Materials/ui_corner.tres" id="2_b7eou"]
 [ext_resource type="Material" uid="uid://dnac7erwr6mhh" path="res://Materials/ui_back.tres" id="3_n2f5q"]
 
@@ -62,14 +62,14 @@ theme_override_font_sizes/font_size = 64
 text = "Settings"
 icon_alignment = 2
 
-[node name="Quit" type="Button" parent="PanelContainer/Blur/Left/buttons" unique_id=2074436420]
+[node name="Main" type="Button" parent="PanelContainer/Blur/Left/buttons" unique_id=2074436420]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
-text = " Quit"
+text = "Main menu"
 alignment = 0
 icon_alignment = 2
 
 [connection signal="pressed" from="PanelContainer/Blur/Left/buttons/Play_Resume" to="." method="_on_play_resume_pressed"]
 [connection signal="pressed" from="PanelContainer/Blur/Left/buttons/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="PanelContainer/Blur/Left/buttons/Quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="PanelContainer/Blur/Left/buttons/Main" to="." method="_on_main_pressed"]

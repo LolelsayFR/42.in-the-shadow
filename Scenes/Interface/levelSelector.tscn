@@ -1,5 +1,8 @@
 [gd_scene format=3 uid="uid://bk8jvcgtwjj13"]
 
+[ext_resource type="Script" uid="uid://dldo80xvh2l45" path="res://Scripts/level_selector.gd" id="1_5e0rp"]
+[ext_resource type="Texture2D" uid="uid://d2mo5esn5rofo" path="res://Sprites/levelFframework.svg" id="2_a4idj"]
+
 [node name="LevelSelector" type="Control" unique_id=979591820]
 layout_mode = 3
 anchors_preset = 15
@@ -7,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5e0rp")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=550425401]
 layout_mode = 1
@@ -19,3 +23,47 @@ theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=138890893]
+layout_mode = 2
+
+[node name="Lvl1" type="Button" parent="MarginContainer/HBoxContainer" unique_id=47455879]
+layout_mode = 2
+toggle_mode = true
+text = "1"
+icon = ExtResource("2_a4idj")
+
+[node name="Lvl2" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1501870610]
+layout_mode = 2
+toggle_mode = true
+text = "2"
+icon = ExtResource("2_a4idj")
+
+[node name="Lvl3" type="Button" parent="MarginContainer/HBoxContainer" unique_id=2001405290]
+layout_mode = 2
+toggle_mode = true
+text = "3"
+icon = ExtResource("2_a4idj")
+
+[node name="Lvl4" type="Button" parent="MarginContainer/HBoxContainer" unique_id=260716536]
+layout_mode = 2
+toggle_mode = true
+text = "4"
+icon = ExtResource("2_a4idj")
+
+[node name="Lvl5" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1333038558]
+layout_mode = 2
+toggle_mode = true
+text = "5"
+icon = ExtResource("2_a4idj")
+
+[node name="Play" type="Button" parent="MarginContainer/HBoxContainer" unique_id=986780013]
+layout_mode = 2
+text = "play"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl1" to="." method="_on_lvl_1_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl2" to="." method="_on_lvl_2_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl3" to="." method="_on_lvl_3_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl4" to="." method="_on_lvl_4_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl5" to="." method="_on_lvl_5_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]

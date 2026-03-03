@@ -75,7 +75,7 @@ func _mouseDrag() -> void:
 	pass
 
 func _keyHandler() -> void:
-	if G.gameState == G.PAUSE:
+	if G.gameState != G.INGAME:
 		return
 	if Input.is_action_just_pressed("change_rot") && get_meta("CanRotVert"):
 		rotMod = rotMod + 1

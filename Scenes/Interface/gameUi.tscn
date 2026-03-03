@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://sqvbqvhycro4"]
 
+[ext_resource type="Script" uid="uid://cqfq1j7scgryy" path="res://Scripts/game_ui.gd" id="1_3kstl"]
+
 [node name="GameUi" type="Control" unique_id=999868135]
 layout_mode = 3
 anchors_preset = 15
@@ -7,119 +9,33 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3kstl")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=259537378]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=7806928]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.0015625
-anchor_top = -0.024074074
-anchor_right = 1.0015625
-anchor_bottom = 1.0240741
-offset_left = 3.0
-offset_top = 26.0
-offset_right = -3.0
-offset_bottom = -26.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_vertical = 8
-theme_override_constants/margin_left = 600
-theme_override_constants/margin_top = 300
-theme_override_constants/margin_right = 600
-theme_override_constants/margin_bottom = 300
-metadata/_edit_use_anchors_ = true
+theme_override_constants/margin_left = 500
+theme_override_constants/margin_top = 900
+theme_override_constants/margin_right = 500
+theme_override_constants/margin_bottom = 100
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer" unique_id=146021844]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1624471805]
 layout_mode = 2
-
-[node name="Left" type="VBoxContainer" parent="MarginContainer/PanelContainer" unique_id=507686551]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_constants/separation = 22
+theme_override_constants/separation = 10
 alignment = 1
 
-[node name="TitlePage" type="Label" parent="MarginContainer/PanelContainer/Left" unique_id=1846658056]
-layout_mode = 2
-theme_override_font_sizes/font_size = 70
-text = "Settings"
-horizontal_alignment = 1
-
-[node name="Spacer" type="Control" parent="MarginContainer/PanelContainer/Left" unique_id=1603790070]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="QualityOption" type="HBoxContainer" parent="MarginContainer/PanelContainer/Left" unique_id=1978323230]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Left/QualityOption" unique_id=1729798398]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Quality"
-
-[node name="Quality" type="OptionButton" parent="MarginContainer/PanelContainer/Left/QualityOption" unique_id=1829490416]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="ScreenOption" type="HBoxContainer" parent="MarginContainer/PanelContainer/Left" unique_id=384488221]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Left/ScreenOption" unique_id=147639846]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Resolution"
-
-[node name="Resolution" type="OptionButton" parent="MarginContainer/PanelContainer/Left/ScreenOption" unique_id=168149734]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="MasterVolumeOption2" type="HBoxContainer" parent="MarginContainer/PanelContainer/Left" unique_id=1405833030]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Left/MasterVolumeOption2" unique_id=585572373]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Master Volume "
-
-[node name="VolumeOther" type="HSlider" parent="MarginContainer/PanelContainer/Left/MasterVolumeOption2" unique_id=684653290]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="SongVolumeOption" type="HBoxContainer" parent="MarginContainer/PanelContainer/Left" unique_id=100453840]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Left/SongVolumeOption" unique_id=572149214]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Song volume"
-
-[node name="VolumeSong" type="HSlider" parent="MarginContainer/PanelContainer/Left/SongVolumeOption" unique_id=354950720]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="OtherVolumeOption" type="HBoxContainer" parent="MarginContainer/PanelContainer/Left" unique_id=372776806]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/Left/OtherVolumeOption" unique_id=1753615875]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-text = "Other Volume "
-
-[node name="VolumeOther" type="HSlider" parent="MarginContainer/PanelContainer/Left/OtherVolumeOption" unique_id=1638254950]
-custom_minimum_size = Vector2(200, 0)
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="Close" type="HBoxContainer" parent="MarginContainer/PanelContainer/Left" unique_id=617930082]
+[node name="ActiveBar" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=983910991]
+custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 0
 
-[node name="Settings" type="Button" parent="MarginContainer/PanelContainer/Left/Close" unique_id=1024615450]
-custom_minimum_size = Vector2(300, 0)
+[node name="TotalBar" type="PanelContainer" parent="MarginContainer/VBoxContainer" unique_id=1599522120]
+custom_minimum_size = Vector2(100, 10)
 layout_mode = 2
-text = "Save & close"
-icon_alignment = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0

@@ -24,7 +24,6 @@ func _process(_delta: float) -> void:
 		localGameState = G.gameState
 		$LevelSelector.visible = false
 		$MainMenu.visible = false
-		$GameUi.visible = false
 		$Pause.visible = false
 		$Settings.visible = false
 		$LevelSelector.visible = false
@@ -45,15 +44,15 @@ func _process(_delta: float) -> void:
 	else:
 		$GameSounds.moveVol = 0
 	if Input.is_physical_key_pressed(KEY_1):
-		_loadLevel(0)
+		G.lvl = 0
 	if Input.is_physical_key_pressed(KEY_2):
-		_loadLevel(1)
+		G.lvl = 1
 	if Input.is_physical_key_pressed(KEY_3):
-		_loadLevel(2)
+		G.lvl = 2
 	if Input.is_physical_key_pressed(KEY_4):
-		_loadLevel(3)
+		G.lvl = 3
 	if Input.is_physical_key_pressed(KEY_5):
-		_loadLevel(4)
+		G.lvl = 4
 	pass
 
 func _loadLevel(lvl:int) -> void:

@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://53oegibh436i" path="res://Prefabs/gameObject.res" id="1_6s75p"]
 [ext_resource type="Script" uid="uid://d068nh4r4f361" path="res://Scripts/in_game.gd" id="1_t7vm8"]
+[ext_resource type="PackedScene" uid="uid://sqvbqvhycro4" path="res://Scenes/Interface/gameUi.tscn" id="3_jngem"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t7vm8"]
 
@@ -43,3 +44,5 @@ shadow_enabled = true
 shadow_opacity = 0.5
 spot_range = 230.57077
 spot_angle = 28.84232
+
+[node name="GameUi" parent="." unique_id=999868135 instance=ExtResource("3_jngem")]

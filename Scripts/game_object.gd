@@ -20,7 +20,10 @@ func _process(_delta: float) -> void:
 	percent = int(round(_compare_quaternion_and_pos(tracked_model_target) * 100.0))
 	allpercent = getAllPercent()
 	set_meta("percent", percent)
-	set_meta("totalPercent", allpercent)
+	if get_child(lvl).get_child_count() > 1:
+		set_meta("totalPercent", allpercent)
+	else:
+		set_meta("totalPercent", -1)
 	if Input.is_action_just_pressed("change_mdl"):
 		mdlChoosen = mdlChoosen + 1
 		tracked_model_target = _get_compare_target(get_child(lvl))

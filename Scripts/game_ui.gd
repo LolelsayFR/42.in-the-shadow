@@ -10,5 +10,8 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if G.gameState != G.INGAME:
+		total = 0
+		active = 0
 	$MarginContainer/VBoxContainer/ActiveBar.custom_minimum_size.x = bar_size * active
 	$MarginContainer/VBoxContainer/TotalBar.custom_minimum_size.x = bar_size * total

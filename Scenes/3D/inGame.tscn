@@ -46,3 +46,4 @@ spot_range = 230.57077
 spot_angle = 28.84232
 
 [node name="GameUi" parent="." unique_id=999868135 instance=ExtResource("3_jngem")]
+mouse_filter = 2

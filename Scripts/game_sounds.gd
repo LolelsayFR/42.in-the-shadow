@@ -2,7 +2,7 @@ extends Node
 var masterVol:float = 1
 var soundVol:float = 1
 var musicVol:float = 1
-var moveVol:float = 1
+var moveVol:float = 0
 var meloVol:float = 0
 var kickVol:float = 1
 var drumsVol:float = 1

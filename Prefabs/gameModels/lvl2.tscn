@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dxr4spkk4gria"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_deykd"]
+[ext_resource type="Material" uid="uid://c72nul277h6cw" path="res://Materials/greenMarble.tres" id="2_k3r8p"]
+[ext_resource type="ArrayMesh" uid="uid://bqoahdykwaj0l" path="res://Models/elephant.obj" id="3_5hps8"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="4_w0jsm"]
+
+[node name="Lvl2" type="Node3D" unique_id=378115487]
+transform = Transform3D(5.4746904, 0, 0, 0, 5.4746904, 0, 0, 0, 1, 0, 0, 0)
+script = ExtResource("1_deykd")
+metadata/moveRange = 0
+metadata/CanRotVert = true
+metadata/CanMove = false
+
+[node name="Elephant" type="MeshInstance3D" parent="." unique_id=438544824]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = ExtResource("2_k3r8p")
+mesh = ExtResource("3_5hps8")
+script = ExtResource("4_w0jsm")

@@ -6,7 +6,7 @@ var go:Node3D = null
 func _ready() -> void:
 	if not is_node_ready():
 		await ready
-	go = $GameObject
+	go = $GameObjects
 	pass # Replace with function body.
 
 
@@ -21,4 +21,4 @@ func _process(_delta: float) -> void:
 
 
 func getGameObject() -> Node3D:
-	return $GameObject
+	return $GameObjects

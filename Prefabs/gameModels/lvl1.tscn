@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://n7gdx3o1ln74"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_tfuf7"]
+[ext_resource type="Material" uid="uid://0c5qvydfcwhu" path="res://Materials/blackMarble.tres" id="2_ngba0"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_0epn2"]
+
+[sub_resource type="TextMesh" id="TextMesh_x4bjh"]
+text = "In the shadows"
+
+[node name="Lvl1" type="Node3D" unique_id=378115487]
+script = ExtResource("1_tfuf7")
+metadata/moveRange = 0
+metadata/CanRotVert = false
+metadata/CanMove = false
+
+[node name="Intheshadows" type="MeshInstance3D" parent="." unique_id=455314491]
+transform = Transform3D(27.5, 0, 0, 0, 27.5, 0, 0, 0, 10, 0, 0, 0)
+material_override = ExtResource("2_ngba0")
+mesh = SubResource("TextMesh_x4bjh")
+script = ExtResource("3_0epn2")

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dab0gieaovehl"]
 
-[ext_resource type="PackedScene" uid="uid://53oegibh436i" path="res://Prefabs/gameObject.res" id="1_6s75p"]
 [ext_resource type="Script" uid="uid://d068nh4r4f361" path="res://Scripts/in_game.gd" id="1_t7vm8"]
+[ext_resource type="PackedScene" uid="uid://dgt2qvuaeledf" path="res://Prefabs/GameObjects.tscn" id="2_jngem"]
 [ext_resource type="PackedScene" uid="uid://sqvbqvhycro4" path="res://Scenes/Interface/gameUi.tscn" id="3_jngem"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_t7vm8"]
@@ -9,8 +9,7 @@
 [node name="InGame" type="Node3D" unique_id=1637854702]
 script = ExtResource("1_t7vm8")
 
-[node name="GameObject" parent="." unique_id=1556206017 instance=ExtResource("1_6s75p")]
-metadata/lvl = 4
+[node name="GameObjects" parent="." unique_id=1321775524 instance=ExtResource("2_jngem")]
 
 [node name="Wall" type="MeshInstance3D" parent="." unique_id=941460825]
 transform = Transform3D(100, 0, 0, 0, -4.371139e-06, -100, 0, 100, -4.371139e-06, 0, 0, -50)
@@ -46,4 +45,3 @@ spot_range = 230.57077
 spot_angle = 28.84232
 
 [node name="GameUi" parent="." unique_id=999868135 instance=ExtResource("3_jngem")]
-mouse_filter = 2

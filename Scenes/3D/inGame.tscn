@@ -120,10 +120,6 @@ transform = Transform3D(0.4997657, 0.014721449, 0.0069966614, -0.015112003, 0.45
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.761688, -1.0285225, -34.233704)
 mesh = SubResource("ArrayMesh_735r6")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1194841425]
-transform = Transform3D(0.88702697, 0, -0.4617177, 0, 1, 0, 0.4617177, 0, 0.88702697, -25.50359, 38, 16.457645)
-fov = 90.0
-
 [node name="Label3D" type="Label3D" parent="." unique_id=1342129243]
 transform = Transform3D(5.534507, 0, -5.9604645e-08, 0, 4.1959705, 0, -1.7881393e-07, 0, 1.7453958, -40.85736, 33.56045, -27.03434)
 text = "Percent"

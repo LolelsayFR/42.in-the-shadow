@@ -61,9 +61,14 @@ icon = ExtResource("2_a4idj")
 layout_mode = 2
 text = "play"
 
+[node name="Return to main" type="Button" parent="MarginContainer/HBoxContainer" unique_id=31805503]
+layout_mode = 2
+text = "Return to main"
+
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl1" to="." method="_on_lvl_1_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl2" to="." method="_on_lvl_2_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl3" to="." method="_on_lvl_3_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl4" to="." method="_on_lvl_4_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl5" to="." method="_on_lvl_5_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Return to main" to="." method="_on_return_to_main_pressed"]

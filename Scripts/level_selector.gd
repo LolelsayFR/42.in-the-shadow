@@ -63,3 +63,8 @@ func _on_lvl_5_pressed() -> void:
 func _on_play_pressed() -> void:
 	G.gameState = G.INGAME
 	pass # Replace with function body.
+
+
+func _on_return_to_main_pressed() -> void:
+	G.gameState = G.MAIN
+	pass # Replace with function body.

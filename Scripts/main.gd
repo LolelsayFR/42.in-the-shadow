@@ -27,6 +27,7 @@ func _process(_delta: float) -> void:
 		$Pause.visible = false
 		$Settings.visible = false
 		$LevelSelector.visible = false
+		$Main3D.visible = false
 		if gameplay_instance != null &&  G.gameState != G.PAUSE && G.gameState != G.INGAME_SETTINGS: gameplay_instance.visible = false
 		match G.gameState:
 			G.INGAME: if gameplay_instance != null : gameplay_instance.visible = true
@@ -36,6 +37,8 @@ func _process(_delta: float) -> void:
 			G.PAUSE: $Pause.visible = true
 			G.LVL_SELECTOR: $LevelSelector.visible = true
 	if G.gameState != G.INGAME:
+		if $Main3D.visible != true && G.gameState != G.INGAME_SETTINGS && G.gameState != G.PAUSE:
+			$Main3D.visible = true
 		return
 	if localLvl != G.lvl:
 		_loadLevel(G.lvl)

@@ -1,9 +1,22 @@
 [gd_scene format=3 uid="uid://dlicr8ah664g8"]
 
+[ext_resource type="Texture2D" uid="uid://eqyyvy60w1k7" path="res://Sprites/sky.svg" id="1_7wtak"]
 [ext_resource type="Material" uid="uid://d2mc0mvytbfm" path="res://Materials/grass_shader.tres" id="1_n4e13"]
 [ext_resource type="Material" uid="uid://b8id0mdbgyxbu" path="res://Materials/grass_plain.tres" id="2_xu3rd"]
 [ext_resource type="ArrayMesh" uid="uid://cfbe0hq1je6oy" path="res://Models/world_grass.obj" id="3_p054e"]
 [ext_resource type="Texture2D" uid="uid://bqlaslwi6swss" path="res://Sprites/water.svg" id="4_7wtak"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_pceh6"]
+panorama = ExtResource("1_7wtak")
+
+[sub_resource type="Sky" id="Sky_chuny"]
+sky_material = SubResource("PanoramaSkyMaterial_pceh6")
+
+[sub_resource type="Environment" id="Environment_pplnx"]
+background_mode = 2
+sky = SubResource("Sky_chuny")
+ambient_light_source = 3
+ambient_light_energy = 16.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_xu3rd"]
 lightmap_size_hint = Vector2i(2, 2)
@@ -88,6 +101,9 @@ shader_parameter/water = ExtResource("4_7wtak")
 [sub_resource type="TorusMesh" id="TorusMesh_uuk3g"]
 
 [node name="World" type="Node3D" unique_id=1966675586]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1192880601]
+environment = SubResource("Environment_pplnx")
 
 [node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=540788826]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 14.411304, 0)

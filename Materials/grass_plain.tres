@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b8id0mdbgyxbu"]
+
+[ext_resource type="Texture2D" uid="uid://k5yvlfvhuvvu" path="res://Sprites/grass_plain.svg" id="1_ondnq"]
+
+[resource]
+albedo_color = Color(1.353256, 1.353256, 1.353256, 1)
+albedo_texture = ExtResource("1_ondnq")
+metallic_specular = 0.0
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 0

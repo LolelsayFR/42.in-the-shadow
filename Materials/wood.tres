@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dhtdju4sejbf3"]
+
+[ext_resource type="Texture2D" uid="uid://da6fo1pcd26ha" path="res://Sprites/wood.svg" id="1_rmgnc"]
+
+[resource]
+albedo_texture = ExtResource("1_rmgnc")
+metallic_specular = 0.0
+roughness_texture = ExtResource("1_rmgnc")
+clearcoat_enabled = true
+clearcoat_texture = ExtResource("1_rmgnc")
+uv1_scale = Vector3(0.1, 0.1, 0.1)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 0.19614582
+uv1_world_triplanar = true
+texture_filter = 0

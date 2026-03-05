@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://d2mc0mvytbfm"]
+
+[ext_resource type="Texture2D" uid="uid://br4l1knkps34m" path="res://Sprites/grass.svg" id="2_o7ecn"]
+
+[sub_resource type="Shader" id="Shader_x4gpk"]
+resource_local_to_scene = true
+code = "shader_type spatial;
+render_mode cull_disabled, depth_draw_opaque;
+
+uniform sampler2D grass_texture : filter_nearest, source_color;
+
+void vertex(){
+	NORMAL = vec3(0.0, 1.0, 0.0);
+	VERTEX.x += sin(NODE_POSITION_WORLD.x + TIME * 1.25 + UV.y) * ( 1.0 - UV.y) * 0.2;
+	VERTEX.z += cos(NODE_POSITION_WORLD.z + TIME * 0.45 + UV.y) * ( 1.0 - UV.y) * 0.15;
+}
+
+void fragment(){
+	ALBEDO = texture(grass_texture, UV).rgb;
+	ALPHA = texture(grass_texture, UV).a;
+}"
+
+[resource]
+render_priority = 0
+shader = SubResource("Shader_x4gpk")
+shader_parameter/grass_texture = ExtResource("2_o7ecn")

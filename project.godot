@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="42.in-the-shadows"
-run/main_scene="uid://v46t58f07j5k"
+run/main_scene="uid://cm16ykven5hfs"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://Sprites/icon.svg"
 

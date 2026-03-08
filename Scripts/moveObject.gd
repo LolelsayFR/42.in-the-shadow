@@ -67,7 +67,7 @@ func _mouseDrag() -> void:
 		var x = (mousePos.x - mouseOrigin.x) * mouseSpeed
 		var y = (mousePos.y - mouseOrigin.y) * mouseSpeed
 		var pos = get_child(mdlChoosen % get_child_count()).position
-		if Input.is_action_pressed("object_movement") && get_meta("CanMove"):
+		if Input.is_action_pressed("object_movement") && get_meta("CanMove"):\
 			get_child(mdlChoosen % get_child_count()).position += _oobCheck(Vector3(x * 2, -(y * 2), 0), pos)
 		else:
 			rotMdl(x, y, get_child(mdlChoosen % get_child_count()))

@@ -22,9 +22,8 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_released("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove"):
 		localState = ""
 		$"2D".visible = false
-	if localState != $"..".get_child($"..".lvl).rotMdl(0, 0, null):
-		localState = $"..".get_child($"..".lvl).rotMdl(0, 0, null)
-		print("print",localState, "coucou   ", localState.find("Y"))
+	if localState != $"..".get_child($"..".lvl).rotMdl(0, 0, 0, null):
+		localState = $"..".get_child($"..".lvl).rotMdl(0, 0, 0, null)
 		$Y.visible = false
 		$X.visible = false
 		$Z.visible = false

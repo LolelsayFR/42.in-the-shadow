@@ -4,6 +4,7 @@ var speed:float = 0.1
 var mouseMode:bool = false
 var mouseSpeed:float = 0.01
 var mouseOrigin:Vector2
+var rotateOrigin:Vector3
 var mousePos:Vector2
 var mdlChoosen:int = 0
 var moveRange:float = 0
@@ -20,19 +21,19 @@ func _process(_delta: float) -> void:
 	_keyHandler()
 	pass
 
-func rotMdl(x:float, y:float, mdl:Node3D) -> String:
+func rotMdl(ang:float, x:float, y:float, mdl:Node3D) -> String:
 	match rotMod % 7:
 		0:
 			if mdl != null:
-				mdl.rotate_y(y + x)
+				mdl.rotation.y = rotateOrigin.y + ang
 			return "Y"
 		1:
 			if mdl != null:
-				mdl.rotate_x(y + x)
+				mdl.rotation.y = rotateOrigin.x + ang
 			return "X"
 		2:
 			if mdl != null:
-				mdl.rotate_z(y + x)
+				mdl.rotation.y = rotateOrigin.z + ang
 			return "Z"
 		3:
 			if mdl != null:
@@ -64,14 +65,18 @@ func _mouseDrag() -> void:
 		isBased = true
 	if mouseMode:
 		mousePos = get_viewport().get_mouse_position()
+		mousePos.angle()
 		var x = (mousePos.x - mouseOrigin.x) * mouseSpeed
 		var y = (mousePos.y - mouseOrigin.y) * mouseSpeed
 		var pos = get_child(mdlChoosen % get_child_count()).position
+		print((mouseOrigin - mousePos).angle())
 		if Input.is_action_pressed("object_movement") && get_meta("CanMove"):\
 			get_child(mdlChoosen % get_child_count()).position += _oobCheck(Vector3(x * 2, -(y * 2), 0), pos)
 		else:
-			rotMdl(x, y, get_child(mdlChoosen % get_child_count()))
-	mouseOrigin = get_viewport().get_mouse_position()
+			rotMdl((mouseOrigin - mousePos).angle(), x, y, get_child(mdlChoosen % get_child_count()))
+		if Input.is_action_just_pressed("mouse_click"):
+			mouseOrigin = get_viewport().get_mouse_position()
+			rotateOrigin = get_child(mdlChoosen % get_child_count()).rotation
 	pass
 
 func _keyHandler() -> void:

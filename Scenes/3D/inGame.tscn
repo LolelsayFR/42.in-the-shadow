@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dlicr8ah664g8" path="res://Prefabs/world.tscn" id="3_chuny"]
 [ext_resource type="PackedScene" uid="uid://sqvbqvhycro4" path="res://Scenes/Interface/gameUi.tscn" id="3_jngem"]
 [ext_resource type="Material" uid="uid://dhtdju4sejbf3" path="res://Materials/wood.tres" id="4_rsvpx"]
+[ext_resource type="Texture2D" uid="uid://uv2rff7ystms" path="res://Sprites/circle.svg" id="6_rsvpx"]
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_rsvpx"]
 _surfaces = [{
@@ -142,3 +143,8 @@ shadow_enabled = true
 [node name="World" parent="." unique_id=1966675586 instance=ExtResource("3_chuny")]
 
 [node name="GameUi" parent="." unique_id=999868135 instance=ExtResource("3_jngem")]
+
+[node name="Circle" type="Sprite2D" parent="." unique_id=2030338185]
+visible = false
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_rsvpx")

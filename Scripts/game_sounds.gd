@@ -22,6 +22,12 @@ func _process(delta: float) -> void:
 	else:
 		if  muffler > 80:
 			muffler += -0.6
+	if masterVol != G.MasterVol:
+		masterVol = G.MasterVol
+	if musicVol != G.MusicVol:
+		musicVol = G.MusicVol
+	if soundVol != G.SoundVol:
+		soundVol = G.SoundVol
 	_setVolume()
 	pass
 

@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	$Label3D.text = "Percent : %d%%" % go.get_meta("percent")
 	$Label3D2.text = "Total percent : %d%%" % go.get_meta("totalPercent")
-	$Label3D3.text = "Rot Mode : %s" % go.tracked_lvl.rotMdl(0, 0,0, null)
+	$Label3D3.text = "Rot Mode : %s" % G.rotMod
 	$GameUi.active =  float(go.get_meta("percent")) / 100
 	$GameUi.total = float(go.get_meta("totalPercent")) / 100
 	pass

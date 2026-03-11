@@ -5,10 +5,13 @@ var gameplay_instance:Node3D = null
 var localGameState:int = -1
 var localLvl:int = -1
 var localRes:Vector2i = G.resDict[G.Resolution][0]
+var localIsFullScreen:bool = G.resDict[G.Resolution][1]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	get_viewport().content_scale_mode = true
+	get_viewport().content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
+	get_viewport().content_scale_stretch = true
+	get_viewport().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 	pass # Replace with function body.
 
 
@@ -16,8 +19,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if localRes != G.resDict[G.Resolution][0]:
 		localRes = G.resDict[G.Resolution][0]
+		get_tree().root.size = localRes
 		get_viewport().content_scale_size = localRes
-		get_tree().root.content_scale_size = localRes
+	if localIsFullScreen != G.resDict[G.Resolution][1]:
+		localIsFullScreen = G.resDict[G.Resolution][1]
+		get_viewport().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+		
+		
+		
 	if (G.gameState == G.INGAME || G.gameState == G.PAUSE) && Input.is_action_just_pressed("pause"):
 		if G.gameState == G.PAUSE:
 			G.gameState = G.INGAME

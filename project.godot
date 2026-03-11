@@ -23,7 +23,10 @@ G="*uid://ccjj5fc2030fx"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=4
+window/size/mode=3
+window/size/resizable=false
+window/size/minimize_disabled=true
+window/size/maximize_disabled=true
 
 [input]
 

@@ -8,7 +8,7 @@ func _process(_delta: float) -> void:
 	if isFullScreen != resDict[Resolution][1]:
 		isFullScreen = resDict[Resolution][1]
 		if isFullScreen:
-			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	if ActualRes != resDict[Resolution][0]:

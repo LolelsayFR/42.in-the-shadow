@@ -1,6 +1,5 @@
 extends Control
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	setSettingsVisualValue()
@@ -11,9 +10,9 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
 func _on_close_button_pressed() -> void:
 	visible = false
+	G.writeData()
 	if G.gameState == G.INGAME_SETTINGS:
 		G.gameState = G.PAUSE
 	elif G.gameState == G.SETTINGS:
@@ -21,9 +20,9 @@ func _on_close_button_pressed() -> void:
 	pass # Replace with function body.
 
 func setSettingsVisualValue() -> void:
-	$MarginContainer/PanelContainer/MarginContainer/Left/MasterVolumeOption2/MasterOther.value = G.MasterVol * 100
-	$MarginContainer/PanelContainer/MarginContainer/Left/SongVolumeOption/VolumeSong.value = G.MusicVol * 100
-	$MarginContainer/PanelContainer/MarginContainer/Left/OtherVolumeOption/VolumeOther.value = G.SoundVol * 100
+	$MarginContainer/PanelContainer/MarginContainer/Left/MasterVolumeOption2/MasterOther.value = G.MasterVol * 100.0
+	$MarginContainer/PanelContainer/MarginContainer/Left/SongVolumeOption/VolumeSong.value = G.MusicVol * 100.0
+	$MarginContainer/PanelContainer/MarginContainer/Left/OtherVolumeOption/VolumeOther.value = G.SoundVol * 100.0
 	$MarginContainer/PanelContainer/MarginContainer/Left/Others/AngleMod/AngleMod.button_pressed = G.AngleMode
 	$MarginContainer/PanelContainer/MarginContainer/Left/Others/ViewAxis/ViewAxis.button_pressed = G.ViewAxis
 	
@@ -64,4 +63,10 @@ func _on_view_axis_toggled(toggled_on: bool) -> void:
 
 func _on_angle_mod_toggled(toggled_on: bool) -> void:
 	G.AngleMode = toggled_on
+	pass # Replace with function body.
+
+
+func _on_undobutton_pressed() -> void:
+	G.readCData()
+	setSettingsVisualValue()
 	pass # Replace with function body.

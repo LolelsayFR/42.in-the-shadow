@@ -3,6 +3,15 @@ extends Node
 func _ready() -> void:
 	readCData()
 	pass # Replace with function body.
+	
+func _process(delta: float) -> void:
+	if ActualRes != resDict[Resolution][0]:
+		ActualRes = resDict[Resolution][0]
+		DisplayServer.window_set_size(ActualRes)
+	if isFullScreen != resDict[Resolution][1]:
+		isFullScreen = resDict[Resolution][1]
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	
 
 enum {
 	MAIN,
@@ -22,6 +31,22 @@ enum QUALITY {
 	FULL,
 }
 
+enum RES {
+	WIN_720P,
+	WIN_1080P,
+	FULL_720P,
+	FULL_1080P,
+	FULL_AUTO,
+}
+
+var resDict:Dictionary =  {
+	RES.WIN_720P:   [Vector2i(1280, 720),  false],
+	RES.WIN_1080P:  [Vector2i(1920, 1080), false],
+	RES.FULL_720P:  [Vector2i(1280, 720),  true],
+	RES.FULL_1080P: [Vector2i(1920, 1080), true],
+	RES.FULL_AUTO:  [Vector2i(0, 0),       true] # auto = taille écran, donc on laisse (0,0)
+}
+
 var lvl:int = 0
 var gameState:int = MAIN
 var lvlProgress:int = 0
@@ -37,8 +62,8 @@ var ViewAxis:bool = defaultViewAxis
 var defaultQuality:int = QUALITY.FULL
 var Quality:int = defaultQuality
 
-var defaultResolution:Vector2i = Vector2i(1920, 1080)
-var Resolution:Vector2i = defaultResolution
+var defaultResolution:int = RES.FULL_AUTO
+var Resolution:int = defaultResolution
 
 var defaultMasterVol:float = 1
 var MasterVol:float = defaultMasterVol
@@ -53,6 +78,8 @@ var MusicVol:float = defaultMusicVol
 
 var pathSave="user://in-the-shadow-data.json";
 
+var ActualRes:Vector2i = resDict[defaultResolution][0]
+var isFullScreen:bool = resDict[defaultResolution][1]
 
 func writeData() -> void:
 	var save_file = FileAccess.open(pathSave, FileAccess.WRITE)
@@ -90,9 +117,7 @@ func readCData() -> void:
 				"AngleMode": G.AngleMode = parseData[key]
 				"ViewAxis": G.ViewAxis = parseData[key]
 				"Quality": G.Quality = parseData[key]
+				"Resolution": G.Resolution = parseData[key]
 				"MasterVol": G.MasterVol = parseData[key]
 				"SoundVol": G.SoundVol = parseData[key]
 				"MusicVol": G.MusicVol = parseData[key]
-				"Resolution":
-					var parts = parseData[key].replace("(", "").replace(")", "").replace(" ", "").split(",")
-					G.Resolution = Vector2i(int(parts[0]), int(parts[1]))

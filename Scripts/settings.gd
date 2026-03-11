@@ -2,12 +2,16 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	
 	setSettingsVisualValue()
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		_on_undobutton_pressed()
+		_on_close_button_pressed()
 	pass
 
 func _on_close_button_pressed() -> void:
@@ -25,6 +29,8 @@ func setSettingsVisualValue() -> void:
 	$MarginContainer/PanelContainer/MarginContainer/Left/OtherVolumeOption/VolumeOther.value = G.SoundVol * 100.0
 	$MarginContainer/PanelContainer/MarginContainer/Left/Others/AngleMod/AngleMod.button_pressed = G.AngleMode
 	$MarginContainer/PanelContainer/MarginContainer/Left/Others/ViewAxis/ViewAxis.button_pressed = G.ViewAxis
+	$MarginContainer/PanelContainer/MarginContainer/Left/QualityOption/Quality.selected = G.Quality
+	$MarginContainer/PanelContainer/MarginContainer/Left/ScreenOption/Resolution.selected = G.Resolution
 	
 func on_open_button_pressed() -> void:
 	G.gameState = G.SETTINGS
@@ -69,4 +75,14 @@ func _on_angle_mod_toggled(toggled_on: bool) -> void:
 func _on_undobutton_pressed() -> void:
 	G.readCData()
 	setSettingsVisualValue()
+	pass # Replace with function body.
+
+
+func _on_resolution_item_selected(index: int) -> void:
+	G.Resolution = index
+	pass # Replace with function body.
+
+
+func _on_quality_item_selected(index: int) -> void:
+	G.Quality = index
 	pass # Replace with function body.

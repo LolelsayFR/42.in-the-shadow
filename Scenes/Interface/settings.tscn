@@ -14,10 +14,10 @@ script = ExtResource("1_x4lrk")
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=259537378]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.0015625
-anchor_top = -0.024074074
-anchor_right = 1.0015625
-anchor_bottom = 1.0240741
+anchor_left = -0.0578125
+anchor_top = -0.02037037
+anchor_right = 1.0744792
+anchor_bottom = 1.037037
 offset_left = 3.0
 offset_top = 26.0
 offset_right = -3.0
@@ -72,6 +72,13 @@ text = "Quality"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
+item_count = 3
+popup/item_0/text = "Potato 🥔"
+popup/item_0/id = 0
+popup/item_1/text = "Mid 🤝"
+popup/item_1/id = 1
+popup/item_2/text = "Full 🔥"
+popup/item_2/id = 2
 
 [node name="ScreenOption" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left" unique_id=384488221]
 layout_mode = 2
@@ -86,6 +93,17 @@ text = "Resolution"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
+item_count = 5
+popup/item_0/text = "WIN_720P"
+popup/item_0/id = 0
+popup/item_1/text = "WIN_1080P"
+popup/item_1/id = 1
+popup/item_2/text = "FULL_720P"
+popup/item_2/id = 2
+popup/item_3/text = "FULL_1080P"
+popup/item_3/id = 3
+popup/item_4/text = "FULL_AUTO"
+popup/item_4/id = 4
 
 [node name="MasterVolumeOption2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left" unique_id=1405833030]
 layout_mode = 2
@@ -178,6 +196,8 @@ layout_mode = 2
 text = "Save & close"
 icon_alignment = 2
 
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/Left/QualityOption/Quality" to="." method="_on_quality_item_selected"]
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/Left/ScreenOption/Resolution" to="." method="_on_resolution_item_selected"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/Left/MasterVolumeOption2/MasterOther" to="." method="_on_master_other_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/Left/SongVolumeOption/VolumeSong" to="." method="_on_volume_song_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/Left/OtherVolumeOption/VolumeOther" to="." method="_on_volume_other_value_changed"]

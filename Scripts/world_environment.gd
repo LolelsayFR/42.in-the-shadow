@@ -8,4 +8,5 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	environment.sky_rotation.y += delta / 40
+	if not G.Quality == G.QUALITY.POTATO:
+		environment.sky_rotation.y += delta / 40

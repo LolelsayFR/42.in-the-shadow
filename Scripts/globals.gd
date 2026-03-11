@@ -14,6 +14,8 @@ func _process(_delta: float) -> void:
 	if ActualRes != resDict[Resolution][0]:
 		ActualRes = resDict[Resolution][0]
 		DisplayServer.window_set_size(ActualRes)
+
+
 enum {
 	MAIN,
 	INGAME,
@@ -34,9 +36,9 @@ enum QUALITY {
 
 enum RES {
 	# Petites résolutions (performances)
-	WIN_480P,   # 854x480 (16:9)
-	WIN_540P,   # 960x540 (qHD)
-	WIN_600P,   # 1066x600 (≈16:9)
+	WIN_480P,
+	WIN_540P,
+	WIN_600P,
 	WIN_720P,
 	WIN_900P,
 	WIN_1080P,

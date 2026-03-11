@@ -7,6 +7,8 @@
 [ext_resource type="Material" uid="uid://dhtdju4sejbf3" path="res://Materials/wood.tres" id="4_rsvpx"]
 [ext_resource type="Texture2D" uid="uid://uv2rff7ystms" path="res://Sprites/circle.svg" id="6_rsvpx"]
 
+[sub_resource type="QuadMesh" id="QuadMesh_rsvpx"]
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_rsvpx"]
 _surfaces = [{
 "aabb": AABB(-122.45285, 87.93323, 9.930063, 86.3394, 91.13199, 24.398363),
@@ -113,6 +115,11 @@ shadow_mesh = SubResource("ArrayMesh_rsvpx")
 [node name="InGame" type="Node3D" unique_id=1637854702]
 transform = Transform3D(0.095376685, 0, -0.99544126, 0, 1, 0, 0.99544126, 0, 0.095376685, 0, 0, 0)
 script = ExtResource("1_t7vm8")
+
+[node name="Plane" type="MeshInstance3D" parent="." unique_id=989761073]
+transform = Transform3D(79.92825, 1.6521974, 0.93138885, -3.3043954, 36.094994, 42.896816, 0.745111, -17.158728, 90.32718, -16.893288, 33.245975, -32.258656)
+visible = false
+mesh = SubResource("QuadMesh_rsvpx")
 
 [node name="GameObjects" parent="." unique_id=1321775524 instance=ExtResource("2_jngem")]
 transform = Transform3D(0.69967175, 0.020610018, 0.0058795256, -0.021156793, 0.6334921, 0.29705235, 0.0034251737, -0.29709077, 0.63381803, -0.8805926, 48.392487, 0.87051624)

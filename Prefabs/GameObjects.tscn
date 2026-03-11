@@ -26,5 +26,6 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 [node name="Lvl4" parent="." unique_id=774774181 instance=ExtResource("5_2b83n")]
 
 [node name="Lvl5" parent="." unique_id=1318697558 instance=ExtResource("6_omcav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
 
 [node name="Axes" parent="." unique_id=1998642599 instance=ExtResource("7_7ma2s")]

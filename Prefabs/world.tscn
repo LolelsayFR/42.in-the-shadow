@@ -5,6 +5,28 @@
 [ext_resource type="ArrayMesh" uid="uid://cfbe0hq1je6oy" path="res://Models/world_grass.obj" id="3_p054e"]
 [ext_resource type="Texture2D" uid="uid://bqlaslwi6swss" path="res://Sprites/water.svg" id="4_7wtak"]
 
+[sub_resource type="GDScript" id="GDScript_uuk3g"]
+script/source = "extends Node3D
+var localQuality:int = -1
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	if localQuality != G.Quality:
+		localQuality = G.Quality
+		if localQuality <= G.QUALITY.MID:
+			$Water.visible = false
+			$Water2.visible = false
+			$GrassMulti.visible = false
+			$FarGround.visible = false
+		else:
+			$Water.visible = true
+			$Water2.visible = true
+			$GrassMulti.visible = true
+			$FarGround.visible = true
+			
+	pass
+"
+
 [sub_resource type="QuadMesh" id="QuadMesh_xu3rd"]
 lightmap_size_hint = Vector2i(2, 2)
 subdivide_width = 16
@@ -88,9 +110,11 @@ shader_parameter/water = ExtResource("4_7wtak")
 [sub_resource type="TorusMesh" id="TorusMesh_uuk3g"]
 
 [node name="World" type="Node3D" unique_id=1966675586]
+script = SubResource("GDScript_uuk3g")
 
-[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=540788826]
+[node name="GrassMulti" type="MultiMeshInstance3D" parent="." unique_id=540788826]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 14.411304, 0)
+visible = false
 material_override = ExtResource("1_n4e13")
 cast_shadow = 0
 multimesh = SubResource("MultiMesh_uuk3g")
@@ -105,18 +129,21 @@ transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 visible = false
 mesh = SubResource("QuadMesh_xu3rd")
 
-[node name="water" type="MeshInstance3D" parent="." unique_id=45105459]
+[node name="Water" type="MeshInstance3D" parent="." unique_id=45105459]
 transform = Transform3D(1000, 0, 0, 0, 100, 0, 0, 0, 1000, 0, -109.99948, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_pceh6")
 transparency = 0.5
 mesh = ExtResource("3_p054e")
 
-[node name="water2" type="MeshInstance3D" parent="." unique_id=107443072]
+[node name="Water2" type="MeshInstance3D" parent="." unique_id=107443072]
 transform = Transform3D(1000, 0, 0, 0, 100, 0, 0, 0, 1000, 0, -119.571, 0)
+visible = false
 material_override = SubResource("ShaderMaterial_uuk3g")
 mesh = ExtResource("3_p054e")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=18878556]
+[node name="FarGround" type="MeshInstance3D" parent="." unique_id=18878556]
 transform = Transform3D(1539.9366, 0, 0, 0, 280.86868, 0, 0, 0, 1539.9366, 0, -78.66113, 0)
+visible = false
 material_override = ExtResource("2_xu3rd")
 mesh = SubResource("TorusMesh_uuk3g")

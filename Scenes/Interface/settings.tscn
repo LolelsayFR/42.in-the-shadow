@@ -14,11 +14,6 @@ func _ready() -> void:
 		var label:String = G.resDict[res_id][2]
 		add_item(label, int(res_id))
 	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 "
 
 [node name="Settings" type="Control" unique_id=999868135]

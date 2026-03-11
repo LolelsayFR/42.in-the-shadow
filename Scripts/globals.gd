@@ -4,7 +4,7 @@ func _ready() -> void:
 	readCData()
 	pass # Replace with function body.
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if isFullScreen != resDict[Resolution][1]:
 		isFullScreen = resDict[Resolution][1]
 		if isFullScreen:
@@ -52,8 +52,6 @@ enum RES {
 	FULL_1080P,
 	FULL_1440P,
 	FULL_4K,
-
-	FULL_AUTO,
 }
 
 var resDict:Dictionary =  {
@@ -79,10 +77,7 @@ var resDict:Dictionary =  {
 	RES.FULL_900P:  [Vector2i(1600, 900),  true,  "Plein écran - 1600x900 (900p)"],
 	RES.FULL_1080P: [Vector2i(1920, 1080), true,  "Plein écran - 1920x1080 (1080p)"],
 	RES.FULL_1440P: [Vector2i(2560, 1440), true,  "Plein écran - 2560x1440 (1440p)"],
-	RES.FULL_4K:    [Vector2i(3840, 2160), true,  "Plein écran - 3840x2160 (4K)"],
-
-	# Auto (prend la résolution écran)
-	RES.FULL_AUTO:  [Vector2i(-1, -1),     true,  "Plein écran - Auto (résolution écran)"],
+	RES.FULL_4K:    [Vector2i(3840, 2160), true,  "Plein écran - 3840x2160 (4K)"]
 }
 
 var lvl:int = 0
@@ -100,7 +95,7 @@ var ViewAxis:bool = defaultViewAxis
 var defaultQuality:int = QUALITY.FULL
 var Quality:int = defaultQuality
 
-var defaultResolution:int = RES.FULL_AUTO
+var defaultResolution:int = RES.FULL_1080P
 var Resolution:int = defaultResolution
 
 var defaultMasterVol:float = 1

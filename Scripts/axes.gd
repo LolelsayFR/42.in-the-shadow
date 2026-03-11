@@ -20,7 +20,7 @@ func axysSetOpacity(val:float) -> void:
 	localTransparency = val
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_pressed("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove") :
 		$Y.visible = false
 		$X.visible = false

@@ -11,13 +11,9 @@ func _process(delta: float) -> void:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		else:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		print(resDict[Resolution])
 	if ActualRes != resDict[Resolution][0]:
 		ActualRes = resDict[Resolution][0]
 		DisplayServer.window_set_size(ActualRes)
-		get_tree().root.size = ActualRes
-		print(resDict[Resolution])
-
 enum {
 	MAIN,
 	INGAME,
@@ -37,19 +33,56 @@ enum QUALITY {
 }
 
 enum RES {
+	# Petites résolutions (performances)
+	WIN_480P,   # 854x480 (16:9)
+	WIN_540P,   # 960x540 (qHD)
+	WIN_600P,   # 1066x600 (≈16:9)
 	WIN_720P,
+	WIN_900P,
 	WIN_1080P,
+	WIN_1440P,
+	WIN_4K,
+
+	# Plein écran
+	FULL_480P,
+	FULL_540P,
+	FULL_600P,
 	FULL_720P,
+	FULL_900P,
 	FULL_1080P,
+	FULL_1440P,
+	FULL_4K,
+
 	FULL_AUTO,
 }
 
 var resDict:Dictionary =  {
-	RES.WIN_720P:   [Vector2i(1280, 720),  false],
-	RES.WIN_1080P:  [Vector2i(1920, 1080), false],
-	RES.FULL_720P:  [Vector2i(1280, 720),  true],
-	RES.FULL_1080P: [Vector2i(1920, 1080), true],
-	RES.FULL_AUTO:  [Vector2i(0, 0),       true] # auto = taille écran, donc on laisse (0,0)
+	# Fenêtré (performances)
+	RES.WIN_480P:   [Vector2i(854,  480),  false, "Fenêtré - 854x480 (480p)"],
+	RES.WIN_540P:   [Vector2i(960,  540),  false, "Fenêtré - 960x540 (540p)"],
+	RES.WIN_600P:   [Vector2i(1066, 600),  false, "Fenêtré - 1066x600 (600p)"],
+
+	# Fenêtré (standard)
+	RES.WIN_720P:   [Vector2i(1280, 720),  false, "Fenêtré - 1280x720 (720p)"],
+	RES.WIN_900P:   [Vector2i(1600, 900),  false, "Fenêtré - 1600x900 (900p)"],
+	RES.WIN_1080P:  [Vector2i(1920, 1080), false, "Fenêtré - 1920x1080 (1080p)"],
+	RES.WIN_1440P:  [Vector2i(2560, 1440), false, "Fenêtré - 2560x1440 (1440p)"],
+	RES.WIN_4K:     [Vector2i(3840, 2160), false, "Fenêtré - 3840x2160 (4K)"],
+
+	# Plein écran (performances)
+	RES.FULL_480P:  [Vector2i(854,  480),  true,  "Plein écran - 854x480 (480p)"],
+	RES.FULL_540P:  [Vector2i(960,  540),  true,  "Plein écran - 960x540 (540p)"],
+	RES.FULL_600P:  [Vector2i(1066, 600),  true,  "Plein écran - 1066x600 (600p)"],
+
+	# Plein écran (standard)
+	RES.FULL_720P:  [Vector2i(1280, 720),  true,  "Plein écran - 1280x720 (720p)"],
+	RES.FULL_900P:  [Vector2i(1600, 900),  true,  "Plein écran - 1600x900 (900p)"],
+	RES.FULL_1080P: [Vector2i(1920, 1080), true,  "Plein écran - 1920x1080 (1080p)"],
+	RES.FULL_1440P: [Vector2i(2560, 1440), true,  "Plein écran - 2560x1440 (1440p)"],
+	RES.FULL_4K:    [Vector2i(3840, 2160), true,  "Plein écran - 3840x2160 (4K)"],
+
+	# Auto (prend la résolution écran)
+	RES.FULL_AUTO:  [Vector2i(-1, -1),     true,  "Plein écran - Auto (résolution écran)"],
 }
 
 var lvl:int = 0
@@ -83,7 +116,7 @@ var MusicVol:float = defaultMusicVol
 
 var pathSave="user://in-the-shadow-data.json";
 
-var ActualRes:Vector2i = resDict[defaultResolution][0]
+var ActualRes:Vector2i = Vector2i.ZERO
 var isFullScreen:bool = resDict[defaultResolution][1]
 
 func writeData() -> void:

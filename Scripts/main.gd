@@ -4,14 +4,22 @@ var gameplay:Resource = preload("res://Scenes/3D/inGame.tscn")
 var gameplay_instance:Node3D = null
 var localGameState:int = -1
 var localLvl:int = -1
+var localRes:Vector2i = G.resDict[G.Resolution][0]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	get_viewport().content_scale_mode = true
+	get_viewport().content_scale_stretch = true
 	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if localRes != G.resDict[G.Resolution][0]:
+		localRes = G.resDict[G.Resolution][0]
+		get_viewport().content_scale_size = localRes
+		if not G.isFullScreen:
+			get_viewport().position = Vector2i.ZERO
 	if (G.gameState == G.INGAME || G.gameState == G.PAUSE) && Input.is_action_just_pressed("pause"):
 		if G.gameState == G.PAUSE:
 			G.gameState = G.INGAME

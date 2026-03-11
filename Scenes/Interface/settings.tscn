@@ -2,6 +2,25 @@
 
 [ext_resource type="Script" uid="uid://iuglm2mvyqhk" path="res://Scripts/settings.gd" id="1_x4lrk"]
 
+[sub_resource type="GDScript" id="GDScript_x4lrk"]
+script/source = "extends OptionButton
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	for res_id in G.RES.values():
+		if not G.resDict.has(res_id):
+			continue
+		var label:String = G.resDict[res_id][2]
+		add_item(label, int(res_id))
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
 [node name="Settings" type="Control" unique_id=999868135]
 layout_mode = 3
 anchors_preset = 15
@@ -72,6 +91,7 @@ text = "Quality"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
+selected = 0
 item_count = 3
 popup/item_0/text = "Potato 🥔"
 popup/item_0/id = 0
@@ -93,17 +113,8 @@ text = "Resolution"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
-item_count = 5
-popup/item_0/text = "WIN_720P"
-popup/item_0/id = 0
-popup/item_1/text = "WIN_1080P"
-popup/item_1/id = 1
-popup/item_2/text = "FULL_720P"
-popup/item_2/id = 2
-popup/item_3/text = "FULL_1080P"
-popup/item_3/id = 3
-popup/item_4/text = "FULL_AUTO"
-popup/item_4/id = 4
+fit_to_longest_item = false
+script = SubResource("GDScript_x4lrk")
 
 [node name="MasterVolumeOption2" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left" unique_id=1405833030]
 layout_mode = 2

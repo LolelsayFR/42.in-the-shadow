@@ -5,13 +5,18 @@ func _ready() -> void:
 	pass # Replace with function body.
 	
 func _process(delta: float) -> void:
+	if isFullScreen != resDict[Resolution][1]:
+		isFullScreen = resDict[Resolution][1]
+		if isFullScreen:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		else:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+		print(resDict[Resolution])
 	if ActualRes != resDict[Resolution][0]:
 		ActualRes = resDict[Resolution][0]
 		DisplayServer.window_set_size(ActualRes)
-	if isFullScreen != resDict[Resolution][1]:
-		isFullScreen = resDict[Resolution][1]
-		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
-	
+		get_tree().root.size = ActualRes
+		print(resDict[Resolution])
 
 enum {
 	MAIN,

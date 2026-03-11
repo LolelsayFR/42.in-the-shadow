@@ -23,8 +23,7 @@ G="*uid://ccjj5fc2030fx"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/borderless=true
-window/stretch/mode="canvas_items"
+window/size/mode=4
 
 [input]
 

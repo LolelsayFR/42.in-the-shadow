@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cb8sf4jr2l3g7"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_s6u1a"]
+[ext_resource type="ArrayMesh" uid="uid://bv0byleh18jac" path="res://Models/LapinHead.obj" id="3_eb8vh"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="4_x2obx"]
+[ext_resource type="ArrayMesh" uid="uid://bgo62aolopvws" path="res://Models/LapinCorps.obj" id="5_qcsaw"]
+
+[node name="Rabbit" type="Node3D" unique_id=378115487]
+script = ExtResource("1_s6u1a")
+metadata/moveRange = 5
+metadata/CanRotVert = true
+metadata/CanMove = true
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=1343622139]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.6477284, 6.0548515, -2.2729309)
+mesh = ExtResource("3_eb8vh")
+script = ExtResource("4_x2obx")
+
+[node name="Corps" type="MeshInstance3D" parent="." unique_id=295809825]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.4444342, 0, 3.8765483)
+mesh = ExtResource("5_qcsaw")
+script = ExtResource("4_x2obx")

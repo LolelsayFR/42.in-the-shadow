@@ -1,12 +1,16 @@
 [gd_scene format=3 uid="uid://dgt2qvuaeledf"]
 
 [ext_resource type="Script" uid="uid://qblu3eu54w46" path="res://Scripts/game_object.gd" id="1_amxin"]
-[ext_resource type="PackedScene" uid="uid://n7gdx3o1ln74" path="res://Prefabs/gameModels/lvl1.tscn" id="2_7ma2s"]
-[ext_resource type="PackedScene" uid="uid://dxr4spkk4gria" path="res://Prefabs/gameModels/lvl2.tscn" id="3_aj5jt"]
-[ext_resource type="PackedScene" uid="uid://cj1yl8g80i8a1" path="res://Prefabs/gameModels/lvl3.tscn" id="4_glgge"]
-[ext_resource type="PackedScene" uid="uid://cb8sf4jr2l3g7" path="res://Prefabs/gameModels/lvl4.tscn" id="5_2b83n"]
-[ext_resource type="PackedScene" uid="uid://bldjijfoyegc" path="res://Prefabs/gameModels/lvl5.tscn" id="6_omcav"]
+[ext_resource type="PackedScene" uid="uid://bldjijfoyegc" path="res://Prefabs/gameLvl/42.tscn" id="2_glgge"]
+[ext_resource type="PackedScene" uid="uid://bwynbnqscvujg" path="res://Prefabs/gameLvl/CAT.tscn" id="3_2b83n"]
+[ext_resource type="PackedScene" uid="uid://c2r4lvlvnshk4" path="res://Prefabs/gameLvl/CHESS.tscn" id="4_omcav"]
+[ext_resource type="PackedScene" uid="uid://n7gdx3o1ln74" path="res://Prefabs/gameLvl/ITS.tscn" id="5_40rhp"]
+[ext_resource type="PackedScene" uid="uid://dxr4spkk4gria" path="res://Prefabs/gameLvl/MONKEY.tscn" id="6_qxibg"]
 [ext_resource type="PackedScene" uid="uid://doncslgk612ar" path="res://Prefabs/axes.tscn" id="7_7ma2s"]
+[ext_resource type="PackedScene" uid="uid://cb8sf4jr2l3g7" path="res://Prefabs/gameLvl/RABBIT.tscn" id="7_pjo7h"]
+[ext_resource type="PackedScene" uid="uid://cj1yl8g80i8a1" path="res://Prefabs/gameLvl/TEAPOT.tscn" id="8_f256q"]
+[ext_resource type="PackedScene" uid="uid://cj1ndnjoio4tr" path="res://Prefabs/gameLvl/ELEPHANT.tscn" id="10_omcav"]
+[ext_resource type="PackedScene" uid="uid://c176vp0ar58e0" path="res://Prefabs/gameLvl/GLOBE.tscn" id="11_40rhp"]
 
 [node name="GameObjects" type="Node3D" unique_id=1321775524]
 script = ExtResource("1_amxin")
@@ -16,16 +20,22 @@ metadata/randomCapPercent = 50.0
 metadata/winCapPercent = 90.0
 metadata/lvl = 0
 
-[node name="Lvl1" parent="." unique_id=378115487 instance=ExtResource("2_7ma2s")]
+[node name="ITS" parent="." unique_id=866273242 instance=ExtResource("5_40rhp")]
 
-[node name="Lvl2" parent="." unique_id=1604188559 instance=ExtResource("3_aj5jt")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+[node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("10_omcav")]
 
-[node name="Lvl3" parent="." unique_id=745059310 instance=ExtResource("4_glgge")]
+[node name="Monkey" parent="." unique_id=206367581 instance=ExtResource("6_qxibg")]
 
-[node name="Lvl4" parent="." unique_id=774774181 instance=ExtResource("5_2b83n")]
+[node name="TeaPot" parent="." unique_id=767970802 instance=ExtResource("8_f256q")]
 
-[node name="Lvl5" parent="." unique_id=1318697558 instance=ExtResource("6_omcav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+[node name="CAT" parent="." unique_id=62885664 instance=ExtResource("3_2b83n")]
+
+[node name="GLOBE" parent="." unique_id=691411663 instance=ExtResource("11_40rhp")]
+
+[node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("7_pjo7h")]
+
+[node name="42" parent="." unique_id=378115487 instance=ExtResource("2_glgge")]
+
+[node name="Chess" parent="." unique_id=778465654 instance=ExtResource("4_omcav")]
 
 [node name="Axes" parent="." unique_id=1998642599 instance=ExtResource("7_7ma2s")]

@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://wkb7v1f6fsut"
+path="res://.godot/imported/ChessMiddle.obj-d2a33fd2204030793272e6274d2febbd.mesh"
+
+[deps]
+
+files=["res://.godot/imported/ChessMiddle.obj-d2a33fd2204030793272e6274d2febbd.mesh"]
+
+source_file="res://Models/ChessMiddle.obj"
+dest_files=["res://.godot/imported/ChessMiddle.obj-d2a33fd2204030793272e6274d2febbd.mesh", "res://.godot/imported/ChessMiddle.obj-d2a33fd2204030793272e6274d2febbd.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

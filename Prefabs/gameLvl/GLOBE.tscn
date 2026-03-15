@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c176vp0ar58e0"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_w6jca"]
+[ext_resource type="ArrayMesh" uid="uid://bvqige5dhi7wg" path="res://Models/globe-earth.obj" id="2_w6jca"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_x8jqe"]
+[ext_resource type="ArrayMesh" uid="uid://ci602baednxta" path="res://Models/globe_base.obj" id="4_w6jca"]
+
+[node name="GLOBE" type="Node3D" unique_id=378115487]
+script = ExtResource("1_w6jca")
+metadata/moveRange = 10
+metadata/CanRotVert = true
+metadata/CanMove = true
+
+[node name="SPHERE" type="MeshInstance3D" parent="." unique_id=278303234]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = ExtResource("2_w6jca")
+script = ExtResource("3_x8jqe")
+
+[node name="STAND" type="MeshInstance3D" parent="." unique_id=1466942171]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+mesh = ExtResource("4_w6jca")
+script = ExtResource("3_x8jqe")

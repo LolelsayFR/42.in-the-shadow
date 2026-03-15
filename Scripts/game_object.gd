@@ -2,111 +2,157 @@ extends Node3D
 
 var tracked_model_target: Node3D = null
 var tracked_lvl: Node3D = null
-var base_quaternion: Quaternion = Quaternion.IDENTITY
 var percent: int = 0
-var allpercent: int = 0
+var all_percent: Array[int] = []
 var mdlChoosen: int = 0
 var lvl: int = 0
-var moveStrength:float = 0
+var moveStrength: float = 0.0
+
 func _ready() -> void:
+	G.maxLvl = get_child_count() - 1
 	setLvl(lvl)
-	set_meta("percent", percent)
-	if tracked_model_target == null:
-		return
+	_update_progress_meta()
 
 func _process(_delta: float) -> void:
-	if tracked_model_target == null:
-		return
-	percent = int(round(_compare_quaternion_and_pos(tracked_model_target) * 100.0))
-	allpercent = getAllPercent()
-	set_meta("percent", percent)
-	if get_child(lvl).get_child_count() > 1:
-		set_meta("totalPercent", allpercent)
-	else:
-		set_meta("totalPercent", -1)
-	if Input.is_action_just_pressed("change_mdl"):
-		mdlChoosen = mdlChoosen + 1
-		tracked_model_target = _get_compare_target(get_child(lvl))
-
-func getAllPercent() -> int:
-	var result: int = 0
-	var count: int = 0
-	var parent = get_child(lvl)
-	for i in range(parent.get_child_count()):
-		var child = parent.get_child(i)
-		if child.visible:
-			result += int(round(_compare_quaternion_and_pos(child) * 100.0))
-			count += 1
-	if count == 0:
-		return 0
-	@warning_ignore("integer_division")
-	return result / count
-
-func _get_compare_target(model: Node3D) -> Node3D:
-	if model == null:
-		return null
-	if model.get_child_count() > 0 and model.get_child(mdlChoosen % model.get_child_count()) is Node3D:
-		return model.get_child(mdlChoosen % model.get_child_count())
-	return model
-	
-func _randomize_model_angles_pos(mdl: Node3D, canRotVer:bool, canMove:bool) -> void:
-	if mdl == null:
-		return
-	base_quaternion = _get_compare_target(get_child(lvl)).baseQuaternion
-	# Assure tracked_lvl est bien défini
 	if tracked_lvl == null:
-		tracked_lvl = get_child(lvl)
+		return
+
+	if Input.is_action_just_pressed("change_mdl"):
+		mdlChoosen += 1
+		_update_tracked_model()
+
+	_update_progress_meta()
+
+func _get_level_models(level_node: Node3D) -> Array[Node3D]:
+	var models: Array[Node3D] = []
+	if level_node == null:
+		return models
+
+	for child in level_node.get_children():
+		if child is Node3D:
+			models.append(child as Node3D)
+
+	if models.is_empty():
+		models.append(level_node)
+
+	return models
+
+func _get_selected_model_index(models: Array[Node3D]) -> int:
+	if models.is_empty():
+		return -1
+	return mdlChoosen % models.size()
+
+func _update_tracked_model() -> void:
+	var models: Array[Node3D] = _get_level_models(tracked_lvl)
+	var selected_index: int = _get_selected_model_index(models)
+	if selected_index == -1:
+		tracked_model_target = null
+		return
+	tracked_model_target = models[selected_index]
+
+func _get_model_percent(model: Node3D) -> int:
+	return int(round(_compare_quaternion_and_pos(model) * 100.0))
+
+func _get_average_percent(percents: Array[int]) -> int:
+	if percents.is_empty():
+		return 0
+
+	var total: int = 0
+	for value in percents:
+		total += value
+
+	@warning_ignore("integer_division")
+	return total / percents.size()
+
+func _update_progress_meta() -> void:
+	all_percent = get_all_percent()
+	percent = 0
+
+	if tracked_model_target != null:
+		percent = _get_model_percent(tracked_model_target)
+
+	set_meta("percent", percent)
+	set_meta("allPercent", all_percent)
+	set_meta("totalPercent", _get_average_percent(all_percent))
+
+func get_all_percent() -> Array[int]:
+	var percents: Array[int] = []
+	for model in _get_level_models(tracked_lvl):
+		percents.append(_get_model_percent(model))
+	return percents
+
+func _randomize_model_angles_pos(model: Node3D, canRotVer: bool, canMove: bool) -> void:
+	if model == null || tracked_lvl == null:
+		return
+
 	if not tracked_lvl.is_node_ready():
 		await tracked_lvl.ready
+
 	moveStrength = tracked_lvl.get_meta("moveRange")
+	var model_base_quaternion: Quaternion = model.baseQuaternion
 	var random_euler: Vector3 = Vector3(
-		randf_range(0.0, TAU * (canRotVer as int)),  # x Rotation
-		randf_range(0.0, TAU),  # y Rotation
-		0.0   # z no rotation
+		randf_range(0.0, TAU * (canRotVer as int)),
+		randf_range(0.0, TAU),
+		0.0
 	)
 	var random_quat: Quaternion = Quaternion.from_euler(random_euler)
-	mdl.quaternion = base_quaternion * random_quat
+	model.quaternion = model_base_quaternion * random_quat
 	if canMove:
-		mdl.position = Vector3(randf_range(-moveStrength, moveStrength), randf_range(-moveStrength, moveStrength), 0)
-	if getAllPercent() > get_meta("randomCapPercent"):
-		_randomize_model_angles_pos(mdl, canRotVer, canMove)
+		model.position = Vector3(
+			randf_range(-moveStrength, moveStrength),
+			randf_range(-moveStrength, moveStrength),
+			0
+		)
 
-func _compare_quaternion_and_pos(mdl: Node3D) -> float:
-	if mdl == null:
+	if _get_average_percent(get_all_percent()) > get_meta("randomCapPercent"):
+		_randomize_model_angles_pos(model, canRotVer, canMove)
+
+func _compare_quaternion_and_pos(model: Node3D) -> float:
+	if model == null:
 		return 0.0
-	var current_quat: Quaternion = mdl.quaternion
-	var current_pos: Vector3 = mdl.position
-	# Calcule l'angle entre le quaternion de référence et le courant (en radians).
-	var angle_diff: float = base_quaternion.angle_to(current_quat)
+
+	var model_base_quaternion: Quaternion = model.baseQuaternion
+	var model_base_pos: Vector3 = model.basePos
+	var angle_diff: float = model_base_quaternion.angle_to(model.quaternion)
 	var similarity_rot: float = 1.0 - (angle_diff / PI)
 	similarity_rot = clampf(similarity_rot, 0.0, 1.0)
-	# Comparaison de position (distance euclidienne, normalisée sur moveStrength)
-	var base_pos: Vector3 = _get_compare_target(get_child(lvl)).basePos
-	var dist = current_pos.distance_to(base_pos)
+
+	var dist: float = model.position.distance_to(model_base_pos)
 	var similarity_pos: float = 1.0
 	if moveStrength > 0.0:
 		similarity_pos = 1.0 - clampf(dist / moveStrength, 0.0, 1.0)
-	# 90% rotation, 10% position
+
 	return clampf((similarity_rot * 0.9 + similarity_pos * 0.1), 0.0, 1.0)
 
 func setLvl(nlvl:int) -> void:
 	lvl = nlvl
 	var last_index: int = get_child_count() - 1
 	if nlvl > last_index:
-		set_meta("percent", percent)
+		tracked_lvl = null
+		tracked_model_target = null
+		all_percent.clear()
+		set_meta("percent", 0)
+		set_meta("allPercent", all_percent)
+		set_meta("totalPercent", 0)
 		return
+
+	mdlChoosen = 0
+
 	for i in range(last_index, -1, -1):
 		if not is_node_ready():
 			await ready
 		if nlvl != i:
 			get_child(i).visible = false
 		else:
-			tracked_model_target = _get_compare_target(get_child(i))
-			tracked_model_target.visible = true
-			base_quaternion = tracked_model_target.quaternion
 			tracked_lvl = get_child(i)
+			tracked_lvl.visible = true
+
 	if tracked_lvl != null:
 		moveStrength = tracked_lvl.get_meta("moveRange")
-	var count: int = get_child(nlvl).get_child_count()
-	for r in range(count):
-		_randomize_model_angles_pos(get_child(nlvl).get_child(r), get_child(nlvl).get_meta("CanRotVert"), get_child(nlvl).get_meta("CanMove"))
+		var can_rot_vert: bool = tracked_lvl.get_meta("CanRotVert")
+		var can_move: bool = tracked_lvl.get_meta("CanMove")
+		for model in _get_level_models(tracked_lvl):
+			await _randomize_model_angles_pos(model, can_rot_vert, can_move)
+
+	_update_tracked_model()
+	_update_progress_meta()

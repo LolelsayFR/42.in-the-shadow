@@ -57,20 +57,20 @@ func _process(_delta: float) -> void:
 		return
 	if localLvl != G.lvl:
 		_loadLevel(G.lvl)
-	if Input.is_action_pressed("mouse_click"):
+	if Input.is_action_pressed("mouse_click") ||  Input.is_action_pressed("mouse_click2"):
 		$GameSounds.moveVol = 1
 	else:
 		$GameSounds.moveVol = 0
-	if Input.is_physical_key_pressed(KEY_1):
-		G.lvl = 0
-	if Input.is_physical_key_pressed(KEY_2):
-		G.lvl = 1
-	if Input.is_physical_key_pressed(KEY_3):
-		G.lvl = 2
-	if Input.is_physical_key_pressed(KEY_4):
-		G.lvl = 3
-	if Input.is_physical_key_pressed(KEY_5):
-		G.lvl = 4
+	if Input.is_action_just_pressed("D_LVL-"):
+		if G.lvl - 1 < 0:
+			G.lvl = G.maxLvl - 1
+		else: 
+			G.lvl = G.lvl - 1 
+	if Input.is_action_just_pressed("D_LVL+"):
+		if G.lvl + 1 >= G.maxLvl:
+			G.lvl = 0
+		else: 
+			G.lvl = G.lvl + 1 
 	pass
 
 func _loadLevel(lvl:int) -> void:

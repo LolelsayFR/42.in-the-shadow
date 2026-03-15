@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dxr4spkk4gria"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_rinnx"]
+[ext_resource type="ArrayMesh" uid="uid://cxxqaaqh8ricp" path="res://Models/monkey.obj" id="2_v6t0r"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_qswxj"]
+
+[node name="Monkey" type="Node3D" unique_id=378115487]
+script = ExtResource("1_rinnx")
+metadata/moveRange = 0
+metadata/CanRotVert = true
+metadata/CanMove = false
+
+[node name="Monkey" type="MeshInstance3D" parent="." unique_id=438544824]
+transform = Transform3D(5.527965, 0, 0, 0, 5.527965, 0, 0, 0, 1, 0.3110857, 0, 0)
+mesh = ExtResource("2_v6t0r")
+script = ExtResource("3_qswxj")

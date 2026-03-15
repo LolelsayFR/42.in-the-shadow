@@ -27,8 +27,7 @@ func setSettingsVisualValue() -> void:
 	$MarginContainer/PanelContainer/MarginContainer/Left/MasterVolumeOption2/MasterOther.value = G.MasterVol * 100.0
 	$MarginContainer/PanelContainer/MarginContainer/Left/SongVolumeOption/VolumeSong.value = G.MusicVol * 100.0
 	$MarginContainer/PanelContainer/MarginContainer/Left/OtherVolumeOption/VolumeOther.value = G.SoundVol * 100.0
-	$MarginContainer/PanelContainer/MarginContainer/Left/Others/AngleMod/AngleMod.button_pressed = G.AngleMode
-	$MarginContainer/PanelContainer/MarginContainer/Left/Others/ViewAxis/ViewAxis.button_pressed = G.ViewAxis
+	$MarginContainer/PanelContainer/MarginContainer/Left/ViewAxis/ViewAxis.button_pressed = G.ViewAxis
 	$MarginContainer/PanelContainer/MarginContainer/Left/QualityOption/Quality.selected = G.Quality
 	$MarginContainer/PanelContainer/MarginContainer/Left/ScreenOption/Resolution.selected = G.Resolution
 	
@@ -65,12 +64,6 @@ func _on_master_other_value_changed(value: float) -> void:
 func _on_view_axis_toggled(toggled_on: bool) -> void:
 	G.ViewAxis = toggled_on
 	pass # Replace with function body.
-
-
-func _on_angle_mod_toggled(toggled_on: bool) -> void:
-	G.AngleMode = toggled_on
-	pass # Replace with function body.
-
 
 func _on_undobutton_pressed() -> void:
 	G.readCData()

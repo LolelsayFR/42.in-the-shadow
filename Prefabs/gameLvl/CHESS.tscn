@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://c2r4lvlvnshk4"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_v2do3"]
+[ext_resource type="ArrayMesh" uid="uid://d1sc20kbkfuq6" path="res://Models/ChessTOP.obj" id="2_jd1jd"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_iv4f0"]
+[ext_resource type="ArrayMesh" uid="uid://wkb7v1f6fsut" path="res://Models/ChessMiddle.obj" id="4_81iyj"]
+
+[node name="Chess" type="Node3D" unique_id=378115487]
+script = ExtResource("1_v2do3")
+metadata/moveRange = 10
+metadata/CanRotVert = true
+metadata/CanMove = true
+
+[node name="Head" type="MeshInstance3D" parent="." unique_id=278303234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7551956, 0)
+mesh = ExtResource("2_jd1jd")
+script = ExtResource("3_iv4f0")
+
+[node name="Corps" type="MeshInstance3D" parent="." unique_id=1466942171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.349625, 0)
+mesh = ExtResource("4_81iyj")
+script = ExtResource("3_iv4f0")

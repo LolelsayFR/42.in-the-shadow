@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bwynbnqscvujg"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_t65fp"]
+[ext_resource type="ArrayMesh" uid="uid://dy05ytislkir4" path="res://Models/cat.obj" id="3_t65fp"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="4_bttmm"]
+
+[node name="CAT" type="Node3D" unique_id=378115487]
+script = ExtResource("1_t65fp")
+metadata/moveRange = 0
+metadata/CanRotVert = true
+metadata/CanMove = false
+
+[node name="cat" type="MeshInstance3D" parent="." unique_id=438544824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30955982, 0.0056762695, -0.0026855469)
+mesh = ExtResource("3_t65fp")
+script = ExtResource("4_bttmm")

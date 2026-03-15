@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bldjijfoyegc"]
+
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_j440l"]
+[ext_resource type="ArrayMesh" uid="uid://bua2gxk2qqvhn" path="res://Models/logo-4.obj" id="2_0447e"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_nch5y"]
+[ext_resource type="ArrayMesh" uid="uid://dgcjk02dyxws" path="res://Models/logo-2.obj" id="4_8tyws"]
+
+[node name="42" type="Node3D" unique_id=378115487]
+script = ExtResource("1_j440l")
+metadata/moveRange = 10
+metadata/CanRotVert = true
+metadata/CanMove = true
+
+[node name="Logo4" type="MeshInstance3D" parent="." unique_id=278303234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3147545, 0.76754034, 0)
+mesh = ExtResource("2_0447e")
+script = ExtResource("3_nch5y")
+
+[node name="Logo2" type="MeshInstance3D" parent="." unique_id=1466942171]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.305658, 4.229423, 0)
+mesh = ExtResource("4_8tyws")
+script = ExtResource("3_nch5y")

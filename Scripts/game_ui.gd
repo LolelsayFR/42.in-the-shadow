@@ -10,11 +10,11 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("mouse_click") && G.gameState == G.INGAME:
+	if Input.is_action_just_pressed("mouse_click") || Input.is_action_just_pressed("mouse_click2") && G.gameState == G.INGAME:
 		$"../Circle".scale = Vector2(1.5,1.5)
 		$"../Circle".visible = true
 		$"../Circle".position = get_viewport().get_mouse_position()
-	if !Input.is_action_pressed("mouse_click") && $"../Circle".scale <= Vector2(0.5,0.5):
+	if !Input.is_action_pressed("mouse_click") && !Input.is_action_pressed("mouse_click2")  && $"../Circle".scale <= Vector2(0.5,0.5):
 		$"../Circle".visible = false
 	if $"../Circle".scale > Vector2(0.5,0.5):
 		$"../Circle".scale -= delta * 10 * Vector2(0.5,0.5)

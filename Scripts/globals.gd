@@ -83,14 +83,12 @@ var resDict:Dictionary =  {
 }
 
 var lvl:int = 0
+var maxLvl:int = 0
 var gameState:int = MAIN
 var lvlProgress:int = 0
 var rotMod = ROT[0]
 
 #Settings sections
-var defaultAngleMode:bool = true
-var AngleMode:bool = defaultAngleMode
-
 var defaultViewAxis:bool = false
 var ViewAxis:bool = defaultViewAxis
 
@@ -119,7 +117,6 @@ var isFullScreen:bool = resDict[defaultResolution][1]
 func writeData() -> void:
 	var save_file = FileAccess.open(pathSave, FileAccess.WRITE)
 	var data:Dictionary={
-		"AngleMode":AngleMode, 
 		"ViewAxis":ViewAxis, 
 		"Quality":Quality, 
 		"Resolution":Resolution, 
@@ -149,7 +146,6 @@ func readCData() -> void:
 
 		for key in parseData.keys():
 			match key:
-				"AngleMode": G.AngleMode = parseData[key]
 				"ViewAxis": G.ViewAxis = parseData[key]
 				"Quality": G.Quality = parseData[key]
 				"Resolution": G.Resolution = parseData[key]

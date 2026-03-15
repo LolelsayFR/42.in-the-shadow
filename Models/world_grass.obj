@@ -1,6 +1,5 @@
 # Blender 5.0.1
 # www.blender.org
-mtllib world_grass.mtl
 o Sphère
 v 0.000000 0.774206 0.000000
 v 0.000000 0.747478 -0.555570

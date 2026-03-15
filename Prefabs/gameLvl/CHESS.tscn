@@ -4,6 +4,7 @@
 [ext_resource type="ArrayMesh" uid="uid://d1sc20kbkfuq6" path="res://Models/ChessTOP.obj" id="2_jd1jd"]
 [ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_iv4f0"]
 [ext_resource type="ArrayMesh" uid="uid://wkb7v1f6fsut" path="res://Models/ChessMiddle.obj" id="4_81iyj"]
+[ext_resource type="ArrayMesh" uid="uid://blshabi6na760" path="res://Models/ChessBottom.obj" id="5_v2do3"]
 
 [node name="Chess" type="Node3D" unique_id=378115487]
 script = ExtResource("1_v2do3")
@@ -19,4 +20,9 @@ script = ExtResource("3_iv4f0")
 [node name="Corps" type="MeshInstance3D" parent="." unique_id=1466942171]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.349625, 0)
 mesh = ExtResource("4_81iyj")
+script = ExtResource("3_iv4f0")
+
+[node name="Foot" type="MeshInstance3D" parent="." unique_id=155717077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.649887, 0)
+mesh = ExtResource("5_v2do3")
 script = ExtResource("3_iv4f0")

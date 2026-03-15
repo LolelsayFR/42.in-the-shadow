@@ -11,6 +11,6 @@ metadata/CanRotVert = true
 metadata/CanMove = false
 
 [node name="cat" type="MeshInstance3D" parent="." unique_id=438544824]
-transform = Transform3D(5.4565415, 0, 0, 0, 5.4565415, 0, 0, 0, 1, 0.30955982, 0.0056762695, -0.0026855469)
+transform = Transform3D(5.457, 0, 0, 0, 5.457, 0, 0, 0, 5.457, 0.30955982, 0.0056762695, -0.0026855469)
 mesh = ExtResource("3_t65fp")
 script = ExtResource("4_bttmm")

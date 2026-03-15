@@ -13,6 +13,16 @@ func _ready() -> void:
 var localQuality:int = -1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("mouse_click") || Input.is_action_just_pressed("mouse_click2") && G.gameState == G.INGAME:
+		$"./Circle".scale = Vector2(1.5,1.5)
+		$"./Circle".visible = true
+		$"./Circle".position = get_viewport().get_mouse_position()
+	if !Input.is_action_pressed("mouse_click") && !Input.is_action_pressed("mouse_click2")  && $"./Circle".scale <= Vector2(0.5,0.5):
+		$"./Circle".visible = false
+	if $"./Circle".scale > Vector2(0.5,0.5):
+		$"./Circle".scale -= delta * 10 * Vector2(0.5,0.5)
+	if $"./Circle".scale < Vector2(0.5,0.5):
+		$"./Circle".scale = Vector2(0.5,0.5)
 	if localQuality != G.Quality:
 		localQuality = G.Quality
 		if localQuality <= G.QUALITY.FULL:
@@ -26,11 +36,10 @@ func _process(delta: float) -> void:
 			$Stand.visible = false
 			$Plane.visible = true
 			$World.visible = false
-	$Label3D.text = "Percent : %d%%" % go.get_meta("percent")
-	$Label3D2.text = "Total percent : %d%%" % go.get_meta("totalPercent")
-	$Label3D3.text = "Rot Mode : %s" % G.rotMod
-	$GameUi.active =  float(go.get_meta("percent")) / 100
-	$GameUi.total = float(go.get_meta("totalPercent")) / 100
+	$GameUi/gameUi/GameUi.percent =  go.get_meta("percent")
+	$GameUi/gameUi/GameUi.totalPercent = go.get_meta("totalPercent")
+	$ViewBar/Bar/Bar.active =  float(go.get_meta("percent")) / 100
+	$ViewBar/Bar/Bar.total = float(go.get_meta("totalPercent")) / 100
 	pass
 
 

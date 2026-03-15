@@ -66,7 +66,7 @@ func _on_view_axis_toggled(toggled_on: bool) -> void:
 	pass # Replace with function body.
 
 func _on_undobutton_pressed() -> void:
-	G.readCData()
+	G.readData()
 	setSettingsVisualValue()
 	pass # Replace with function body.
 

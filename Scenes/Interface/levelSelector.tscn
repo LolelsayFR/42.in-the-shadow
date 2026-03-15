@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://bk8jvcgtwjj13"]
 
 [ext_resource type="Script" uid="uid://dldo80xvh2l45" path="res://Scripts/level_selector.gd" id="1_5e0rp"]
-[ext_resource type="Texture2D" uid="uid://d2mo5esn5rofo" path="res://Sprites/levelFframework.svg" id="2_a4idj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a4idj"]
 
 [node name="LevelSelector" type="Control" unique_id=979591820]
 layout_mode = 3
@@ -12,63 +13,113 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5e0rp")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=550425401]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=372834774]
+custom_minimum_size = Vector2(1000, 1000)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_a4idj")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=138890893]
+[node name="HBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=841810745]
 layout_mode = 2
 
-[node name="Lvl1" type="Button" parent="MarginContainer/HBoxContainer" unique_id=47455879]
+[node name="GridContainer" type="GridContainer" parent="PanelContainer/HBoxContainer" unique_id=1240457086]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 3
+
+[node name="Lvl1" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=47455879]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
 toggle_mode = true
 text = "1"
-icon = ExtResource("2_a4idj")
 
-[node name="Lvl2" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1501870610]
+[node name="Lvl2" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=1501870610]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
 toggle_mode = true
 text = "2"
-icon = ExtResource("2_a4idj")
 
-[node name="Lvl3" type="Button" parent="MarginContainer/HBoxContainer" unique_id=2001405290]
+[node name="Lvl3" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=2001405290]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
 toggle_mode = true
 text = "3"
-icon = ExtResource("2_a4idj")
 
-[node name="Lvl4" type="Button" parent="MarginContainer/HBoxContainer" unique_id=260716536]
+[node name="Lvl4" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=260716536]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
 toggle_mode = true
 text = "4"
-icon = ExtResource("2_a4idj")
 
-[node name="Lvl5" type="Button" parent="MarginContainer/HBoxContainer" unique_id=1333038558]
+[node name="Lvl5" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=1333038558]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
 toggle_mode = true
 text = "5"
-icon = ExtResource("2_a4idj")
 
-[node name="Play" type="Button" parent="MarginContainer/HBoxContainer" unique_id=986780013]
+[node name="Lvl6" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=138595374]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
+toggle_mode = true
+text = "6"
+
+[node name="Lvl7" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=357598607]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
+toggle_mode = true
+text = "7"
+
+[node name="Lvl8" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=1579752486]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
+toggle_mode = true
+text = "8"
+
+[node name="Lvl9" type="Button" parent="PanelContainer/HBoxContainer/GridContainer" unique_id=797675391]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 100
+toggle_mode = true
+text = "9"
+
+[node name="Play" type="Button" parent="PanelContainer/HBoxContainer" unique_id=986780013]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 48
 text = "play"
 
-[node name="Return to main" type="Button" parent="MarginContainer/HBoxContainer" unique_id=31805503]
+[node name="Return to main" type="Button" parent="PanelContainer/HBoxContainer" unique_id=31805503]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Return to main"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl1" to="." method="_on_lvl_1_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl2" to="." method="_on_lvl_2_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl3" to="." method="_on_lvl_3_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl4" to="." method="_on_lvl_4_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Lvl5" to="." method="_on_lvl_5_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/Return to main" to="." method="_on_return_to_main_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl1" to="." method="_on_lvl_1_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl2" to="." method="_on_lvl_2_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl3" to="." method="_on_lvl_3_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl4" to="." method="_on_lvl_4_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl5" to="." method="_on_lvl_5_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl6" to="." method="_on_lvl_6_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl7" to="." method="_on_lvl_7_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl8" to="." method="_on_lvl_8_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl9" to="." method="_on_lvl_9_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="PanelContainer/HBoxContainer/Return to main" to="." method="_on_return_to_main_pressed"]

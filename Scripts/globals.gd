@@ -1,7 +1,7 @@
 extends Node
 
 func _ready() -> void:
-	readCData()
+	readData()
 	pass # Replace with function body.
 	
 func _process(_delta: float) -> void:
@@ -85,10 +85,12 @@ var resDict:Dictionary =  {
 var lvl:int = 0
 var maxLvl:int = 0
 var gameState:int = MAIN
-var lvlProgress:int = 0
 var rotMod = ROT[0]
 
-#Settings sections
+#Progress Save section
+var ProgressLvl:int = 0
+
+#Settings section
 var defaultViewAxis:bool = false
 var ViewAxis:bool = defaultViewAxis
 
@@ -122,12 +124,13 @@ func writeData() -> void:
 		"Resolution":Resolution, 
 		"MasterVol":MasterVol, 
 		"SoundVol":SoundVol, 
-		"MusicVol":MusicVol
+		"MusicVol":MusicVol,
+		"ProgressLvl":ProgressLvl
 	}
 	var json_string = JSON.stringify(data)
 	save_file.store_line(json_string)
 
-func readCData() -> void:
+func readData() -> void:
 	if not FileAccess.file_exists(pathSave):
 		return # Error! We don't have a save to load.
 	var save_file = FileAccess.open(pathSave, FileAccess.READ)
@@ -152,3 +155,4 @@ func readCData() -> void:
 				"MasterVol": G.MasterVol = parseData[key]
 				"SoundVol": G.SoundVol = parseData[key]
 				"MusicVol": G.MusicVol = parseData[key]
+				"ProgressLvl": G.ProgressLvl = int(parseData[key])

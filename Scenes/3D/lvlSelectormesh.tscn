@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://bcjxbnrxrafxu"]
+
+[ext_resource type="Script" uid="uid://bl4f1lk7rgfse" path="res://Scripts/lvl_selectormesh.gd" id="1_74v5m"]
+[ext_resource type="PackedScene" uid="uid://bk8jvcgtwjj13" path="res://Scenes/Interface/levelSelector.tscn" id="1_skpuh"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_lwjeb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ak3nd"]
+viewport_path = NodePath("Sv")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfir5"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_ak3nd")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_am6jr"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_skpuh"]
+
+[node name="LevelSelector" type="MeshInstance3D" unique_id=867550847]
+transform = Transform3D(20.248487, 0.086027324, -0.007636547, -0.06553681, 21.053392, 0.6850701, 0.07078326, -5.1164255, 2.8188407, 0, 0, 0)
+mesh = SubResource("QuadMesh_lwjeb")
+surface_material_override/0 = SubResource("StandardMaterial3D_dfir5")
+script = ExtResource("1_74v5m")
+
+[node name="Sv" type="SubViewport" parent="." unique_id=1583536140]
+disable_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(1000, 1000)
+
+[node name="LevelSelector" parent="Sv" unique_id=979591820 instance=ExtResource("1_skpuh")]
+
+[node name="3DButton" type="Node3D" parent="." unique_id=329882107]
+
+[node name="1" type="MeshInstance3D" parent="3DButton" unique_id=856405262]
+transform = Transform3D(0.32683307, -5.820766e-11, 0, -1.4551915e-10, 0.27832237, 1.8626451e-09, 4.656613e-10, 0, 0.29357177, -0.33607042, 0.35913423, 0.09979576)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="2" type="MeshInstance3D" parent="3DButton" unique_id=1448818825]
+transform = Transform3D(0.32683307, 0, 0, 0, 0.2783223, 0, 0, 0, 0.29357177, -0.0014892025, 0.36037564, 0.1)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="3" type="MeshInstance3D" parent="3DButton" unique_id=1714650072]
+transform = Transform3D(0.32683307, -5.820766e-11, 0, -1.4551915e-10, 0.27832237, 1.8626451e-09, 4.656613e-10, 0, 0.29357177, 0.33229536, 0.36161432, 0.10021895)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="4" type="MeshInstance3D" parent="3DButton" unique_id=15117966]
+transform = Transform3D(0.32683307, 2.910383e-11, 0, -1.4551915e-10, 0.27832234, 1.8626451e-09, 4.656613e-10, -2.9802322e-08, 0.29357177, -0.3347661, 0.068242826, 0.09979575)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="5" type="MeshInstance3D" parent="3DButton" unique_id=1382495558]
+transform = Transform3D(0.32683307, 0, 0, 0, 0.27832237, 0, 0, 0, 0.29357177, -0.00018481127, 0.06948441, 0.1)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="6" type="MeshInstance3D" parent="3DButton" unique_id=555795608]
+transform = Transform3D(0.32683307, 2.910383e-11, 0, -1.4551915e-10, 0.27832234, 1.8626451e-09, 4.656613e-10, -2.9802322e-08, 0.29357177, 0.33359963, 0.07072301, 0.10021889)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="7" type="MeshInstance3D" parent="3DButton" unique_id=762867387]
+transform = Transform3D(0.32683307, 0, 0, -1.4551915e-10, 0.27832243, 1.8626451e-09, 4.656613e-10, -5.9604645e-08, 0.29357177, -0.33363447, -0.21174932, 0.09979579)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="8" type="MeshInstance3D" parent="3DButton" unique_id=1765625807]
+transform = Transform3D(0.32683307, 0, 0, 0, 0.2783223, 0, 0, 0, 0.29357177, 0.000946803, -0.21050769, 0.1)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="9" type="MeshInstance3D" parent="3DButton" unique_id=996512415]
+transform = Transform3D(0.32683307, -5.820766e-11, 0, -1.4551915e-10, 0.27832237, 1.8626451e-09, 4.656613e-10, 0, 0.29357177, 0.3347313, -0.20926914, 0.10021892)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="Play" type="MeshInstance3D" parent="3DButton" unique_id=1248064204]
+transform = Transform3D(1.0138437, -2.1827873e-11, 0, -9.895302e-10, 0.07041311, 1.8626451e-09, 1.8626451e-09, 7.450581e-09, 0.24416041, 0.0017132518, -0.3880145, 0.10718346)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")
+
+[node name="Back" type="MeshInstance3D" parent="3DButton" unique_id=78252704]
+transform = Transform3D(1.0138437, -2.1827873e-11, 7.275958e-12, -7.566996e-10, 0.07041311, 9.313226e-10, 1.8626451e-09, 7.450581e-09, 0.2441604, 0.0021266085, -0.46645588, 0.11801195)
+material_override = SubResource("StandardMaterial3D_am6jr")
+transparency = 1.0
+cast_shadow = 0
+mesh = SubResource("QuadMesh_skpuh")

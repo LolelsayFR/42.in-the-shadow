@@ -3,9 +3,10 @@
 [ext_resource type="Script" uid="uid://d068nh4r4f361" path="res://Scripts/in_game.gd" id="1_t7vm8"]
 [ext_resource type="PackedScene" uid="uid://dgt2qvuaeledf" path="res://Prefabs/GameObjects.tscn" id="2_jngem"]
 [ext_resource type="PackedScene" uid="uid://dlicr8ah664g8" path="res://Prefabs/world.tscn" id="3_chuny"]
-[ext_resource type="PackedScene" uid="uid://sqvbqvhycro4" path="res://Scenes/Interface/gameUi.tscn" id="3_jngem"]
 [ext_resource type="Material" uid="uid://dhtdju4sejbf3" path="res://Materials/wood.tres" id="4_rsvpx"]
+[ext_resource type="PackedScene" uid="uid://dsb8lidb5d6tb" path="res://Scenes/3D/BarUiMesh.tscn" id="6_lp8ps"]
 [ext_resource type="Texture2D" uid="uid://uv2rff7ystms" path="res://Sprites/circle.svg" id="6_rsvpx"]
+[ext_resource type="PackedScene" uid="uid://bw8rh1xh1y0h2" path="res://Scenes/3D/gameuiMesh.tscn" id="7_lwjeb"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rsvpx"]
 
@@ -112,6 +113,22 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rsvpx")
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_lp8ps"]
+viewport_path = NodePath("Bar")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwjeb"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_lp8ps")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_dfir5"]
+viewport_path = NodePath("gameUi")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gt6lj"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_dfir5")
+
 [node name="InGame" type="Node3D" unique_id=1637854702]
 transform = Transform3D(0.095376685, 0, -0.99544126, 0, 1, 0, 0.99544126, 0, 0.095376685, 0, 0, 0)
 script = ExtResource("1_t7vm8")
@@ -128,30 +145,21 @@ transform = Transform3D(0.69559234, -0.01303467, 0.07733945, -0.021156795, 0.633
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.761688, -1.0285225, -34.233704)
 mesh = SubResource("ArrayMesh_735r6")
 
-[node name="Label3D" type="Label3D" parent="." unique_id=1342129243]
-transform = Transform3D(5.534507, 0, -5.9604645e-08, 0, 4.1959705, 0, -1.7881393e-07, 0, 1.7453958, -40.85736, 33.56045, -27.03434)
-text = "Percent"
-font_size = 64
-
-[node name="Label3D2" type="Label3D" parent="." unique_id=402034699]
-transform = Transform3D(5.534507, 0, -5.9604645e-08, 0, 4.1959705, 0, -1.7881393e-07, 0, 1.7453958, -40.85736, 29.364483, -27.03434)
-text = "AllPercent"
-font_size = 64
-
-[node name="Label3D3" type="Label3D" parent="." unique_id=30176454]
-transform = Transform3D(5.534507, 0, -5.9604645e-08, 0, 4.1959705, 0, -1.7881393e-07, 0, 1.7453958, -40.85736, 36.826218, -27.03434)
-text = "Rot"
-font_size = 64
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1375637179]
 transform = Transform3D(0.99953127, 0.02944283, 0.008399397, -0.030223973, 0.9049888, 0.4243605, 0.0048930123, -0.4244154, 0.9054544, 0, 16.541786, 0)
 shadow_enabled = true
 
 [node name="World" parent="." unique_id=1966675586 instance=ExtResource("3_chuny")]
 
-[node name="GameUi" parent="." unique_id=999868135 instance=ExtResource("3_jngem")]
-
 [node name="Circle" type="Sprite2D" parent="." unique_id=2030338185]
 visible = false
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_rsvpx")
+
+[node name="ViewBar" parent="." unique_id=957758791 instance=ExtResource("6_lp8ps")]
+transform = Transform3D(8.732184, 0, -3.5762787e-07, 0, 1, 0, 1.3709068e-06, 0, 3.3818827, -0.420519, 22.493547, -21.026533)
+surface_material_override/0 = SubResource("StandardMaterial3D_lwjeb")
+
+[node name="GameUi" parent="." unique_id=867550847 instance=ExtResource("7_lwjeb")]
+transform = Transform3D(20.248487, 0.086027324, -0.007636547, -0.06553681, 21.053392, 0.6850701, 0.07078326, -5.1164255, 2.8188407, -41.59621, 32.50552, -27.8339)
+surface_material_override/0 = SubResource("StandardMaterial3D_gt6lj")

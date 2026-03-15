@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://dsb8lidb5d6tb"]
+
+[ext_resource type="PackedScene" uid="uid://bw2rmqr7dhc7y" path="res://Scenes/Interface/barUi.tscn" id="2_6fuvo"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rsvpx"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_htnew"]
+viewport_path = NodePath("Bar")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwjeb"]
+resource_local_to_scene = true
+transparency = 1
+albedo_texture = SubResource("ViewportTexture_htnew")
+
+[node name="ViewBar" type="MeshInstance3D" unique_id=957758791]
+transform = Transform3D(8.732178, 0, -3.5952775e-07, 0, 1, 0, 9.283173e-07, 0, 3.3818827, 0, 0, 0)
+mesh = SubResource("PlaneMesh_rsvpx")
+surface_material_override/0 = SubResource("StandardMaterial3D_lwjeb")
+
+[node name="Bar" type="SubViewport" parent="." unique_id=967798684]
+disable_3d = true
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(512, 100)
+
+[node name="Bar" parent="Bar" unique_id=650155728 instance=ExtResource("2_6fuvo")]

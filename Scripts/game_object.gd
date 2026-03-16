@@ -89,7 +89,7 @@ func _randomize_model_angles_pos(model: Node3D, canRotVer: bool, canMove: bool) 
 
 	if _get_model_percent(model) > get_meta("randomCapPercent"):
 		_randomize_model_angles_pos(model, canRotVer, canMove)
-
+		
 func _compare_quaternion_and_pos(model: Node3D) -> float:
 	if model == null:
 		return 0.0

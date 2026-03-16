@@ -91,11 +91,11 @@ func _unCheckAll() -> void:
 
 
 func _select_level(index: int) -> void:
+	_unCheckAll()
 	if not _is_level_unlocked(index):
 		return
 
 	G.lvl = index
-	_unCheckAll()
 
 
 func _on_lvl_1_pressed() -> void:

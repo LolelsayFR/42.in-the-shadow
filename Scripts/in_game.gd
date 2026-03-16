@@ -13,7 +13,7 @@ func _ready() -> void:
 var localQuality:int = -1
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("mouse_click") || Input.is_action_just_pressed("mouse_click2") && G.gameState == G.INGAME:
+	if (Input.is_action_just_pressed("mouse_click") || Input.is_action_just_pressed("mouse_click2")) && G.gameState == G.INGAME:
 		$"./Circle".scale = Vector2(1.5,1.5)
 		$"./Circle".visible = true
 		$"./Circle".position = get_viewport().get_mouse_position()

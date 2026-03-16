@@ -11,7 +11,7 @@ func _ready() -> void:
 	$"2D".visible = false
 	pass # Replace with function body.
 
-func axysSetOpacity(val:float) -> void:
+func axysSetTransparency(val:float) -> void:
 	$Y.transparency = val
 	$X.transparency = val
 	$Z.transparency = val
@@ -21,6 +21,11 @@ func axysSetOpacity(val:float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if not G.ViewAxis:
+		if localTransparency < 1:
+			axysSetTransparency(localTransparency + 0.1)
+	else:
+		axysSetTransparency(0)
 	if Input.is_action_pressed("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove") :
 		$Y.visible = false
 		$X.visible = false
@@ -42,8 +47,5 @@ func _process(_delta: float) -> void:
 		if localState.find("Z") != -1:
 			$Z.visible = true
 		visible = true
-		axysSetOpacity(0)
-	if not G.ViewAxis:
-		if localTransparency < 1:
-			axysSetOpacity(localTransparency + 0.1)
+		axysSetTransparency(0)
 	pass

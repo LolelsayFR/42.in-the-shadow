@@ -32,8 +32,11 @@ size_flags_vertical = 4
 theme_override_constants/separation = 22
 alignment = 1
 
-[node name="TitlePage" type="Label" parent="PanelContainer/Blur/Left" unique_id=1846658056]
+[node name="TitlePage" type="Label" parent="PanelContainer/Blur/Left" unique_id=880099916]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4627451)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 140
 text = "Pause"
 horizontal_alignment = 1

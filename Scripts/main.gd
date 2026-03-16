@@ -12,6 +12,7 @@ func _ready() -> void:
 	get_viewport().content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 	get_viewport().content_scale_stretch = true
 	get_viewport().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+	G.camera = $Main3D/RotMan/Camera3D
 	pass # Replace with function body.
 
 
@@ -24,9 +25,6 @@ func _process(_delta: float) -> void:
 	if localIsFullScreen != G.resDict[G.Resolution][1]:
 		localIsFullScreen = G.resDict[G.Resolution][1]
 		get_viewport().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
-		
-		
-		
 	if (G.gameState == G.INGAME || G.gameState == G.PAUSE) && Input.is_action_just_pressed("pause"):
 		if G.gameState == G.PAUSE:
 			G.gameState = G.INGAME

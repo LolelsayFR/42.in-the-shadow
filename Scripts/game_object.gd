@@ -15,11 +15,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if tracked_lvl == null:
 		return
-
 	_sync_tracked_model_with_global()
-
 	_update_progress_var()
-
 
 func _sync_tracked_model_with_global() -> void:
 	if tracked_lvl == null or tracked_lvl.get_child_count() == 0:

@@ -22,7 +22,8 @@ enum {
 	PAUSE,
 	SETTINGS,
 	INGAME_SETTINGS,
-	LVL_SELECTOR
+	LVL_SELECTOR,
+	INGAME_WIN
 }
 
 
@@ -90,6 +91,7 @@ var mdlChoosen:int = 0
 var percent: int = 0
 var all_percent: Array[int] = []
 var total_percent: int = 0
+var camera:Camera3D = null
 
 #Progress Save section
 var ProgressLvl:int = 0

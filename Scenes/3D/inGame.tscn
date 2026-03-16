@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dsb8lidb5d6tb" path="res://Scenes/3D/BarUiMesh.tscn" id="6_lp8ps"]
 [ext_resource type="Texture2D" uid="uid://uv2rff7ystms" path="res://Sprites/circle.svg" id="6_rsvpx"]
 [ext_resource type="PackedScene" uid="uid://bw8rh1xh1y0h2" path="res://Scenes/3D/gameuiMesh.tscn" id="7_lwjeb"]
+[ext_resource type="PackedScene" uid="uid://qauhsff3bxu2" path="res://Scenes/Interface/finishPopup.tscn" id="8_lwjeb"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rsvpx"]
 
@@ -113,21 +114,21 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_rsvpx")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_lp8ps"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_lwjeb"]
 viewport_path = NodePath("Bar")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwjeb"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dfir5"]
 resource_local_to_scene = true
 transparency = 1
-albedo_texture = SubResource("ViewportTexture_lp8ps")
+albedo_texture = SubResource("ViewportTexture_lwjeb")
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_dfir5"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_gt6lj"]
 viewport_path = NodePath("gameUi")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gt6lj"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_skmuo"]
 resource_local_to_scene = true
 transparency = 1
-albedo_texture = SubResource("ViewportTexture_dfir5")
+albedo_texture = SubResource("ViewportTexture_gt6lj")
 
 [node name="InGame" type="Node3D" unique_id=1637854702]
 transform = Transform3D(0.095376685, 0, -0.99544126, 0, 1, 0, 0.99544126, 0, 0.095376685, 0, 0, 0)
@@ -158,8 +159,16 @@ texture = ExtResource("6_rsvpx")
 
 [node name="ViewBar" parent="." unique_id=957758791 instance=ExtResource("6_lp8ps")]
 transform = Transform3D(8.732184, 0, -3.5762787e-07, 0, 1, 0, 1.3709068e-06, 0, 3.3818827, -0.420519, 22.493547, -21.026533)
-surface_material_override/0 = SubResource("StandardMaterial3D_lwjeb")
+surface_material_override/0 = SubResource("StandardMaterial3D_dfir5")
 
 [node name="GameUi" parent="." unique_id=867550847 instance=ExtResource("7_lwjeb")]
 transform = Transform3D(20.248487, 0.086027324, -0.007636547, -0.06553681, 21.053392, 0.6850701, 0.07078326, -5.1164255, 2.8188407, -41.59621, 32.50552, -27.8339)
-surface_material_override/0 = SubResource("StandardMaterial3D_gt6lj")
+surface_material_override/0 = SubResource("StandardMaterial3D_skmuo")
+
+[node name="Finish" parent="." unique_id=853058233 instance=ExtResource("8_lwjeb")]
+visible = false
+
+[node name="Timer" type="Timer" parent="." unique_id=1596554239]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

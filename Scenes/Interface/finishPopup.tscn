@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://qauhsff3bxu2"]
+
+[ext_resource type="StyleBox" uid="uid://gmdnusvelryd" path="res://Materials/ui_corner.tres" id="1_0y85f"]
+[ext_resource type="Script" uid="uid://cy51gjlar3bd" path="res://Scripts/finish_popup.gd" id="2_bso7d"]
+[ext_resource type="Material" uid="uid://dnac7erwr6mhh" path="res://Materials/ui_back.tres" id="2_c1lor"]
+
+[node name="Finish" type="PanelContainer" unique_id=853058233]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_0y85f")
+script = ExtResource("2_bso7d")
+
+[node name="Blur" type="PanelContainer" parent="." unique_id=496504300]
+material = ExtResource("2_c1lor")
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="Blur" unique_id=546266605]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="TitlePage" type="Label" parent="Blur/Left" unique_id=1072631037]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4627451)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 140
+text = "GG👍"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Blur/Left" unique_id=2091569098]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="buttons" type="HBoxContainer" parent="Blur/Left" unique_id=1097793907]
+layout_mode = 2
+
+[node name="Play_Resume" type="Button" parent="Blur/Left/buttons" unique_id=2064658117]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 64
+text = "Next level "
+alignment = 2
+icon_alignment = 2
+
+[node name="Main" type="Button" parent="Blur/Left/buttons" unique_id=1270627004]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " Main menu "
+alignment = 0
+icon_alignment = 2
+
+[node name="Settings" type="Button" parent="Blur/Left/buttons" unique_id=1556077249]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " Quit Game "
+icon_alignment = 2
+
+[connection signal="pressed" from="Blur/Left/buttons/Play_Resume" to="." method="_on_play_resume_pressed"]
+[connection signal="pressed" from="Blur/Left/buttons/Main" to="." method="_on_main_pressed"]
+[connection signal="pressed" from="Blur/Left/buttons/Settings" to="." method="_on_settings_pressed"]

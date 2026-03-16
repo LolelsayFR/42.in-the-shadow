@@ -5,6 +5,116 @@
 [ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="4_x2obx"]
 [ext_resource type="ArrayMesh" uid="uid://bgo62aolopvws" path="res://Models/LapinCorps.obj" id="5_qcsaw"]
 
+[sub_resource type="Shader" id="Shader_x48hh"]
+resource_local_to_scene = true
+code = "// NOTE: Shader automatically converted from Godot Engine 4.6.1.stable's StandardMaterial3D.
+
+shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_schlick_ggx;
+
+uniform bool isSelected;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
+uniform ivec2 albedo_texture_size;
+uniform float point_size : hint_range(0.1, 128.0, 0.1);
+
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_metallic : hint_default_white, filter_linear_mipmap, repeat_enable;
+uniform vec4 metallic_texture_channel;
+uniform sampler2D texture_roughness : hint_roughness_r, filter_linear_mipmap, repeat_enable;
+
+uniform float specular : hint_range(0.0, 1.0, 0.01);
+uniform float metallic : hint_range(0.0, 1.0, 0.01);
+
+uniform sampler2D texture_emission : source_color, hint_default_black, filter_linear_mipmap, repeat_enable;
+uniform vec4 emission : source_color;
+uniform float emission_energy : hint_range(0.0, 100.0, 0.01);
+
+uniform vec3 uv1_scale;
+uniform vec3 uv1_offset;
+uniform vec3 uv2_scale;
+uniform vec3 uv2_offset;
+
+void vertex() {
+	// Vertex Color is sRGB: Enabled
+	if (!OUTPUT_IS_SRGB) {
+		COLOR.rgb = mix(
+				pow((COLOR.rgb + vec3(0.055)) * (1.0 / (1.0 + 0.055)), vec3(2.4)),
+				COLOR.rgb * (1.0 / 12.92),
+				lessThan(COLOR.rgb, vec3(0.04045)));
+	}
+
+	UV = UV * uv1_scale.xy + uv1_offset.xy;
+}
+
+void fragment() {
+	vec2 base_uv = UV;
+	vec2 base_uv2 = UV2;
+
+	vec4 albedo_tex = texture(texture_albedo, base_uv);
+
+	// Vertex Color Use as Albedo: Enabled
+	albedo_tex *= COLOR;
+
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+
+	float metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);
+	if (!isSelected) {
+		METALLIC = metallic_tex * metallic;
+		SPECULAR = specular;
+	}
+
+	vec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);
+	float roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);
+	ROUGHNESS = roughness_tex * roughness;
+
+	// Emission: Enabled
+	vec3 emission_tex = texture(texture_emission, base_uv2).rgb;
+	// Emission Operator: Add
+	if (isSelected)
+		EMISSION = (emission.rgb + emission_tex) * emission_energy;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s6u1a"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_x48hh")
+shader_parameter/isSelected = false
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/emission = Color(1, 1, 1, 1)
+shader_parameter/emission_energy = 0.5
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2sslk"]
+resource_local_to_scene = true
+render_priority = 0
+shader = SubResource("Shader_x48hh")
+shader_parameter/isSelected = false
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 0.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 1.0
+shader_parameter/emission = Color(1, 1, 1, 1)
+shader_parameter/emission_energy = 0.5
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
+
 [node name="Rabbit" type="Node3D" unique_id=378115487]
 script = ExtResource("1_s6u1a")
 metadata/moveRange = 5
@@ -12,11 +122,13 @@ metadata/CanRotVert = true
 metadata/CanMove = true
 
 [node name="Head" type="MeshInstance3D" parent="." unique_id=1343622139]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.6477284, 6.0548515, -2.2729309)
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.6477284, 6.0548515, 1.6176178)
+material_override = SubResource("ShaderMaterial_s6u1a")
 mesh = ExtResource("3_eb8vh")
 script = ExtResource("4_x2obx")
 
 [node name="Corps" type="MeshInstance3D" parent="." unique_id=295809825]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.4444342, 0, 3.8765483)
+material_override = SubResource("ShaderMaterial_2sslk")
 mesh = ExtResource("5_qcsaw")
 script = ExtResource("4_x2obx")

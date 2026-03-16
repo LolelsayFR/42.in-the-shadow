@@ -2,52 +2,38 @@ extends Node3D
 
 var tracked_model_target: Node3D = null
 var tracked_lvl: Node3D = null
-var percent: int = 0
-var all_percent: Array[int] = []
-var mdlChoosen: int = 0
 var lvl: int = 0
 var moveStrength: float = 0.0
+var _last_mdl_choosen: int = -1
 
 func _ready() -> void:
 	G.maxLvl = get_child_count() - 1
 	setLvl(lvl)
-	_update_progress_meta()
+	_sync_tracked_model_with_global()
+	_update_progress_var()
 
 func _process(_delta: float) -> void:
 	if tracked_lvl == null:
 		return
 
-	if Input.is_action_just_pressed("change_mdl"):
-		mdlChoosen += 1
-		_update_tracked_model()
+	_sync_tracked_model_with_global()
 
-	_update_progress_meta()
+	_update_progress_var()
 
-func _get_level_models(level_node: Node3D) -> Array[Node3D]:
-	var models: Array[Node3D] = []
-	if level_node == null:
-		return models
 
-	for child in level_node.get_children():
-		if child is Node3D:
-			models.append(child as Node3D)
+func _sync_tracked_model_with_global() -> void:
+	if tracked_lvl == null or tracked_lvl.get_child_count() == 0:
+		return
 
-	if models.is_empty():
-		models.append(level_node)
+	if _last_mdl_choosen == G.mdlChoosen:
+		return
 
-	return models
-
-func _get_selected_model_index(models: Array[Node3D]) -> int:
-	if models.is_empty():
-		return -1
-	return mdlChoosen % models.size()
+	_update_tracked_model()
+	_last_mdl_choosen = G.mdlChoosen
 
 func _update_tracked_model() -> void:
-	var models: Array[Node3D] = _get_level_models(tracked_lvl)
-	var selected_index: int = _get_selected_model_index(models)
-	if selected_index == -1:
-		tracked_model_target = null
-		return
+	var models: Array[Node] = tracked_lvl.get_children()
+	var selected_index: int = G.mdlChoosen % tracked_lvl.get_child_count()
 	tracked_model_target = models[selected_index]
 
 func _get_model_percent(model: Node3D) -> int:
@@ -64,20 +50,17 @@ func _get_average_percent(percents: Array[int]) -> int:
 	@warning_ignore("integer_division")
 	return total / percents.size()
 
-func _update_progress_meta() -> void:
-	all_percent = get_all_percent()
-	percent = 0
+func _update_progress_var() -> void:
+	G.all_percent = get_all_percent()
+	G.percent = 0
 
 	if tracked_model_target != null:
-		percent = _get_model_percent(tracked_model_target)
-
-	set_meta("percent", percent)
-	set_meta("allPercent", all_percent)
-	set_meta("totalPercent", _get_average_percent(all_percent))
+		G.percent = _get_model_percent(tracked_model_target)
+	G.total_percent = _get_average_percent(G.all_percent)
 
 func get_all_percent() -> Array[int]:
 	var percents: Array[int] = []
-	for model in _get_level_models(tracked_lvl):
+	for model in tracked_lvl.get_children():
 		percents.append(_get_model_percent(model))
 	return percents
 
@@ -104,7 +87,7 @@ func _randomize_model_angles_pos(model: Node3D, canRotVer: bool, canMove: bool) 
 			0
 		)
 
-	if _get_average_percent(get_all_percent()) > get_meta("randomCapPercent"):
+	if _get_model_percent(model) > get_meta("randomCapPercent"):
 		_randomize_model_angles_pos(model, canRotVer, canMove)
 
 func _compare_quaternion_and_pos(model: Node3D) -> float:
@@ -130,13 +113,13 @@ func setLvl(nlvl:int) -> void:
 	if nlvl > last_index:
 		tracked_lvl = null
 		tracked_model_target = null
-		all_percent.clear()
-		set_meta("percent", 0)
-		set_meta("allPercent", all_percent)
-		set_meta("totalPercent", 0)
+		G.all_percent.clear()
+		G.percent = 0
+		G.total_percent = 0
 		return
 
-	mdlChoosen = 0
+	G.mdlChoosen = 0
+	_last_mdl_choosen = -1
 
 	for i in range(last_index, -1, -1):
 		if not is_node_ready():
@@ -151,8 +134,8 @@ func setLvl(nlvl:int) -> void:
 		moveStrength = tracked_lvl.get_meta("moveRange")
 		var can_rot_vert: bool = tracked_lvl.get_meta("CanRotVert")
 		var can_move: bool = tracked_lvl.get_meta("CanMove")
-		for model in _get_level_models(tracked_lvl):
+		for model in tracked_lvl.get_children():
 			await _randomize_model_angles_pos(model, can_rot_vert, can_move)
 
 	_update_tracked_model()
-	_update_progress_meta()
+	_update_progress_var()

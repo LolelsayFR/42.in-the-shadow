@@ -14,13 +14,11 @@
 
 [node name="GameObjects" type="Node3D" unique_id=1321775524]
 script = ExtResource("1_amxin")
-metadata/percent = 0.0
-metadata/totalPercent = 0.0
 metadata/randomCapPercent = 50.0
 metadata/winCapPercent = 90.0
 metadata/lvl = 0
 
-[node name="ITS" parent="." unique_id=866273242 instance=ExtResource("5_40rhp")]
+[node name="ITS" parent="." unique_id=378115487 instance=ExtResource("5_40rhp")]
 
 [node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("10_omcav")]
 
@@ -34,7 +32,7 @@ metadata/lvl = 0
 
 [node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("7_pjo7h")]
 
-[node name="42" parent="." unique_id=378115487 instance=ExtResource("2_glgge")]
+[node name="42" parent="." unique_id=1238640848 instance=ExtResource("2_glgge")]
 
 [node name="Chess" parent="." unique_id=778465654 instance=ExtResource("4_omcav")]
 

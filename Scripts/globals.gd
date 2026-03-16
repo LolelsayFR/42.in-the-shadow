@@ -86,6 +86,10 @@ var lvl:int = 0
 var maxLvl:int = 0
 var gameState:int = MAIN
 var rotMod = ROT[0]
+var mdlChoosen:int = 0
+var percent: int = 0
+var all_percent: Array[int] = []
+var total_percent: int = 0
 
 #Progress Save section
 var ProgressLvl:int = 0

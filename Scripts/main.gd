@@ -33,8 +33,8 @@ func _process(_delta: float) -> void:
 		else:
 			G.gameState = G.PAUSE
 	if gameplay_instance != null:
-		$GameSounds.bassVol = gameplay_instance.go.get_meta("percent") as float / 100
-		$GameSounds.meloVol = gameplay_instance.go.get_meta("totalPercent") as float / 100
+		$GameSounds.bassVol = G.percent / 100
+		$GameSounds.meloVol = G.total_percent as float / 100
 	if G.gameState != localGameState:
 		localGameState = G.gameState
 		$Main3D/LevelSelector.visible = false

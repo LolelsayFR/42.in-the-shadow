@@ -5,21 +5,28 @@ var mouse2Mode:bool = false
 var mouseSpeed:float = 0.01
 var mouseOrigin:Vector2
 var rotateOrigin:Vector3
-var mdlChoosen:int = 0
 var moveRange:float = 0
 var rotMod:int = 0
+var localMdlChoosen:int = -1
 
 func _ready() -> void:
 	moveRange = get_meta("moveRange")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if localMdlChoosen != G.mdlChoosen:
+		localMdlChoosen = G.mdlChoosen
+		for i in range(get_child_count()):
+			if i != G.mdlChoosen % get_child_count():
+				get_child(i).unselect()
+			else:
+				get_child(i).select()
 	_keyHandler()
 
 func _get_current_model() -> Node3D:
 	if get_child_count() == 0:
 		return null
-	return get_child(mdlChoosen % get_child_count()) as Node3D
+	return get_child(G.mdlChoosen % get_child_count()) as Node3D
 
 func _get_drag_distance(drag:Vector2) -> float:
 	var direction:float = sign(drag.x + drag.y)
@@ -104,7 +111,7 @@ func _keyHandler() -> void:
 	_mouseDrag()
 
 	if Input.is_action_just_pressed("change_mdl"):
-		mdlChoosen += 1
+		G.mdlChoosen += 1
 
 #Out of bound check
 func _oobCheck(move:Vector3, oldPos:Vector3) -> Vector3:

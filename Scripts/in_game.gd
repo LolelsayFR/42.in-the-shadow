@@ -36,10 +36,6 @@ func _process(delta: float) -> void:
 			$Stand.visible = false
 			$Plane.visible = true
 			$World.visible = false
-	$GameUi/gameUi/GameUi.percent =  go.get_meta("percent")
-	$GameUi/gameUi/GameUi.totalPercent = go.get_meta("totalPercent")
-	$ViewBar/Bar/Bar.active =  float(go.get_meta("percent")) / 100
-	$ViewBar/Bar/Bar.total = float(go.get_meta("totalPercent")) / 100
 	pass
 
 

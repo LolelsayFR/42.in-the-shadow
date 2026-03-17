@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 
 	if G.gameState == localAnimStates || G.gameState == G.PAUSE || G.gameState == G.SETTINGS || G.gameState == G.INGAME_SETTINGS:
 		return
-	if G.gameState == G.MAIN && (localAnimStates == G.INGAME || G.gameState == G.INGAME_WIN || G.gameState == G.PAUSE):
+	if G.gameState == G.MAIN && (localAnimStates == G.INGAME || localAnimStates == G.INGAME_WIN || localAnimStates == G.PAUSE):
 		current_animation = "GameToMain"
 	if G.gameState == G.INGAME && localAnimStates == G.MAIN:
 		current_animation = "MainToGame"

@@ -3,7 +3,6 @@ extends Node
 var gameplay:Resource = preload("res://Scenes/3D/inGame.tscn")
 var gameplay_instance:Node3D = null
 var localGameState:int = -1
-var localLvl:int = -1
 var localRes:Vector2i = G.resDict[G.Resolution][0]
 var localIsFullScreen:bool = G.resDict[G.Resolution][1]
 
@@ -18,6 +17,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	if G.gameState == G.QUIT:
+		G.writeData()
+		get_tree().quit(0)
 	if localRes != G.resDict[G.Resolution][0]:
 		localRes = G.resDict[G.Resolution][0]
 		get_tree().root.size = localRes
@@ -53,8 +55,6 @@ func _process(_delta: float) -> void:
 		if $Main3D.visible != true && G.gameState != G.INGAME_SETTINGS && G.gameState != G.PAUSE:
 			$Main3D.visible = true
 		return
-	if localLvl != G.lvl:
-		_loadLevel(G.lvl)
 	if Input.is_action_pressed("mouse_click") ||  Input.is_action_pressed("mouse_click2"):
 		$GameSounds.moveVol = 1
 	else:
@@ -71,8 +71,7 @@ func _process(_delta: float) -> void:
 			G.lvl = G.lvl + 1 
 	pass
 
-func _loadLevel(lvl:int) -> void:
-	localLvl = lvl
+func loadLevel(lvl:int) -> void:
 	G.gameState = G.INGAME
 	if gameplay_instance != null:
 		remove_child(gameplay_instance)

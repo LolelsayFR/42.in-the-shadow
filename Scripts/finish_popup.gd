@@ -18,12 +18,17 @@ func _process(delta: float) -> void:
 
 
 func _on_play_resume_pressed() -> void:
+	G.lvl = G.ProgressLvl 
+	G.gameState = G.INGAME
+	$"../..".loadLevel(G.lvl)
 	pass # Replace with function body.
 
 
 func _on_main_pressed() -> void:
+	G.gameState = G.MAIN
 	pass # Replace with function body.
 
 
-func _on_settings_pressed() -> void:
+func _on_quit_pressed() -> void:
+	G.gameState = G.QUIT
 	pass # Replace with function body.

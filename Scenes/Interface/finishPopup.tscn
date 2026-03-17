@@ -57,7 +57,7 @@ text = " Main menu "
 alignment = 0
 icon_alignment = 2
 
-[node name="Settings" type="Button" parent="Blur/Left/buttons" unique_id=1556077249]
+[node name="Quit" type="Button" parent="Blur/Left/buttons" unique_id=1556077249]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
@@ -66,4 +66,4 @@ icon_alignment = 2
 
 [connection signal="pressed" from="Blur/Left/buttons/Play_Resume" to="." method="_on_play_resume_pressed"]
 [connection signal="pressed" from="Blur/Left/buttons/Main" to="." method="_on_main_pressed"]
-[connection signal="pressed" from="Blur/Left/buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Blur/Left/buttons/Quit" to="." method="_on_quit_pressed"]

@@ -33,6 +33,7 @@ func _process(_delta: float) -> void:
 		else:
 			G.gameState = G.PAUSE
 	if gameplay_instance != null:
+		@warning_ignore("integer_division")
 		$GameSounds.bassVol = G.percent / 100
 		$GameSounds.meloVol = G.total_percent as float / 100
 	if G.gameState != localGameState:

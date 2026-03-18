@@ -21,6 +21,8 @@ func _process(_delta: float) -> void:
 		return
 	if G.gameState == G.MAIN && (localAnimStates == G.INGAME || localAnimStates == G.INGAME_WIN || localAnimStates == G.PAUSE):
 		current_animation = "GameToMain"
+	if G.gameState == G.LVL_SELECTOR && (localAnimStates == G.INGAME || localAnimStates == G.INGAME_WIN || localAnimStates == G.PAUSE):
+		current_animation = "GameToSelector"
 	if G.gameState == G.INGAME && localAnimStates == G.MAIN:
 		current_animation = "MainToGame"
 	if G.gameState == G.MAIN && localAnimStates == G.LVL_SELECTOR:

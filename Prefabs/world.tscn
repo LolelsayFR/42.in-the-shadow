@@ -9,8 +9,8 @@
 script/source = "extends Node3D
 var localQuality:int = -1
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+# Called every frame. '_delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
 	if localQuality != G.Quality:
 		localQuality = G.Quality
 		if localQuality <= G.QUALITY.MID:

@@ -93,6 +93,7 @@ var percent: int = 0
 var all_percent: Array[int] = []
 var total_percent: int = 0
 var camera:Camera3D = null
+var sandbox:bool = false
 
 #Progress Save section
 var ProgressLvl:int = 0

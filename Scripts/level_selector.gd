@@ -53,6 +53,8 @@ func _cache_buttons() -> void:
 
 
 func _is_level_unlocked(index: int) -> bool:
+	if G.sandbox:
+		return true
 	return index <= G.ProgressLvl
 
 
@@ -82,6 +84,8 @@ func _enableOne(i:int) -> void:
 		button.disabled = false
 
 func _unCheckAll() -> void:
+	if G.sandbox:
+		return
 	for i: int in LEVEL_BUTTON_NAMES.size():
 		var button := _button_lookup.get(i, null) as Button
 		if button != null:
@@ -92,9 +96,8 @@ func _unCheckAll() -> void:
 
 func _select_level(index: int) -> void:
 	_unCheckAll()
-	if not _is_level_unlocked(index):
+	if not _is_level_unlocked(index) && not G.sandbox:
 		return
-
 	G.lvl = index
 
 
@@ -133,6 +136,7 @@ func _on_lvl_9_pressed() -> void:
 
 func _on_play_pressed() -> void:
 	G.gameState = G.INGAME
+	$"../../../..".loadLevel(G.lvl)
 
 
 func _on_return_to_main_pressed() -> void:

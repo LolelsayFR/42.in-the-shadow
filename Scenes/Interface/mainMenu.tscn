@@ -45,6 +45,14 @@ text = "Play "
 alignment = 2
 icon_alignment = 2
 
+[node name="Sandbox" type="Button" parent="MarginContainer/Hbox/Left" unique_id=1872212726]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Sandbox "
+alignment = 2
+icon_alignment = 2
+
 [node name="Level selector" type="Button" parent="MarginContainer/Hbox/Left" unique_id=7803038]
 custom_minimum_size = Vector2(600, 0)
 layout_mode = 2
@@ -71,6 +79,15 @@ size_flags_vertical = 8
 theme_override_constants/separation = 22
 alignment = 1
 
+[node name="Reset" type="Button" parent="MarginContainer/Hbox/Quit" unique_id=90899987]
+visible = false
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = " Reset"
+alignment = 0
+icon_alignment = 2
+
 [node name="Quit" type="Button" parent="MarginContainer/Hbox/Quit" unique_id=1651234476]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
@@ -80,6 +97,8 @@ alignment = 0
 icon_alignment = 2
 
 [connection signal="pressed" from="MarginContainer/Hbox/Left/Play_Resume" to="." method="_on_play_resume_pressed"]
+[connection signal="pressed" from="MarginContainer/Hbox/Left/Sandbox" to="." method="_on_sandbox_pressed"]
 [connection signal="pressed" from="MarginContainer/Hbox/Left/Level selector" to="." method="_on_level_selector_pressed"]
 [connection signal="pressed" from="MarginContainer/Hbox/Left/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/Hbox/Quit/Reset" to="." method="_on_reset_pressed"]
 [connection signal="pressed" from="MarginContainer/Hbox/Quit/Quit" to="." method="_on_quit_pressed"]

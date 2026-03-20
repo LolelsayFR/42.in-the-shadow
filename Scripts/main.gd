@@ -21,14 +21,16 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
+func _process(_delta: float) -> void:		
 	if G.gameState == G.QUIT:
 		G.writeData()
 		_cleanup_gameplay_instance()
 		get_tree().quit(0)
 		return
-	if localRes != G.resDict[G.Resolution][0]:
+	if localRes != G.resDict[G.Resolution][0] && G.resDict[G.Resolution][0].x < DisplayServer.screen_get_size().x || G.resDict[G.Resolution][0].y < DisplayServer.screen_get_size().y:
 		localRes = G.resDict[G.Resolution][0]
+		if localRes.x > DisplayServer.screen_get_size().x || localRes.y > DisplayServer.screen_get_size().y:
+			localRes = DisplayServer.screen_get_size()
 		get_tree().root.size = localRes
 		get_viewport().content_scale_size = localRes
 	if localIsFullScreen != G.resDict[G.Resolution][1]:

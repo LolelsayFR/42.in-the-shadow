@@ -20,23 +20,27 @@ RELEASE_URL_BASE	= https://github.com/godotengine/godot-builds/releases/download
 
 all: export-linux
 
+check-tools:
+	@command -v curl >/dev/null || { echo "Error: curl is required"; exit 1; }
+	@command -v unzip >/dev/null || { echo "Error: unzip is required"; exit 1; }
+
 hello:
 	@printf "\033[48;2;100;0;100;1m Export pipeline for %s\033[0m\n\n" "$(NAME)"
 
-$(GODOT_BIN):
+$(GODOT_BIN): check-tools
 	@mkdir -p "$(DOWNLOADS)" "$(dir $(GODOT_BIN))"
 	@printf "\033[48;2;0;155;0;1m Download Godot editor binary\033[0m\n"
 	@curl -fL "$(RELEASE_URL_BASE)/$(notdir $(GODOT_ZIP))" -o "$(GODOT_ZIP)"
-	@bsdtar -xf "$(GODOT_ZIP)" -C "$(dir $(GODOT_BIN))"
+	@unzip -q -o "$(GODOT_ZIP)" -d "$(dir $(GODOT_BIN))"
 	@chmod +x "$(GODOT_BIN)"
 
-$(EXPORT_TEMPLATE_DIR)/linux_release.x86_64:
+$(EXPORT_TEMPLATE_DIR)/linux_release.x86_64: check-tools
 	@mkdir -p "$(DOWNLOADS)" "$(EXPORT_TEMPLATE_DIR)"
 	@printf "\033[48;2;0;155;0;1m Download and install light Linux export template\033[0m\n"
 	@curl -fL "$(RELEASE_URL_BASE)/$(notdir $(TEMPLATES_TPZ))" -o "$(TEMPLATES_TPZ)"
-	@bsdtar -xOf "$(TEMPLATES_TPZ)" "templates/linux_release.x86_64" > "$(EXPORT_TEMPLATE_DIR)/linux_release.x86_64"
-	@bsdtar -xOf "$(TEMPLATES_TPZ)" "templates/icudt_godot.dat" > "$(EXPORT_TEMPLATE_DIR)/icudt_godot.dat"
-	@bsdtar -xOf "$(TEMPLATES_TPZ)" "templates/version.txt" > "$(EXPORT_TEMPLATE_DIR)/version.txt"
+	@unzip -p "$(TEMPLATES_TPZ)" "templates/linux_release.x86_64" > "$(EXPORT_TEMPLATE_DIR)/linux_release.x86_64"
+	@unzip -p "$(TEMPLATES_TPZ)" "templates/icudt_godot.dat" > "$(EXPORT_TEMPLATE_DIR)/icudt_godot.dat"
+	@unzip -p "$(TEMPLATES_TPZ)" "templates/version.txt" > "$(EXPORT_TEMPLATE_DIR)/version.txt"
 
 export-linux: hello $(GODOT_BIN) $(EXPORT_TEMPLATE_DIR)/linux_release.x86_64
 	@mkdir -p "$(EXPORT_DIR)"
@@ -54,4 +58,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all hello export-linux clean fclean re
+.PHONY: all hello export-linux clean fclean re check-tools

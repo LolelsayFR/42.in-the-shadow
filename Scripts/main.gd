@@ -6,6 +6,11 @@ var localGameState:int = -1
 var localRes:Vector2i = G.resDict[G.Resolution][0]
 var localIsFullScreen:bool = G.resDict[G.Resolution][1]
 
+func _cleanup_gameplay_instance() -> void:
+	if gameplay_instance != null:
+		gameplay_instance.queue_free()
+		gameplay_instance = null
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_viewport().content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
@@ -19,7 +24,9 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if G.gameState == G.QUIT:
 		G.writeData()
+		_cleanup_gameplay_instance()
 		get_tree().quit(0)
+		return
 	if localRes != G.resDict[G.Resolution][0]:
 		localRes = G.resDict[G.Resolution][0]
 		get_tree().root.size = localRes
@@ -74,9 +81,7 @@ func _process(_delta: float) -> void:
 
 func loadLevel(lvl:int) -> void:
 	G.gameState = G.INGAME
-	if gameplay_instance != null:
-		remove_child(gameplay_instance)
-		gameplay_instance = null
+	_cleanup_gameplay_instance()
 	gameplay_instance = gameplay.instantiate()
 	gameplay_instance.getGameObject().setLvl(lvl)
 	add_child(gameplay_instance)

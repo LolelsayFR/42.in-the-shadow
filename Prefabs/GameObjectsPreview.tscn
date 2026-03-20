@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://b5hyciferv8d7"]
+
+[ext_resource type="Script" uid="uid://c1nsobxievr27" path="res://Scripts/game_objects_preview.gd" id="1_oyv5e"]
+[ext_resource type="PackedScene" uid="uid://n7gdx3o1ln74" path="res://Prefabs/gameLvl/ITS.tscn" id="2_ort05"]
+[ext_resource type="PackedScene" uid="uid://cj1ndnjoio4tr" path="res://Prefabs/gameLvl/ELEPHANT.tscn" id="3_86gl5"]
+[ext_resource type="PackedScene" uid="uid://dxr4spkk4gria" path="res://Prefabs/gameLvl/MONKEY.tscn" id="4_tjq4p"]
+[ext_resource type="PackedScene" uid="uid://cj1yl8g80i8a1" path="res://Prefabs/gameLvl/TEAPOT.tscn" id="5_ttv0q"]
+[ext_resource type="PackedScene" uid="uid://bwynbnqscvujg" path="res://Prefabs/gameLvl/CAT.tscn" id="6_he1xj"]
+[ext_resource type="PackedScene" uid="uid://c176vp0ar58e0" path="res://Prefabs/gameLvl/GLOBE.tscn" id="7_6q0lk"]
+[ext_resource type="PackedScene" uid="uid://cb8sf4jr2l3g7" path="res://Prefabs/gameLvl/RABBIT.tscn" id="8_4tn34"]
+[ext_resource type="PackedScene" uid="uid://bldjijfoyegc" path="res://Prefabs/gameLvl/42.tscn" id="9_oe2tf"]
+[ext_resource type="PackedScene" uid="uid://c2r4lvlvnshk4" path="res://Prefabs/gameLvl/CHESS.tscn" id="10_bgbyh"]
+
+[node name="GameObjectsPreview" type="Node3D" unique_id=1321775524]
+script = ExtResource("1_oyv5e")
+metadata/randomCapPercent = 50.0
+metadata/winCapPercent = 90.0
+metadata/lvl = 0
+metadata/isLvlPreview = false
+
+[node name="ITS" parent="." unique_id=378115487 instance=ExtResource("2_ort05")]
+transform = Transform3D(0.56911856, 0, -29.9946, 0, 29.999998, 0, 29.9946, 0, 0.56911856, 0.45680377, 0, -0.4655534)
+visible = false
+
+[node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("3_86gl5")]
+transform = Transform3D(0.11382372, -5.9989204, 2.6222114e-07, 0, -2.6226832e-07, -6, 5.9989204, 0.11382372, -4.9753925e-09, 0.45680377, -2.556282, -0.4655534)
+visible = false
+
+[node name="Monkey" parent="." unique_id=206367581 instance=ExtResource("4_tjq4p")]
+transform = Transform3D(0.11382372, 0, -5.9989204, 0, 6, 0, 5.9989204, 0, 0.11382372, 0.45680377, 8.267044, -0.4655534)
+visible = false
+
+[node name="TeaPot" parent="." unique_id=767970802 instance=ExtResource("5_ttv0q")]
+transform = Transform3D(-0.13279495, 0, 6.99874, 0, 7, 0, -6.99874, 0, -0.13279495, 0.428226, 42.043648, -1.9717063)
+visible = false
+
+[node name="CAT" parent="." unique_id=62885664 instance=ExtResource("6_he1xj")]
+transform = Transform3D(0.11382372, 0, -5.9989204, 0, 6, 0, 5.9989204, 0, 0.11382372, 0.45680377, 0, -0.4655534)
+visible = false
+
+[node name="GLOBE" parent="." unique_id=691411663 instance=ExtResource("7_6q0lk")]
+transform = Transform3D(0.03794124, 1.9996401, 8.7407045e-08, 0, -8.742278e-08, 2, 1.9996401, -0.03794124, -1.6584643e-09, 0.45680377, 3.2343254, -0.4655534)
+visible = false
+
+[node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("8_4tn34")]
+transform = Transform3D(0.046195723, 1.7521966, -2.4346814, -0.033240248, 2.4351196, 1.7518809, 2.99946, 1.0179895e-09, 0.056911845, 3.250349, -14.194545, 5.2305803)
+visible = false
+
+[node name="42" parent="." unique_id=1238640848 instance=ExtResource("9_oe2tf")]
+transform = Transform3D(0.01897062, 0, -0.99982005, 0, 1, 0, 0.99982005, 0, 0.01897062, 0.45680377, 0, -0.4655534)
+visible = false
+
+[node name="Chess" parent="." unique_id=778465654 instance=ExtResource("10_bgbyh")]
+transform = Transform3D(0.03794124, 0, -1.9996401, 0, 2, 0, 1.9996401, 0, 0.03794124, 0.45680377, 0, -0.4655534)
+visible = false

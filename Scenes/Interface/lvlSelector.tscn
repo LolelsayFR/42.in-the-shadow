@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bk8jvcgtwjj13"]
 
-[ext_resource type="Script" uid="uid://dldo80xvh2l45" path="res://Scripts/level_selector.gd" id="1_5e0rp"]
+[ext_resource type="Script" uid="uid://dldo80xvh2l45" path="res://Scripts/level_selector.gd" id="1_x27lx"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a4idj"]
 
@@ -11,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_5e0rp")
+script = ExtResource("1_x27lx")
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=372834774]
 custom_minimum_size = Vector2(1000, 1000)
@@ -111,15 +111,3 @@ text = "play"
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "Return to main"
-
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl1" to="." method="_on_lvl_1_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl2" to="." method="_on_lvl_2_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl3" to="." method="_on_lvl_3_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl4" to="." method="_on_lvl_4_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl5" to="." method="_on_lvl_5_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl6" to="." method="_on_lvl_6_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl7" to="." method="_on_lvl_7_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl8" to="." method="_on_lvl_8_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/GridContainer/Lvl9" to="." method="_on_lvl_9_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="PanelContainer/HBoxContainer/Return to main" to="." method="_on_return_to_main_pressed"]

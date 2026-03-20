@@ -17,6 +17,7 @@ script = ExtResource("1_amxin")
 metadata/randomCapPercent = 50.0
 metadata/winCapPercent = 90.0
 metadata/lvl = 0
+metadata/isLvlPreview = false
 
 [node name="ITS" parent="." unique_id=378115487 instance=ExtResource("5_40rhp")]
 

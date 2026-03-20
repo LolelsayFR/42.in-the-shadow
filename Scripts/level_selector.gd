@@ -1,143 +1,105 @@
 extends Control
 
-var isActive:int = G.MAIN
-var _last_progress_lvl: int = -1
-var _button_lookup: Dictionary = {}
+var _buttons: Array[Button] = []
+var _play_button: Button = null
+var _return_button: Button = null
 
-const LEVEL_BUTTON_NAMES: Array[String] = [
-	"Lvl1", "Lvl2", "Lvl3", "Lvl4", "Lvl5", "Lvl6", "Lvl7", "Lvl8", "Lvl9"
-]
+const SELECTED_COLOR: Color = Color.WHITE
+const NORMAL_COLOR: Color = Color(0.82, 0.82, 0.82, 1.0)
+const DISABLED_COLOR: Color = Color(0.35, 0.35, 0.35, 1.0)
+const BORDER_WIDTH: int = 6
+const BORDER_COLOR: Color = Color.WHITE
+const PADDING: int = 10
 
-const HOVER_COLOR: Color = Color(1.12, 1.12, 1.12, 1.0)
-const NORMAL_COLOR: Color = Color(1.0, 1.0, 1.0, 1.0)
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_cache_buttons()
-	_checkLvlAccess(true)
-	_checkGood()
+	var grid = $PanelContainer/HBoxContainer/GridContainer
+	for i in range(1, 10):
+		var button = grid.get_node("Lvl%d" % i) as Button
+		if button:
+			_buttons.append(button)
+			button.pressed.connect(_on_level_pressed.bind(i - 1))
+	
+	_play_button = $PanelContainer/HBoxContainer/Play as Button
+	if _play_button:
+		_play_button.pressed.connect(_on_play_pressed)
+	
+	_return_button = $"PanelContainer/HBoxContainer/Return to main" as Button
+	if _return_button:
+		_return_button.pressed.connect(_on_return_to_main_pressed)
+	
+	_apply_button_styles()
+	_update_buttons()
 
 func _process(_delta:float) -> void:
-	_checkLvlAccess()
+	_update_buttons()
+
+func _apply_button_styles() -> void:
+	var all_buttons = _buttons.duplicate()
+	if _play_button:
+		all_buttons.append(_play_button)
+	if _return_button:
+		all_buttons.append(_return_button)
+	
+	for button in all_buttons:
+		_apply_state_style(button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+
+func _update_buttons() -> void:
+	for i in range(_buttons.size()):
+		var button = _buttons[i]
+		var is_unlocked = i <= G.ProgressLvl or G.sandbox
+		var is_selected = i == G.lvl
 		
-func _checkLvlAccess(force: bool = false) -> void:
-	if not force and isActive == G.gameState and _last_progress_lvl == G.ProgressLvl:
-		return
-
-	isActive = G.gameState
-	_last_progress_lvl = G.ProgressLvl
-
-	if G.gameState != G.LVL_SELECTOR:
-		return
-
-	for i: int in LEVEL_BUTTON_NAMES.size():
-		if _is_level_unlocked(i):
-			_enableOne(i)
+		button.disabled = not is_unlocked
+		
+		if is_selected and is_unlocked:
+			_apply_state_style(button, Color(0.17, 0.17, 0.17, 1.0), BORDER_COLOR, BORDER_WIDTH)
+			button.modulate = SELECTED_COLOR
+		elif is_unlocked:
+			_apply_state_style(button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+			button.modulate = NORMAL_COLOR
 		else:
-			_disableOne(i)
+			_apply_state_style(button, Color(0.07, 0.07, 0.07, 1.0), Color(0.1, 0.1, 0.1, 1.0), 1)
+			button.modulate = DISABLED_COLOR
+	
+	if _play_button:
+		_apply_state_style(_play_button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+		_play_button.modulate = NORMAL_COLOR
+	if _return_button:
+		_apply_state_style(_return_button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+		_return_button.modulate = NORMAL_COLOR
 
-	if not _is_level_unlocked(G.lvl):
-		G.lvl = clampi(G.ProgressLvl, 0, LEVEL_BUTTON_NAMES.size() - 1)
+func _apply_state_style(button: Button, bg_color: Color, border_color: Color, border_width: int) -> void:
+	var style_normal = StyleBoxFlat.new()
+	style_normal.border_width_left = border_width
+	style_normal.border_width_right = border_width
+	style_normal.border_width_top = border_width
+	style_normal.border_width_bottom = border_width
+	style_normal.border_color = border_color
+	style_normal.bg_color = bg_color
+	style_normal.set_content_margin_all(PADDING)
 
-	_checkGood()
+	var style_pressed = style_normal.duplicate()
+	style_pressed.bg_color = bg_color.darkened(0.2)
 
+	button.add_theme_stylebox_override("normal", style_normal)
+	button.add_theme_stylebox_override("hover", style_normal)
+	button.add_theme_stylebox_override("pressed", style_pressed)
+	button.add_theme_stylebox_override("focus", style_normal)
+	button.add_theme_stylebox_override("disabled", style_normal)
 
-func _cache_buttons() -> void:
-	_button_lookup.clear()
-	for i: int in LEVEL_BUTTON_NAMES.size():
-		var node_name: String = LEVEL_BUTTON_NAMES[i]
-		var button := $PanelContainer/HBoxContainer/GridContainer.get_node_or_null(node_name) as Button
-		if button != null:
-			_button_lookup[i] = button
-			_button_lookup[node_name] = button
-
+func _on_level_pressed(index: int) -> void:
+	if not (_is_level_unlocked(index)):
+		return
+	G.lvl = index
 
 func _is_level_unlocked(index: int) -> bool:
 	if G.sandbox:
 		return true
 	return index <= G.ProgressLvl
 
-
-func set_button_hover(button_name: String, is_hovered: bool) -> void:
-	var button := _button_lookup.get(button_name, null) as Button
-	if button == null or button.disabled:
-		return
-
-	button.modulate = HOVER_COLOR if is_hovered else NORMAL_COLOR
-
-func _checkGood() -> void:
-	for i: int in LEVEL_BUTTON_NAMES.size():
-		var button := _button_lookup.get(i, null) as Button
-		if button != null:
-			button.button_pressed = (i == G.lvl)
-			button.modulate = NORMAL_COLOR
-		
-func _disableOne(i:int) -> void:
-	var button := _button_lookup.get(i, null) as Button
-	if button != null:
-		button.disabled = true
-		button.modulate = NORMAL_COLOR
-
-func _enableOne(i:int) -> void:
-	var button := _button_lookup.get(i, null) as Button
-	if button != null:
-		button.disabled = false
-
-func _unCheckAll() -> void:
-	if G.sandbox:
-		return
-	for i: int in LEVEL_BUTTON_NAMES.size():
-		var button := _button_lookup.get(i, null) as Button
-		if button != null:
-			button.button_pressed = false
-			button.modulate = NORMAL_COLOR
-	_checkGood()
-
-
-func _select_level(index: int) -> void:
-	_unCheckAll()
-	if not _is_level_unlocked(index) && not G.sandbox:
-		return
-	G.lvl = index
-
-
-func _on_lvl_1_pressed() -> void:
-	_select_level(0)
-
-
-func _on_lvl_2_pressed() -> void:
-	_select_level(1)
-
-
-func _on_lvl_3_pressed() -> void:
-	_select_level(2)
-
-
-func _on_lvl_4_pressed() -> void:
-	_select_level(3)
-
-func _on_lvl_5_pressed() -> void:
-	_select_level(4)
-
-func _on_lvl_6_pressed() -> void:
-	_select_level(5)
-
-
-func _on_lvl_7_pressed() -> void:
-	_select_level(6)
-
-
-func _on_lvl_8_pressed() -> void:
-	_select_level(7)
-
-
-func _on_lvl_9_pressed() -> void:
-	_select_level(8)
-
 func _on_play_pressed() -> void:
 	G.gameState = G.INGAME
 	$"../../../..".loadLevel(G.lvl)
-
 
 func _on_return_to_main_pressed() -> void:
 	G.gameState = G.MAIN

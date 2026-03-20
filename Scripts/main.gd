@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 		_cleanup_gameplay_instance()
 		get_tree().quit(0)
 		return
-	if localRes != G.resDict[G.Resolution][0] && G.resDict[G.Resolution][0].x < DisplayServer.screen_get_size().x || G.resDict[G.Resolution][0].y < DisplayServer.screen_get_size().y:
+	if localRes != G.resDict[G.Resolution][0] && G.resDict[G.Resolution][0].x <= DisplayServer.screen_get_size().x && G.resDict[G.Resolution][0].y <= DisplayServer.screen_get_size().y:
 		localRes = G.resDict[G.Resolution][0]
 		if localRes.x > DisplayServer.screen_get_size().x || localRes.y > DisplayServer.screen_get_size().y:
 			localRes = DisplayServer.screen_get_size()

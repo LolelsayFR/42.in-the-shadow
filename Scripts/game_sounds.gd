@@ -12,9 +12,6 @@ const MUFFLER_NORMAL_TARGET:float = 80.0
 const MUFFLER_STEP:float = 0.6
 const VOLUME_DB_SCALE:float = 80.0
 
-var masterVol:float = 1
-var soundVol:float = 1
-var musicVol:float = 1
 var moveVol:float = 0
 var meloVol:float = 0
 var kickVol:float = 1
@@ -34,17 +31,11 @@ func _process(_delta: float) -> void:
 	else:
 		if  muffler > MUFFLER_NORMAL_TARGET:
 			muffler += -MUFFLER_STEP
-	if masterVol != G.MasterVol:
-		masterVol = G.MasterVol
-	if musicVol != G.MusicVol:
-		musicVol = G.MusicVol
-	if soundVol != G.SoundVol:
-		soundVol = G.SoundVol
 	_setVolume()
 
 func _setVolume() -> void:
-	$"Bass".volume_db = (masterVol * (musicVol * bassVol) * VOLUME_DB_SCALE) - muffler
-	$"Drums".volume_db = (masterVol * (musicVol * drumsVol) * VOLUME_DB_SCALE) - muffler
-	$"Kick".volume_db = (masterVol * (musicVol * kickVol) * VOLUME_DB_SCALE) - muffler
-	$"Melo".volume_db = (masterVol * (musicVol * meloVol) * VOLUME_DB_SCALE) - muffler
-	$"Move".volume_db = (masterVol * (soundVol * moveVol) * VOLUME_DB_SCALE) - muffler
+	$"Bass".volume_db = (G.MasterVol * (G.MusicVol * bassVol) * VOLUME_DB_SCALE) - muffler
+	$"Drums".volume_db = (G.MasterVol * (G.MusicVol * drumsVol) * VOLUME_DB_SCALE) - muffler
+	$"Kick".volume_db = (G.MasterVol * (G.MusicVol * kickVol) * VOLUME_DB_SCALE) - muffler
+	$"Melo".volume_db = (G.MasterVol * (G.MusicVol * meloVol) * VOLUME_DB_SCALE) - muffler
+	$"Move".volume_db = (G.MasterVol * (G.SoundVol * moveVol) * VOLUME_DB_SCALE) - muffler

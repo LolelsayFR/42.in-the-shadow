@@ -10,6 +10,7 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	pass
 
 func _process(_delta:float) -> void:
 	if G.ProgressLvl > 0 && $MarginContainer/Hbox/Left/Play_Resume.text != "Resume level : %d " % (G.ProgressLvl + 1):
@@ -28,7 +29,8 @@ func _on_play_resume_pressed() -> void:
 	G.sandbox = false
 	G.gameState = G.INGAME
 	G.lvl = G.ProgressLvl
-	$"..".loadLevel(G.lvl)
+	if G.main != null:
+		G.main.loadLevel(G.lvl)
 
 
 func _on_settings_pressed() -> void:

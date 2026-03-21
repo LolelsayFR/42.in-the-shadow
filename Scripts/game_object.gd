@@ -22,6 +22,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if tracked_lvl == null:
 		return
+	if G.hint != tracked_lvl.get_meta("hint"):
+		G.hint = tracked_lvl.get_meta("hint")
 	_sync_tracked_model_with_global()
 	_update_progress_var()
 
@@ -67,6 +69,28 @@ func get_all_percent() -> Array[int]:
 	for model in tracked_lvl.get_children():
 		percents.append(_get_model_percent(model))
 	return percents
+
+func get_selected_index() -> int:
+	if tracked_lvl == null or tracked_lvl.get_child_count() == 0:
+		return -1
+	return G.mdlChoosen % tracked_lvl.get_child_count()
+
+func get_current_level_name() -> String:
+	if tracked_lvl == null:
+		return "-"
+	return tracked_lvl.name
+
+func get_current_hint() -> String:
+	if tracked_lvl == null:
+		return "No hint for this level"
+	if tracked_lvl.has_meta("hint"):
+		return str(tracked_lvl.get_meta("hint"))
+	return "No hint for this level"
+
+func get_win_cap_percent() -> int:
+	if has_meta("winCapPercent"):
+		return int(get_meta("winCapPercent"))
+	return 100
 
 func _randomize_model_angles_pos(model: Node3D, canRotVer: bool, canMove: bool) -> void:
 	if model == null || tracked_lvl == null:

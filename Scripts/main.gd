@@ -16,7 +16,9 @@ func _ready() -> void:
 	get_viewport().content_scale_mode = Window.CONTENT_SCALE_MODE_VIEWPORT
 	get_viewport().content_scale_stretch = true
 	get_viewport().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
+	G.main = self
 	G.camera = $Main3D/RotMan/Camera3D
+	G.gameObject = $InGame.getGameObject()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -79,4 +81,5 @@ func _process(_delta: float) -> void:
 
 func loadLevel(lvl:int) -> void:
 	G.gameState = G.INGAME
-	$InGame.getGameObject().setLvl(lvl)
+	G.gameObject = $InGame.getGameObject()
+	G.gameObject.setLvl(lvl)

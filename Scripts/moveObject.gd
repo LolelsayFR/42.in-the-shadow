@@ -10,7 +10,6 @@ extends Node3D
 const DRAG_DISTANCE_SCALE:float = 20.0
 const MOVEMENT_DRAG_SCALE:float = 2.0
 const XYZ_Z_ROT_SCALE:float = 0.5
-const ROTATION_MODE_COUNT:int = 7
 
 var mouseMode:bool = false
 var mouse2Mode:bool = false
@@ -18,7 +17,6 @@ var mouseSpeed:float = 0.01
 var mouseOrigin:Vector2
 var rotateOrigin:Vector3
 var moveRange:float = 0
-var rotMod:int = 0
 var localMdlChoosen:int = -1
 
 func _ready() -> void:
@@ -113,17 +111,10 @@ func _keyHandler() -> void:
 	if G.gameState != G.INGAME || !visible:
 		return
 
-	if Input.is_action_just_pressed("change_rot"):
-		rotMod += 1
-		G.rotMod = G.ROT[rotMod % ROTATION_MODE_COUNT] if get_meta("CanRotVert") else G.ROT[0]
-
 	mouseMode = Input.is_action_pressed("mouse_click") || Input.is_action_pressed("mouse_click2")
 	mouse2Mode = Input.is_action_pressed("mouse_click2")
 
 	_mouseDrag()
-
-	if Input.is_action_just_pressed("change_mdl"):
-		G.mdlChoosen += 1
 
 #Out of bound check
 func _oobCheck(move:Vector3, oldPos:Vector3) -> Vector3:

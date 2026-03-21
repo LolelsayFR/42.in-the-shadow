@@ -129,7 +129,8 @@ func _is_level_unlocked(index: int) -> bool:
 
 func _on_play_pressed() -> void:
 	G.gameState = G.INGAME
-	$"../../../..".loadLevel(G.lvl)
+	if G.main != null:
+		G.main.loadLevel(G.lvl)
 
 func _on_return_to_main_pressed() -> void:
 	G.gameState = G.MAIN

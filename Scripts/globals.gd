@@ -20,6 +20,29 @@ func _process(_delta: float) -> void:
 	if ActualRes != resDict[Resolution][0]:
 		ActualRes = resDict[Resolution][0]
 		DisplayServer.window_set_size(ActualRes)
+	_handle_ingame_input()
+
+func _handle_ingame_input() -> void:
+	if gameState != INGAME:
+		return
+
+	if Input.is_action_just_pressed("change_mdl"):
+		mdlChoosen += 1
+
+	if Input.is_action_just_pressed("change_rot"):
+		var can_rot_vert:bool = false
+		if gameObject != null and lvl >= 0 and lvl < gameObject.get_child_count():
+			var lvl_node:Node = gameObject.get_child(lvl)
+			if lvl_node.has_meta("CanRotVert"):
+				can_rot_vert = bool(lvl_node.get_meta("CanRotVert"))
+
+		if can_rot_vert:
+			var rot_index:int = ROT.find(rotMod)
+			if rot_index < 0:
+				rot_index = 0
+			rotMod = ROT[(rot_index + 1) % ROT.size()]
+		else:
+			rotMod = ROT[0]
 
 
 enum {
@@ -98,8 +121,11 @@ var mdlChoosen:int = 0
 var percent:int = 0
 var all_percent:Array[int] = []
 var total_percent:int = 0
+var main:Node = null
 var camera:Camera3D = null
+var gameObject:Node3D = null
 var sandbox:bool = false
+var hint:String = ""
 
 #Progress Save section
 var ProgressLvl:int = 0

@@ -20,21 +20,30 @@ metadata/lvl = 0
 metadata/isLvlPreview = false
 
 [node name="ITS" parent="." unique_id=378115487 instance=ExtResource("5_40rhp")]
+metadata/hint = "THIS GAME"
 
 [node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("10_omcav")]
+metadata/hint = "Dumbo ass"
 
 [node name="Monkey" parent="." unique_id=206367581 instance=ExtResource("6_qxibg")]
+metadata/hint = "Bloons killer"
 
 [node name="TeaPot" parent="." unique_id=767970802 instance=ExtResource("8_f256q")]
+metadata/hint = "W/ once of milk"
 
 [node name="CAT" parent="." unique_id=62885664 instance=ExtResource("3_2b83n")]
+metadata/hint = "Not a dog"
 
 [node name="GLOBE" parent="." unique_id=691411663 instance=ExtResource("11_40rhp")]
+metadata/hint = "Axis & Spherical"
 
 [node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("7_pjo7h")]
+metadata/hint = "Long-Eared"
 
 [node name="42" parent="." unique_id=1238640848 instance=ExtResource("2_glgge")]
+metadata/hint = "char c = '*'"
 
 [node name="Chess" parent="." unique_id=778465654 instance=ExtResource("4_omcav")]
+metadata/hint = "King"
 
 [node name="Axes" parent="." unique_id=1998642599 instance=ExtResource("7_7ma2s")]

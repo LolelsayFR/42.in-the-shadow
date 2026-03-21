@@ -52,6 +52,7 @@ func _process(delta: float) -> void:
 			$Plane.visible = false
 			$World.visible = true
 		if localQuality <= G.QUALITY.MID:
+			pass # au cas ou
 		if localQuality == G.QUALITY.POTATO:
 			$Stand.visible = false
 			$Plane.visible = true

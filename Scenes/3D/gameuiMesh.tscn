@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://sqvbqvhycro4" path="res://Scenes/Interface/gameUi.tscn" id="2_7on00"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_lwjeb"]
+size = Vector2(1, 1)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ak3nd"]
 viewport_path = NodePath("gameUi")
@@ -22,5 +23,7 @@ disable_3d = true
 transparent_bg = true
 canvas_item_default_texture_filter = 0
 size = Vector2i(1000, 1000)
+size_2d_override = Vector2i(1000, 1000)
+size_2d_override_stretch = true
 
 [node name="GameUi" parent="gameUi" unique_id=999868135 instance=ExtResource("2_7on00")]

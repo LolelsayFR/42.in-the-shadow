@@ -1,3 +1,10 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends MeshInstance3D
 
 var basePos:Vector3 = Vector3.ZERO
@@ -7,7 +14,6 @@ var baseQuaternion:Quaternion = Quaternion.IDENTITY
 func _ready() -> void:
 	basePos = position
 	baseQuaternion = quaternion
-	pass # Replace with function body.
 
 
 func select() -> void:

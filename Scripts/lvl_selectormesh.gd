@@ -1,3 +1,10 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends MeshInstance3D
 
 @onready var _buttons_3d: Node3D = $"3DButton"
@@ -6,21 +13,21 @@ extends MeshInstance3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var button_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Play", "Back"]
+	var button_names:Array[String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Play", "Back"]
 	
 	for mesh_name: String in button_names:
-		var mesh_button := _buttons_3d.get_node_or_null(mesh_name) as MeshInstance3D
+		var mesh_button:MeshInstance3D = _buttons_3d.get_node_or_null(mesh_name) as MeshInstance3D
 		if mesh_button == null:
 			continue
 
-		var click_body := StaticBody3D.new()
+		var click_body:StaticBody3D = StaticBody3D.new()
 		click_body.name = "ClickBody"
 		click_body.input_ray_pickable = true
 
-		var collision_shape := CollisionShape3D.new()
-		var box_shape := BoxShape3D.new()
-		var mesh_aabb := mesh_button.get_aabb()
-		var half_extents := mesh_aabb.size * 0.5
+		var collision_shape:CollisionShape3D = CollisionShape3D.new()
+		var box_shape:BoxShape3D = BoxShape3D.new()
+		var mesh_aabb:AABB = mesh_button.get_aabb()
+		var half_extents:Vector3 = mesh_aabb.size * 0.5
 
 		box_shape.size = Vector3(
 			max(mesh_aabb.size.x, 0.02),
@@ -43,7 +50,7 @@ func _on_click_body_input_event(_camera: Node, event: InputEvent, _position: Vec
 
 func _trigger_2d_button(button_name: String) -> void:
 	if button_name.is_valid_int():
-		var index = int(button_name) - 1
+		var index:int = int(button_name) - 1
 		_selector_2d._on_level_pressed(index)
 	elif button_name == "Play":
 		_selector_2d._on_play_pressed()

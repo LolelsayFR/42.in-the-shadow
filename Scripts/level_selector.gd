@@ -1,20 +1,41 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends Control
 
-var _buttons: Array[Button] = []
-var _play_button: Button = null
-var _return_button: Button = null
+# Style resources loaded from Materials folder
+@export var _style_button:StyleBoxFlat = null
+@export var _style_button_selected:StyleBoxFlat = null
+@export var _style_button_disabled:StyleBoxFlat = null
+@export var _style_button_pressed:StyleBoxFlat = null
 
-const SELECTED_COLOR: Color = Color.WHITE
-const NORMAL_COLOR: Color = Color(0.82, 0.82, 0.82, 1.0)
-const DISABLED_COLOR: Color = Color(0.35, 0.35, 0.35, 1.0)
-const BORDER_WIDTH: int = 6
-const BORDER_COLOR: Color = Color.WHITE
-const PADDING: int = 10
+var _buttons:Array[Button] = []
+var _play_button:Button = null
+var _return_button:Button = null
+
+var _last_lvl:int = -1
+var _last_progress:int = -1
+var _last_sandbox:bool = false
+var _needs_update:bool = false
+
+const SELECTED_COLOR:Color = Color.WHITE
+const NORMAL_COLOR:Color = Color(0.82, 0.82, 0.82, 1.0)
+const DISABLED_COLOR:Color = Color(0.35, 0.35, 0.35, 1.0)
 
 func _ready() -> void:
-	var grid = $PanelContainer/HBoxContainer/GridContainer
+	# Load style resources from Materials folder
+	_style_button = load("res://Materials/button.tres")
+	_style_button_selected = load("res://Materials/button_selected.tres")
+	_style_button_disabled = load("res://Materials/button_disabled.tres")
+	_style_button_pressed = load("res://Materials/button_pressed.tres")
+	
+	var grid:GridContainer = $PanelContainer/HBoxContainer/GridContainer
 	for i in range(1, 10):
-		var button = grid.get_node("Lvl%d" % i) as Button
+		var button:Button = grid.get_node("Lvl%d" % i) as Button
 		if button:
 			_buttons.append(button)
 			button.pressed.connect(_on_level_pressed.bind(i - 1))
@@ -31,63 +52,72 @@ func _ready() -> void:
 	_update_buttons()
 
 func _process(_delta:float) -> void:
-	_update_buttons()
+	# Only update if game state changed
+	if _last_lvl != G.lvl or _last_progress != G.ProgressLvl or _last_sandbox != G.sandbox:
+		_needs_update = true
+		_last_lvl = G.lvl
+		_last_progress = G.ProgressLvl
+		_last_sandbox = G.sandbox
+	
+	if _needs_update:
+		_update_buttons()
+		_needs_update = false
 
 func _apply_button_styles() -> void:
-	var all_buttons = _buttons.duplicate()
+	var all_buttons:Array[Button] = _buttons.duplicate()
 	if _play_button:
 		all_buttons.append(_play_button)
 	if _return_button:
 		all_buttons.append(_return_button)
 	
 	for button in all_buttons:
-		_apply_state_style(button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+		_apply_button_theme(button)
 
 func _update_buttons() -> void:
 	for i in range(_buttons.size()):
-		var button = _buttons[i]
-		var is_unlocked = i <= G.ProgressLvl or G.sandbox
-		var is_selected = i == G.lvl
+		var button:Button = _buttons[i]
+		var is_unlocked:bool = i <= G.ProgressLvl or G.sandbox
+		var is_selected:bool = i == G.lvl
 		
 		button.disabled = not is_unlocked
 		
 		if is_selected and is_unlocked:
-			_apply_state_style(button, Color(0.17, 0.17, 0.17, 1.0), BORDER_COLOR, BORDER_WIDTH)
+			button.add_theme_stylebox_override("normal", _style_button_selected)
+			button.add_theme_stylebox_override("hover", _style_button_selected)
+			button.add_theme_stylebox_override("pressed", _style_button_pressed)
+			button.add_theme_stylebox_override("focus", _style_button_selected)
+			button.add_theme_stylebox_override("disabled", _style_button_selected)
 			button.modulate = SELECTED_COLOR
 		elif is_unlocked:
-			_apply_state_style(button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+			button.add_theme_stylebox_override("normal", _style_button)
+			button.add_theme_stylebox_override("hover", _style_button)
+			button.add_theme_stylebox_override("pressed", _style_button_pressed)
+			button.add_theme_stylebox_override("focus", _style_button)
+			button.add_theme_stylebox_override("disabled", _style_button)
 			button.modulate = NORMAL_COLOR
 		else:
-			_apply_state_style(button, Color(0.07, 0.07, 0.07, 1.0), Color(0.1, 0.1, 0.1, 1.0), 1)
+			button.add_theme_stylebox_override("normal", _style_button_disabled)
+			button.add_theme_stylebox_override("hover", _style_button_disabled)
+			button.add_theme_stylebox_override("pressed", _style_button_pressed)
+			button.add_theme_stylebox_override("focus", _style_button_disabled)
+			button.add_theme_stylebox_override("disabled", _style_button_disabled)
 			button.modulate = DISABLED_COLOR
 	
 	if _play_button:
-		_apply_state_style(_play_button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+		_apply_button_theme(_play_button)
 		_play_button.modulate = NORMAL_COLOR
 	if _return_button:
-		_apply_state_style(_return_button, Color(0.14, 0.14, 0.14, 1.0), Color(0.25, 0.25, 0.25, 1.0), 2)
+		_apply_button_theme(_return_button)
 		_return_button.modulate = NORMAL_COLOR
 
-func _apply_state_style(button: Button, bg_color: Color, border_color: Color, border_width: int) -> void:
-	var style_normal = StyleBoxFlat.new()
-	style_normal.border_width_left = border_width
-	style_normal.border_width_right = border_width
-	style_normal.border_width_top = border_width
-	style_normal.border_width_bottom = border_width
-	style_normal.border_color = border_color
-	style_normal.bg_color = bg_color
-	style_normal.set_content_margin_all(PADDING)
+func _apply_button_theme(button:Button) -> void:
+	button.add_theme_stylebox_override("normal", _style_button)
+	button.add_theme_stylebox_override("hover", _style_button)
+	button.add_theme_stylebox_override("pressed", _style_button_pressed)
+	button.add_theme_stylebox_override("focus", _style_button)
+	button.add_theme_stylebox_override("disabled", _style_button)
 
-	var style_pressed = style_normal.duplicate()
-	style_pressed.bg_color = bg_color.darkened(0.2)
-
-	button.add_theme_stylebox_override("normal", style_normal)
-	button.add_theme_stylebox_override("hover", style_normal)
-	button.add_theme_stylebox_override("pressed", style_pressed)
-	button.add_theme_stylebox_override("focus", style_normal)
-	button.add_theme_stylebox_override("disabled", style_normal)
-
-func _on_level_pressed(index: int) -> void:
+func _on_level_pressed(index:int) -> void:
 	if not (_is_level_unlocked(index)):
 		return
 	G.lvl = index

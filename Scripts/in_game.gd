@@ -1,6 +1,13 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends Node3D
 
-var _win_target_reached: bool = false
+var _win_target_reached:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,9 +51,7 @@ func _process(delta: float) -> void:
 			$Stand.visible = true
 			$Plane.visible = false
 			$World.visible = true
-			pass
 		if localQuality <= G.QUALITY.MID:
-			pass
 		if localQuality == G.QUALITY.POTATO:
 			$Stand.visible = false
 			$Plane.visible = true

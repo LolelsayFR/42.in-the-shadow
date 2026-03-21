@@ -1,9 +1,15 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends PanelContainer
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
 
 
 # Called every frame. '_delta' is the elapsed time since the previous frame.
@@ -20,7 +26,6 @@ func _process(__delta: float) -> void:
 			G.writeData()
 	if G.gameState != G.INGAME_WIN && visible != false:
 		visible = false
-	pass
 
 
 func _on_play_resume_pressed() -> void:
@@ -31,14 +36,11 @@ func _on_play_resume_pressed() -> void:
 		$"../..".loadLevel(G.lvl)
 	else: 
 		G.gameState = G.LVL_SELECTOR
-	pass # Replace with function body.
 
 
 func _on_main_pressed() -> void:
 	G.gameState = G.MAIN
-	pass # Replace with function body.
 
 
 func _on_quit_pressed() -> void:
 	G.gameState = G.QUIT
-	pass # Replace with function body.

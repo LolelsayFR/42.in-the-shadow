@@ -1,4 +1,16 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends Node3D
+
+const DRAG_DISTANCE_SCALE:float = 20.0
+const MOVEMENT_DRAG_SCALE:float = 2.0
+const XYZ_Z_ROT_SCALE:float = 0.5
+const ROTATION_MODE_COUNT:int = 7
 
 var mouseMode:bool = false
 var mouse2Mode:bool = false
@@ -32,7 +44,7 @@ func _get_drag_distance(drag:Vector2) -> float:
 	var direction:float = sign(drag.x + drag.y)
 	if direction == 0:
 		direction = 1
-	return drag.length() * mouseSpeed * direction * 20
+	return drag.length() * mouseSpeed * direction * DRAG_DISTANCE_SCALE
 
 func _uses_angle_rotation() -> bool:
 	return mouse2Mode && G.rotMod.length() == 1
@@ -47,7 +59,7 @@ func _rotate_model_by_angle(ang:float, mdl:Node3D) -> void:
 			mdl.rotation.z = rotateOrigin.z + ang
 
 func _rotate_model_by_distance(x:float, y:float, mdl:Node3D) -> void:
-	var distance := _get_drag_distance(Vector2(x, y))
+	var distance:float = _get_drag_distance(Vector2(x, y))
 	match G.rotMod:
 		"Y":
 			mdl.rotate_y(distance)
@@ -66,8 +78,8 @@ func _rotate_model_by_distance(x:float, y:float, mdl:Node3D) -> void:
 			mdl.rotate_z(y)
 		"XYZ":
 			mdl.rotate_y(x)
-			mdl.rotate_z(y / 2)
-			mdl.rotate_x(y / 2)
+			mdl.rotate_z(y * XYZ_Z_ROT_SCALE)
+			mdl.rotate_x(y * XYZ_Z_ROT_SCALE)
 
 func rotMdl(ang:float, x:float, y:float, mdl:Node3D) -> void:
 	if _uses_angle_rotation():
@@ -86,12 +98,12 @@ func _mouseDrag() -> void:
 		rotateOrigin = mdl.rotation
 
 	if mouseMode:
-		var mousePos := get_viewport().get_mouse_position()
-		var drag := mousePos - mouseOrigin
-		var x = drag.x * mouseSpeed
-		var y = drag.y * mouseSpeed
+		var mousePos:Vector2 = get_viewport().get_mouse_position()
+		var drag:Vector2 = mousePos - mouseOrigin
+		var x:float = drag.x * mouseSpeed
+		var y:float = drag.y * mouseSpeed
 		if Input.is_action_pressed("object_movement") && get_meta("CanMove"):
-			mdl.position += _oobCheck(Vector3(x * 2, -(y * 2), 0), mdl.position)
+			mdl.position += _oobCheck(Vector3(x * MOVEMENT_DRAG_SCALE, -(y * MOVEMENT_DRAG_SCALE), 0), mdl.position)
 		else:
 			rotMdl(drag.angle(), x, y, mdl)
 		if !_uses_angle_rotation():
@@ -103,7 +115,7 @@ func _keyHandler() -> void:
 
 	if Input.is_action_just_pressed("change_rot"):
 		rotMod += 1
-		G.rotMod = G.ROT[rotMod % 7] if get_meta("CanRotVert") else G.ROT[0]
+		G.rotMod = G.ROT[rotMod % ROTATION_MODE_COUNT] if get_meta("CanRotVert") else G.ROT[0]
 
 	mouseMode = Input.is_action_pressed("mouse_click") || Input.is_action_pressed("mouse_click2")
 	mouse2Mode = Input.is_action_pressed("mouse_click2")
@@ -115,6 +127,6 @@ func _keyHandler() -> void:
 
 #Out of bound check
 func _oobCheck(move:Vector3, oldPos:Vector3) -> Vector3:
-	var new_x = clamp(oldPos.x + move.x, -moveRange, moveRange)
-	var new_y = clamp(oldPos.y + move.y, -moveRange, moveRange)
+	var new_x:float = clamp(oldPos.x + move.x, -moveRange, moveRange)
+	var new_y:float = clamp(oldPos.y + move.y, -moveRange, moveRange)
 	return Vector3(new_x - oldPos.x, new_y - oldPos.y, 0)

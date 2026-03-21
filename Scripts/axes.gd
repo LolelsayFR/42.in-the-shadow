@@ -1,3 +1,10 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends Node3D
 var localState:String = ""
 var localTransparency:float = 0
@@ -9,7 +16,6 @@ func _ready() -> void:
 	$X.visible = false
 	$Z.visible = false
 	$"2D".visible = false
-	pass # Replace with function body.
 
 func axysSetTransparency(val:float) -> void:
 	$Y.transparency = val
@@ -48,4 +54,3 @@ func _process(_delta: float) -> void:
 			$Z.visible = true
 		visible = true
 		axysSetTransparency(0)
-	pass

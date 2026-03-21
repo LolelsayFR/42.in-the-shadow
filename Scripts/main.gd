@@ -1,15 +1,15 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends Node
 
-var gameplay:Resource = preload("res://Scenes/3D/inGame.tscn")
-var gameplay_instance:Node3D = null
 var localGameState:int = -1
 var localRes:Vector2i = G.resDict[G.Resolution][0]
 var localIsFullScreen:bool = G.resDict[G.Resolution][1]
-
-func _cleanup_gameplay_instance() -> void:
-	if gameplay_instance != null:
-		gameplay_instance.queue_free()
-		gameplay_instance = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -17,14 +17,12 @@ func _ready() -> void:
 	get_viewport().content_scale_stretch = true
 	get_viewport().content_scale_aspect = Window.CONTENT_SCALE_ASPECT_KEEP
 	G.camera = $Main3D/RotMan/Camera3D
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:		
 	if G.gameState == G.QUIT:
 		G.writeData()
-		_cleanup_gameplay_instance()
 		get_tree().quit(0)
 		return
 	if localRes != G.resDict[G.Resolution][0] && G.resDict[G.Resolution][0].x <= DisplayServer.screen_get_size().x && G.resDict[G.Resolution][0].y <= DisplayServer.screen_get_size().y:
@@ -41,10 +39,9 @@ func _process(_delta: float) -> void:
 			G.gameState = G.INGAME
 		else:
 			G.gameState = G.PAUSE
-	if gameplay_instance != null:
-		@warning_ignore("integer_division")
-		$GameSounds.bassVol = G.percent / 100
-		$GameSounds.meloVol = G.total_percent as float / 100
+	@warning_ignore("integer_division")
+	$GameSounds.bassVol = G.percent / 100
+	$GameSounds.meloVol = G.total_percent as float / 100
 	if G.gameState != localGameState:
 		localGameState = G.gameState
 		$Main3D/LevelSelector.visible = false
@@ -53,9 +50,9 @@ func _process(_delta: float) -> void:
 		$Settings.visible = false
 		$Main3D/LevelSelector.visible = false
 		$Main3D.visible = false
-		if gameplay_instance != null &&  G.gameState != G.PAUSE && G.gameState != G.INGAME_SETTINGS: gameplay_instance.visible = false
+		if G.gameState != G.PAUSE && G.gameState != G.INGAME_SETTINGS: $InGame.visible = false
 		match G.gameState:
-			G.INGAME: if gameplay_instance != null : gameplay_instance.visible = true
+			G.INGAME: $InGame.visible = true
 			G.INGAME_SETTINGS: $Settings.visible = true
 			G.SETTINGS: $Settings.visible = true
 			G.MAIN: $MainMenu.visible = true
@@ -79,12 +76,7 @@ func _process(_delta: float) -> void:
 			G.lvl = 0
 		else: 
 			G.lvl = G.lvl + 1 
-	pass
 
 func loadLevel(lvl:int) -> void:
 	G.gameState = G.INGAME
-	_cleanup_gameplay_instance()
-	gameplay_instance = gameplay.instantiate()
-	gameplay_instance.getGameObject().setLvl(lvl)
-	add_child(gameplay_instance)
-		
+	$InGame.getGameObject().setLvl(lvl)

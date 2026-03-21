@@ -1,5 +1,12 @@
+# ===============================================================
+#  EEEEE    M   M     A     I    L        L        EEEEE    TTTTT
+#  E        MM MM    A A    I    L        L        E          T
+#  EEEE     M M M   AAAAA   I    L        L        EEEE       T
+#  E        M   M   A   A   I    L        L        E          T
+#  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
+# ===============================================================
 extends Node3D
-var localLvl = -1
+var localLvl:int = -1
 var baseScale:Vector3 = Vector3(0.6, 0.6, 0.6)
 var scaleFactor:float = 1
 var animTime:float = 0.0
@@ -16,8 +23,7 @@ const PHASE_G:float = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	pass
 func _moveSpecial(delta:float, node:Node3D, shift:float) -> void:
 	animTime += delta
 
@@ -48,4 +54,3 @@ func _process(delta: float) -> void:
 				get_child(i).visible = true
 			else:
 				get_child(i).visible = false
-	pass

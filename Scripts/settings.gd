@@ -31,7 +31,8 @@ func setSettingsVisualValue() -> void:
 	$MarginContainer/PanelContainer/MarginContainer/Left/MasterVolumeOption2/MasterOther.value = G.MasterVol * 100.0
 	$MarginContainer/PanelContainer/MarginContainer/Left/SongVolumeOption/VolumeSong.value = G.MusicVol * 100.0
 	$MarginContainer/PanelContainer/MarginContainer/Left/OtherVolumeOption/VolumeOther.value = G.SoundVol * 100.0
-	$MarginContainer/PanelContainer/MarginContainer/Left/ViewAxis/ViewAxis.button_pressed = G.ViewAxis
+	$MarginContainer/PanelContainer/MarginContainer/Left/other/ax/ViewAxis2.button_pressed = G.ViewAxis
+	$MarginContainer/PanelContainer/MarginContainer/Left/other/ez/Ezmod.button_pressed = G.ezmode
 	$MarginContainer/PanelContainer/MarginContainer/Left/QualityOption/Quality.selected = G.Quality
 	$MarginContainer/PanelContainer/MarginContainer/Left/ScreenOption/Resolution.selected = G.Resolution
 	
@@ -45,6 +46,8 @@ func _on_reset_button_pressed() -> void:
 	G.MasterVol = G.defaultMasterVol
 	G.SoundVol = G.defaultSoundVol
 	G.MusicVol = G.defaultMusicVol
+	G.ViewAxis = G.defaultViewAxis
+	G.ezmode = G.defaultEzmode
 	setSettingsVisualValue()
 
 
@@ -74,3 +77,7 @@ func _on_resolution_item_selected(index: int) -> void:
 
 func _on_quality_item_selected(index: int) -> void:
 	G.Quality = index
+
+
+func _on_ezmod_toggled(toggled_on: bool) -> void:
+	G.ezmode = toggled_on

@@ -40,7 +40,7 @@ extends Control
 @onready var _obj_value_3:Label = get_node_or_null("PanelContainer/MarginContainer/VBox/ObjectsCard/Margin/VBox/ObjectsList/Obj3/Value") as Label
 
 var _last_level:int = -1
-var _last_sandbox:bool = true
+var _last_sandbox_like:bool = true
 const MAX_OBJECT_ROWS:int = 3
 const FONT_SIZE_NORMAL:int = 32
 const FONT_SIZE_FOCUS:int = 58
@@ -56,16 +56,19 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_update_ui(false)
 
+func _is_sandbox_like() -> bool:
+	return G.sandbox or G.ezmode
+
 func _update_ui(force:bool) -> void:
-	if force or _last_sandbox != G.sandbox:
+	if force or _last_sandbox_like != _is_sandbox_like():
 		_apply_mode_visibility(force)
 
 	var model_count:int = G.all_percent.size()
 	if model_count <= 0 and G.gameObject != null:
 		model_count = G.gameObject.get_child_count()
 
-	if G.sandbox:
-		_apply_sandbox_detail_visibility(model_count > 1)
+	if _is_sandbox_like():
+		_apply_sandbox_detail_visibility(G.ezmode or model_count > 1)
 
 	if force or _last_level != G.lvl:
 		_last_level = G.lvl
@@ -79,7 +82,12 @@ func _update_ui(force:bool) -> void:
 
 	_hint_value_label.text = "Hint : " + G.hint if not G.hint.is_empty() else "No hint available"
 
-	_mode_label.text = "Mode: %s" % ("Sandbox" if G.sandbox else "Classic")
+	if G.sandbox:
+		_mode_label.text = "Mode: Sandbox"
+	elif G.ezmode:
+		_mode_label.text = "Mode: EZ"
+	else:
+		_mode_label.text = "Mode: Classic"
 	_rot_label.text = "Rotation: %s" % G.rotMod
 
 	var selected_index:int = -1
@@ -89,7 +97,7 @@ func _update_ui(force:bool) -> void:
 	_selected_label.text = "Selected: %s" % ("-" if selected_index < 0 else str(selected_index))
 	_controls_label.text = _build_controls_text(model_count)
 
-	if G.sandbox:
+	if _is_sandbox_like():
 		_selected_bar.value = clampf(G.percent, 0.0, 100.0)
 		_selected_value_label.text = "#%s | %d%%" % (["-" if selected_index < 0 else str(selected_index), G.percent])
 
@@ -99,21 +107,22 @@ func _update_ui(force:bool) -> void:
 		_update_object_rows(selected_index)
 
 func _apply_mode_visibility(force:bool) -> void:
-	if not force and _last_sandbox == G.sandbox:
+	var sandbox_like:bool = _is_sandbox_like()
+	if not force and _last_sandbox_like == sandbox_like:
 		return
 
-	_last_sandbox = G.sandbox
+	_last_sandbox_like = sandbox_like
 
 	_level_label.visible = true
-	_mode_label.visible = G.sandbox
-	_win_target_label.visible = G.sandbox
-	_selected_label.visible = not G.sandbox
-	_selected_card.visible = G.sandbox
-	_total_card.visible = G.sandbox
-	_objects_card.visible = G.sandbox
+	_mode_label.visible = sandbox_like
+	_win_target_label.visible = sandbox_like
+	_selected_label.visible = not sandbox_like
+	_selected_card.visible = sandbox_like
+	_total_card.visible = sandbox_like
+	_objects_card.visible = sandbox_like
 
-	_selected_label.add_theme_font_size_override("font_size", FONT_SIZE_FOCUS if not G.sandbox else FONT_SIZE_NORMAL)
-	_rot_label.add_theme_font_size_override("font_size", FONT_SIZE_FOCUS if not G.sandbox else FONT_SIZE_NORMAL)
+	_selected_label.add_theme_font_size_override("font_size", FONT_SIZE_FOCUS if not sandbox_like else FONT_SIZE_NORMAL)
+	_rot_label.add_theme_font_size_override("font_size", FONT_SIZE_FOCUS if not sandbox_like else FONT_SIZE_NORMAL)
 
 func _apply_sandbox_detail_visibility(show_percentages:bool) -> void:
 	_selected_card.visible = show_percentages
@@ -121,7 +130,7 @@ func _apply_sandbox_detail_visibility(show_percentages:bool) -> void:
 	_objects_card.visible = show_percentages
 
 func _build_controls_text(model_count:int) -> String:
-	if G.sandbox:
+	if _is_sandbox_like():
 		return CONTROLS_SANDBOX
 
 	var can_move:bool = false

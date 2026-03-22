@@ -153,16 +153,32 @@ custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="ViewAxis" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left" unique_id=98182938]
+[node name="other" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left" unique_id=98182938]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/Left/ViewAxis" unique_id=1846943199]
+[node name="ez" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left/other" unique_id=1438227437]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/Left/other/ez" unique_id=1098104052]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Easy mode"
+
+[node name="Ezmod" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/Left/other/ez" unique_id=19644174]
+layout_mode = 2
+
+[node name="ax" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left/other" unique_id=1526286226]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/Left/other/ax" unique_id=1846943199]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "View Axis"
 
-[node name="ViewAxis" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/Left/ViewAxis" unique_id=857352873]
+[node name="ViewAxis2" type="CheckButton" parent="MarginContainer/PanelContainer/MarginContainer/Left/other/ax" unique_id=857352873]
 layout_mode = 2
 
 [node name="Close" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left" unique_id=1619402678]
@@ -191,7 +207,8 @@ icon_alignment = 2
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/Left/MasterVolumeOption2/MasterOther" to="." method="_on_master_other_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/Left/SongVolumeOption/VolumeSong" to="." method="_on_volume_song_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/Left/OtherVolumeOption/VolumeOther" to="." method="_on_volume_other_value_changed"]
-[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/Left/ViewAxis/ViewAxis" to="." method="_on_view_axis_toggled"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/Left/other/ez/Ezmod" to="." method="_on_ezmod_toggled"]
+[connection signal="toggled" from="MarginContainer/PanelContainer/MarginContainer/Left/other/ax/ViewAxis2" to="." method="_on_view_axis_toggled"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/Left/Close/Undobutton" to="." method="_on_undobutton_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/Left/Close/ResetButton" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/Left/Close/CloseButton" to="." method="_on_close_button_pressed"]

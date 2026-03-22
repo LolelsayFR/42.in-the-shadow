@@ -134,6 +134,9 @@ var ProgressLvl:int = 0
 var defaultViewAxis:bool = false
 var ViewAxis:bool = defaultViewAxis
 
+var defaultEzmode:bool = false
+var ezmode:bool = defaultEzmode
+
 var defaultQuality:int = QUALITY.FULL
 var Quality:int = defaultQuality
 
@@ -164,6 +167,7 @@ func writeData() -> bool:
 	
 	var data:Dictionary={
 		"ViewAxis":ViewAxis, 
+		"ezmod":ezmode,
 		"Quality":Quality, 
 		"Resolution":Resolution, 
 		"MasterVol":MasterVol, 
@@ -199,6 +203,7 @@ func readData() -> bool:
 		for key in parseData.keys():
 			match key:
 				"ViewAxis": G.ViewAxis = parseData[key]
+				"ezmod": G.ezmode = parseData[key]
 				"Quality": G.Quality = parseData[key]
 				"Resolution": G.Resolution = parseData[key]
 				"MasterVol": G.MasterVol = parseData[key]

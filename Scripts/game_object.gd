@@ -156,8 +156,9 @@ func _compare_quaternion_and_pos(model: Node3D, model_index: int) -> float:
 	var similarity_pos:float = 1.0
 	if moveStrength > 0.0:
 		similarity_pos = 1.0 - clampf(dist / moveStrength, 0.0, 1.0)
-
-	return clampf((similarity_rot * 0.7 + similarity_pos * 0.3), 0.0, 1.0)
+	if get_child(G.lvl).get_meta("CanRotVert") == false:
+		return clampf((similarity_rot), 0.0, 1.0)
+	return clampf((similarity_rot * 0.6 + similarity_pos * 0.4), 0.0, 1.0)
 
 func setLvl(nlvl:int) -> void:
 	lvl = nlvl

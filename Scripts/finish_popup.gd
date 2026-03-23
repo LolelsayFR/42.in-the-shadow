@@ -7,6 +7,7 @@
 # ===============================================================
 extends PanelContainer
 
+var lvlFinished:int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,16 +15,17 @@ func _ready() -> void:
 
 # Called every frame. '_delta' is the elapsed time since the previous frame.
 func _process(__delta: float) -> void:
-	if $Blur/Left/TitlePage.text != "Level %d complete !" % G.lvl:
-		$Blur/Left/TitlePage.text = "Level %d complete !" % G.lvl
+	if $Blur/Left/TitlePage.text != "Level %d complete !" % (G.lvl + 1):
+		$Blur/Left/TitlePage.text = "Level %d complete !" % (G.lvl + 1)
 	if G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Return to selection ":
 		$Blur/Left/buttons/Play_Resume.text = "Return to selection "
-	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Retry " && G.ProgressLvl >= G.maxLvl - 1:
+	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Retry " && lvlFinished >= G.maxLvl - 1:
 		$Blur/Left/buttons/Play_Resume.text = "Retry "
-	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Next level " && G.ProgressLvl < G.maxLvl - 1:
+	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Next level " && lvlFinished < G.maxLvl - 1:
 		$Blur/Left/buttons/Play_Resume.text = "Next level "
 	if G.gameState == G.INGAME_WIN && visible == false:
 		visible = true
+		lvlFinished = G.lvl
 		if G.ProgressLvl == G.lvl && G.sandbox == false:
 			if G.ProgressLvl < G.maxLvl - 1:
 				G.ProgressLvl = G.lvl + 1

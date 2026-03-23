@@ -71,7 +71,7 @@ func _update_ui(force:bool) -> void:
 
 	if force or _last_level != G.lvl:
 		_last_level = G.lvl
-		_level_label.text = "Lvl: %d" % G.lvl
+		_level_label.text = "Lvl: %d" % (G.lvl + 1)
 
 	if G.gameObject != null and G.gameObject.has_meta("winCapPercent"):
 		var win_target:int = int(G.gameObject.get_meta("winCapPercent"))

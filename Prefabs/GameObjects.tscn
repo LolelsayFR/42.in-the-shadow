@@ -14,8 +14,8 @@
 
 [node name="GameObjects" type="Node3D" unique_id=1321775524]
 script = ExtResource("1_amxin")
-metadata/randomCapPercent = 50.0
-metadata/winCapPercent = 90.0
+metadata/randomCapPercent = 20.0
+metadata/winCapPercent = 95.0
 metadata/lvl = 0
 metadata/isLvlPreview = false
 
@@ -44,6 +44,6 @@ metadata/hint = "char c = '*'"
 metadata/hint = "Axis & Spherical"
 
 [node name="Pyra" parent="." unique_id=778465654 instance=ExtResource("4_omcav")]
-metadata/hint = "King"
+metadata/hint = "Egypt"
 
 [node name="Axes" parent="." unique_id=1998642599 instance=ExtResource("7_7ma2s")]

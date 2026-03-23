@@ -74,16 +74,6 @@ func _process(_delta: float) -> void:
 		$GameSounds.moveVol = 1
 	else:
 		$GameSounds.moveVol = 0
-	if Input.is_action_just_pressed("D_LVL-"):
-		if G.lvl - 1 < 0:
-			G.lvl = G.maxLvl - 1
-		else: 
-			G.lvl = G.lvl - 1 
-	if Input.is_action_just_pressed("D_LVL+"):
-		if G.lvl + 1 >= G.maxLvl:
-			G.lvl = 0
-		else: 
-			G.lvl = G.lvl + 1 
 
 func loadLevel(lvl:int) -> void:
 	G.gameState = G.INGAME

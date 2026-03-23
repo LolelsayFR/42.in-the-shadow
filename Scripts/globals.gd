@@ -12,7 +12,7 @@ func _ready() -> void:
 	
 func _process(_delta: float) -> void:
 	if ProgressLvl >= maxLvl:
-		ProgressLvl -= 1
+		ProgressLvl = maxLvl - 1
 	if isFullScreen != resDict[Resolution][1]:
 		isFullScreen = resDict[Resolution][1]
 		if isFullScreen:
@@ -212,4 +212,26 @@ func readData() -> bool:
 				"SoundVol": G.SoundVol = parseData[key]
 				"MusicVol": G.MusicVol = parseData[key]
 				"ProgressLvl": G.ProgressLvl = int(parseData[key])
+
+		# Sanitize loaded settings to avoid invalid save values crashing runtime lookups.
+		if not (ViewAxis is bool):
+			ViewAxis = defaultViewAxis
+		if not (ezmode is bool):
+			ezmode = defaultEzmode
+
+		Quality = int(Quality)
+		if Quality < QUALITY.POTATO or Quality > QUALITY.FULL:
+			Quality = defaultQuality
+
+		Resolution = int(Resolution)
+		if not resDict.has(Resolution):
+			Resolution = defaultResolution
+
+		MasterVol = clampf(float(MasterVol), 0.0, 1.0)
+		SoundVol = clampf(float(SoundVol), 0.0, 1.0)
+		MusicVol = clampf(float(MusicVol), 0.0, 1.0)
+
+		ProgressLvl = maxi(0, int(ProgressLvl))
+		if maxLvl > 0:
+			ProgressLvl = mini(ProgressLvl, maxLvl - 1)
 	return true

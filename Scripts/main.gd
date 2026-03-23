@@ -22,9 +22,11 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:		
+func _process(_delta: float) -> void:
 	if G.gameState == G.QUIT:
 		G.writeData()
+		for child:AudioStreamPlayer in $GameSounds.get_children():
+			child.stop()
 		get_tree().quit(0)
 		return
 	if localRes != G.resDict[G.Resolution][0] && G.resDict[G.Resolution][0].x <= DisplayServer.screen_get_size().x && G.resDict[G.Resolution][0].y <= DisplayServer.screen_get_size().y:

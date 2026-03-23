@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://c2r4lvlvnshk4"]
 
-[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_v2do3"]
-[ext_resource type="ArrayMesh" uid="uid://d1sc20kbkfuq6" path="res://Models/ChessTOP.obj" id="2_jd1jd"]
-[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_iv4f0"]
-[ext_resource type="ArrayMesh" uid="uid://wkb7v1f6fsut" path="res://Models/ChessMiddle.obj" id="4_81iyj"]
-[ext_resource type="ArrayMesh" uid="uid://blshabi6na760" path="res://Models/ChessBottom.obj" id="5_v2do3"]
+[ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_1wx7m"]
+[ext_resource type="ArrayMesh" uid="uid://b4c7b15iqmsru" path="res://Models/pyr_0.obj" id="2_urafg"]
+[ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="3_pnufd"]
+[ext_resource type="ArrayMesh" uid="uid://dvqn1lbc6x6k2" path="res://Models/pyr_1.obj" id="4_vof5d"]
+[ext_resource type="ArrayMesh" uid="uid://bhvs1013l76on" path="res://Models/pyr_2.obj" id="5_6qq5j"]
 
 [sub_resource type="Shader" id="Shader_x48hh"]
 resource_local_to_scene = true
@@ -135,26 +135,26 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
-[node name="Chess" type="Node3D" unique_id=378115487]
-script = ExtResource("1_v2do3")
+[node name="Pyramid" type="Node3D" unique_id=378115487]
+script = ExtResource("1_1wx7m")
 metadata/moveRange = 10
 metadata/CanRotVert = true
 metadata/CanMove = true
 
 [node name="Head" type="MeshInstance3D" parent="." unique_id=278303234]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.7551956, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_jd1jd")
-mesh = ExtResource("2_jd1jd")
-script = ExtResource("3_iv4f0")
+mesh = ExtResource("2_urafg")
+script = ExtResource("3_pnufd")
 
 [node name="Corps" type="MeshInstance3D" parent="." unique_id=1466942171]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.349625, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_iv4f0")
-mesh = ExtResource("4_81iyj")
-script = ExtResource("3_iv4f0")
+mesh = ExtResource("4_vof5d")
+script = ExtResource("3_pnufd")
 
 [node name="Foot" type="MeshInstance3D" parent="." unique_id=155717077]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4.649887, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_v2do3")
-mesh = ExtResource("5_v2do3")
-script = ExtResource("3_iv4f0")
+mesh = ExtResource("5_6qq5j")
+script = ExtResource("3_pnufd")

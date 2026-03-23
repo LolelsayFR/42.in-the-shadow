@@ -140,7 +140,7 @@ visible = false
 mesh = SubResource("QuadMesh_rsvpx")
 
 [node name="GameObjects" parent="." unique_id=1321775524 instance=ExtResource("2_jngem")]
-transform = Transform3D(0.69559234, -0.01303467, 0.07733945, -0.021156795, 0.6334921, 0.29705235, -0.07552272, -0.2975194, 0.6291093, -0.88059264, 48.392487, 0.87051624)
+transform = Transform3D(0.6955923, -0.013034659, 0.07733943, -0.021156793, 0.6334921, 0.29705235, -0.075522706, -0.29751942, 0.6291093, -0.88059264, 48.392487, 0.87051624)
 
 [node name="Stand" type="MeshInstance3D" parent="." unique_id=820221414]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -21.761688, -1.0285225, -34.233704)

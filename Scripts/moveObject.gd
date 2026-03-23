@@ -15,7 +15,7 @@ var mouseMode:bool = false
 var mouse2Mode:bool = false
 var mouseSpeed:float = 0.01
 var mouseOrigin:Vector2
-var rotateOrigin:Vector3
+var previousAngle:float = 0.0
 var moveRange:float = 0
 var localMdlChoosen:int = -1
 
@@ -50,11 +50,19 @@ func _uses_angle_rotation() -> bool:
 func _rotate_model_by_angle(ang:float, mdl:Node3D) -> void:
 	match G.rotMod:
 		"Y":
-			mdl.rotation.y = rotateOrigin.y + ang
+			mdl.rotate_y(ang)
 		"X":
-			mdl.rotation.x = rotateOrigin.x + ang
+			mdl.rotate_x(ang)
 		"Z":
-			mdl.rotation.z = rotateOrigin.z + ang
+			mdl.rotate_z(ang)
+
+func _get_angle_delta(drag:Vector2) -> float:
+	if drag.length_squared() == 0:
+		return 0.0
+	var currentAngle:float = drag.angle()
+	var angleDelta:float = wrapf(currentAngle - previousAngle, -PI, PI)
+	previousAngle = currentAngle
+	return angleDelta
 
 func _rotate_model_by_distance(x:float, y:float, mdl:Node3D) -> void:
 	var distance:float = _get_drag_distance(Vector2(x, y))
@@ -93,7 +101,7 @@ func _mouseDrag() -> void:
 
 	if Input.is_action_just_pressed("mouse_click") || Input.is_action_just_pressed("mouse_click2"):
 		mouseOrigin = get_viewport().get_mouse_position()
-		rotateOrigin = mdl.rotation
+		previousAngle = 0.0
 
 	if mouseMode:
 		var mousePos:Vector2 = get_viewport().get_mouse_position()
@@ -103,8 +111,9 @@ func _mouseDrag() -> void:
 		if Input.is_action_pressed("object_movement") && get_meta("CanMove"):
 			mdl.position += _oobCheck(Vector3(x * MOVEMENT_DRAG_SCALE, -(y * MOVEMENT_DRAG_SCALE), 0), mdl.position)
 		else:
+			var angleDelta:float = _get_angle_delta(drag)
 			for child in get_children():
-				rotMdl(drag.angle(), x, y, child)
+				rotMdl(angleDelta, x, y, child)
 		if !_uses_angle_rotation():
 			mouseOrigin = mousePos
 

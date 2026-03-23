@@ -1,9 +1,8 @@
 [gd_scene format=3 uid="uid://cb8sf4jr2l3g7"]
 
 [ext_resource type="Script" uid="uid://d36ga140mfl8f" path="res://Scripts/moveObject.gd" id="1_s6u1a"]
-[ext_resource type="ArrayMesh" uid="uid://bv0byleh18jac" path="res://Models/LapinHead.obj" id="3_eb8vh"]
+[ext_resource type="ArrayMesh" uid="uid://cdhpwnoscls58" path="res://Models/rabbit.obj" id="2_h5o3h"]
 [ext_resource type="Script" uid="uid://bn28auhl876pb" path="res://Scripts/mdlLvlInit.gd" id="4_x2obx"]
-[ext_resource type="ArrayMesh" uid="uid://bgo62aolopvws" path="res://Models/LapinCorps.obj" id="5_qcsaw"]
 
 [sub_resource type="Shader" id="Shader_x48hh"]
 resource_local_to_scene = true
@@ -96,39 +95,14 @@ shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_2sslk"]
-resource_local_to_scene = true
-render_priority = 0
-shader = SubResource("Shader_x48hh")
-shader_parameter/isSelected = false
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/albedo_texture_size = Vector2i(0, 0)
-shader_parameter/point_size = 1.0
-shader_parameter/roughness = 0.0
-shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
-shader_parameter/specular = 0.5
-shader_parameter/metallic = 1.0
-shader_parameter/emission = Color(1, 1, 1, 1)
-shader_parameter/emission_energy = 0.5
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/uv2_scale = Vector3(1, 1, 1)
-shader_parameter/uv2_offset = Vector3(0, 0, 0)
-
 [node name="Rabbit" type="Node3D" unique_id=378115487]
 script = ExtResource("1_s6u1a")
 metadata/moveRange = 5
 metadata/CanRotVert = true
-metadata/CanMove = true
+metadata/CanMove = false
 
-[node name="Head" type="MeshInstance3D" parent="." unique_id=1343622139]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, -5.6477284, 6.0548515, 1.6176178)
+[node name="Rabbit" type="MeshInstance3D" parent="." unique_id=1343622139]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 material_override = SubResource("ShaderMaterial_s6u1a")
-mesh = ExtResource("3_eb8vh")
-script = ExtResource("4_x2obx")
-
-[node name="Corps" type="MeshInstance3D" parent="." unique_id=295809825]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 1.4444342, 0, 3.8765483)
-material_override = SubResource("ShaderMaterial_2sslk")
-mesh = ExtResource("5_qcsaw")
+mesh = ExtResource("2_h5o3h")
 script = ExtResource("4_x2obx")

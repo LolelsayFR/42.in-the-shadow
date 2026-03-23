@@ -79,3 +79,8 @@ func loadLevel(lvl:int) -> void:
 	G.gameState = G.INGAME
 	G.gameObject = $InGame.getGameObject()
 	G.gameObject.setLvl(lvl)
+
+
+func _on_pause_button_pressed() -> void:
+	G.gameState = G.PAUSE
+	pass # Replace with function body.

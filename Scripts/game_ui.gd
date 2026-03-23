@@ -55,7 +55,7 @@ func _ready() -> void:
 # Called every frame. '_delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	_update_ui(false)
-	sandbox_like = G.sandbox or G.ezmode
+	sandbox_like = G.sandbox || G.ezmode
 	_apply_mode_visibility(false)
 
 func _update_ui(force:bool) -> void:
@@ -84,7 +84,7 @@ func _update_ui(force:bool) -> void:
 	if G.sandbox:
 		_mode_label.text = "Mode: Sandbox"
 	elif G.ezmode:
-		_mode_label.text = "   Mode: Easy"
+		_mode_label.text = "  Mode: Easy"
 	else:
 		_mode_label.text = "Mode: Classic"
 	_rot_label.text = "Rotation: %s" % G.rotMod
@@ -147,7 +147,7 @@ func _build_controls_text(model_count:int) -> String:
 		lines.append("- Mouse wheel up / Ctrl: change axis")
 
 	if can_move:
-		lines.append("- Shift + click drag: move object")
+		lines.append("- Shift + click drag / Wheel click: move object")
 
 	return "\n".join(lines)
 

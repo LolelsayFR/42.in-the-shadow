@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://c176vp0ar58e0" path="res://Prefabs/gameLvl/GLOBE.tscn" id="7_6q0lk"]
 [ext_resource type="PackedScene" uid="uid://cb8sf4jr2l3g7" path="res://Prefabs/gameLvl/RABBIT.tscn" id="8_4tn34"]
 [ext_resource type="PackedScene" uid="uid://bldjijfoyegc" path="res://Prefabs/gameLvl/42.tscn" id="9_oe2tf"]
-[ext_resource type="PackedScene" uid="uid://c2r4lvlvnshk4" path="res://Prefabs/gameLvl/CHESS.tscn" id="10_bgbyh"]
+[ext_resource type="PackedScene" uid="uid://c2r4lvlvnshk4" path="res://Prefabs/gameLvl/PYRAMID.tscn" id="10_bgbyh"]
 
 [node name="GameObjectsPreview" type="Node3D" unique_id=1321775524]
 script = ExtResource("1_oyv5e")
@@ -38,6 +38,9 @@ visible = false
 transform = Transform3D(6, 0, 0, 0, -0.74098563, 5.9540696, 0, -5.9540696, -0.74098563, 0.45680377, 0, -0.4655534)
 visible = false
 
+[node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("8_4tn34")]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -1.177496, -3.7336454, 5.2305803)
+
 [node name="42" parent="." unique_id=1238640848 instance=ExtResource("9_oe2tf")]
 transform = Transform3D(0.35180894, -0.9360718, 0, 0.9360718, 0.35180894, 0, 0, 0, 1, 0.45680377, -1.6306458, -0.4655534)
 visible = false
@@ -46,10 +49,6 @@ visible = false
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.45680377, -1.6576042, -0.4655534)
 visible = false
 
-[node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("8_4tn34")]
-transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 3.250349, -3.7336454, 5.2305803)
-visible = false
-
-[node name="Chess" parent="." unique_id=778465654 instance=ExtResource("10_bgbyh")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.45680377, 0, -0.4655534)
+[node name="Pyra" parent="." unique_id=778465654 instance=ExtResource("10_bgbyh")]
+transform = Transform3D(7, 0, 0, 0, 7, 0, 0, 0, 7, 0.93324804, -8.873753, -0.4655534)
 visible = false

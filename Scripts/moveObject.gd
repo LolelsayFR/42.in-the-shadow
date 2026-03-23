@@ -103,7 +103,8 @@ func _mouseDrag() -> void:
 		if Input.is_action_pressed("object_movement") && get_meta("CanMove"):
 			mdl.position += _oobCheck(Vector3(x * MOVEMENT_DRAG_SCALE, -(y * MOVEMENT_DRAG_SCALE), 0), mdl.position)
 		else:
-			rotMdl(drag.angle(), x, y, mdl)
+			for child in get_children():
+				rotMdl(drag.angle(), x, y, child)
 		if !_uses_angle_rotation():
 			mouseOrigin = mousePos
 

@@ -117,9 +117,9 @@ shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [node name="42" type="Node3D" unique_id=378115487]
 script = ExtResource("1_j440l")
-metadata/moveRange = 10
+metadata/moveRange = 0
 metadata/CanRotVert = true
-metadata/CanMove = true
+metadata/CanMove = false
 
 [node name="Logo4" type="MeshInstance3D" parent="." unique_id=278303234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3147545, 0.76754034, 0)

@@ -23,7 +23,7 @@ metadata/isLvlPreview = false
 metadata/hint = "THIS GAME"
 
 [node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("10_omcav")]
-metadata/hint = "Dumbo ass"
+metadata/hint = "Dumbo"
 
 [node name="TeaPot" parent="." unique_id=767970802 instance=ExtResource("8_f256q")]
 metadata/hint = "W/ once of milk"

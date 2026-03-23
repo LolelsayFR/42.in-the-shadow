@@ -42,8 +42,8 @@ func _update_tracked_model() -> void:
 	var selected_index:int = G.mdlChoosen % tracked_lvl.get_child_count()
 	tracked_model_target = models[selected_index]
 
-func _get_model_percent(model: Node3D) -> int:
-	return int(round(_compare_quaternion_and_pos(model) * 100.0))
+func _get_model_percent(model: Node3D, model_index: int = 0) -> int:
+	return int(round(_compare_quaternion_and_pos(model, model_index) * 100.0))
 
 func _get_average_percent(percents: Array[int]) -> int:
 	if percents.is_empty():
@@ -61,13 +61,16 @@ func _update_progress_var() -> void:
 	G.percent = 0
 
 	if tracked_model_target != null:
-		G.percent = _get_model_percent(tracked_model_target)
+		var selected_index:int = get_selected_index()
+		G.percent = _get_model_percent(tracked_model_target, selected_index)
 	G.total_percent = _get_average_percent(G.all_percent)
 
 func get_all_percent() -> Array[int]:
 	var percents:Array[int] = []
-	for model in tracked_lvl.get_children():
-		percents.append(_get_model_percent(model))
+	if tracked_lvl != null:
+		for i in range(tracked_lvl.get_child_count()):
+			var model:Node3D = tracked_lvl.get_child(i) as Node3D
+			percents.append(_get_model_percent(model, i))
 	return percents
 
 func get_selected_index() -> int:
@@ -87,12 +90,7 @@ func get_current_hint() -> String:
 		return str(tracked_lvl.get_meta("hint"))
 	return "No hint for this level"
 
-func get_win_cap_percent() -> int:
-	if has_meta("winCapPercent"):
-		return int(get_meta("winCapPercent"))
-	return 100
-
-func _randomize_model_angles_pos(model: Node3D, canRotVer: bool, canMove: bool) -> void:
+func _randomize_model_pos(model: Node3D, canMove: bool) -> void:
 	if model == null || tracked_lvl == null:
 		return
 
@@ -100,6 +98,21 @@ func _randomize_model_angles_pos(model: Node3D, canRotVer: bool, canMove: bool) 
 		await tracked_lvl.ready
 
 	moveStrength = tracked_lvl.get_meta("moveRange")
+	if canMove:
+		model.position = Vector3(
+			randf_range(-moveStrength, moveStrength),
+			randf_range(-moveStrength, moveStrength),
+			0
+		)
+
+
+func _randomize_model_angle(model: Node3D, canRotVer: bool) -> void:
+	if model == null || tracked_lvl == null:
+		return
+
+	if not tracked_lvl.is_node_ready():
+		await tracked_lvl.ready
+
 	var model_base_quaternion:Quaternion = model.baseQuaternion
 	var base_euler:Vector3 = model_base_quaternion.get_euler()
 	var random_cap_percent:float = clampf(float(get_meta("randomCapPercent")), 0.0, 99.9)
@@ -112,15 +125,9 @@ func _randomize_model_angles_pos(model: Node3D, canRotVer: bool, canMove: bool) 
 	)
 	var random_quat:Quaternion = Quaternion.from_euler(random_euler)
 	model.quaternion = model_base_quaternion * random_quat
-	if canMove:
-		model.position = Vector3(
-			randf_range(-moveStrength, moveStrength),
-			randf_range(-moveStrength, moveStrength),
-			0
-		)
 
 		
-func _compare_quaternion_and_pos(model: Node3D) -> float:
+func _compare_quaternion_and_pos(model: Node3D, model_index: int) -> float:
 	if model == null:
 		return 0.0
 
@@ -131,6 +138,12 @@ func _compare_quaternion_and_pos(model: Node3D) -> float:
 	similarity_rot = clampf(similarity_rot, 0.0, 1.0)
 
 	var dist:float = model.position.distance_to(model_base_pos)
+	if model_index > 0 and tracked_lvl != null and tracked_lvl.get_child_count() > 0:
+		var reference_model:Node3D = tracked_lvl.get_child(0) as Node3D
+		if reference_model != null:
+			var expected_delta:Vector3 = model.basePos - reference_model.basePos
+			var actual_delta:Vector3 = model.position - reference_model.position
+			dist = actual_delta.distance_to(expected_delta)
 	var similarity_pos:float = 1.0
 	if moveStrength > 0.0:
 		similarity_pos = 1.0 - clampf(dist / moveStrength, 0.0, 1.0)
@@ -164,8 +177,10 @@ func setLvl(nlvl:int) -> void:
 		moveStrength = tracked_lvl.get_meta("moveRange")
 		var can_rot_vert:bool = tracked_lvl.get_meta("CanRotVert")
 		var can_move:bool = tracked_lvl.get_meta("CanMove")
+		await _randomize_model_angle(tracked_lvl.get_child(0), can_rot_vert)
 		for model in tracked_lvl.get_children():
-			await _randomize_model_angles_pos(model, can_rot_vert, can_move)
+			model.quaternion = tracked_lvl.get_child(0).quaternion
+			await _randomize_model_pos(model, can_move)
 
 	_update_tracked_model()
 	_update_progress_var()

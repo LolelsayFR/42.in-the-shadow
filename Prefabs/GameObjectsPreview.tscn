@@ -19,37 +19,36 @@ metadata/lvl = 0
 metadata/isLvlPreview = false
 
 [node name="ITS" parent="." unique_id=378115487 instance=ExtResource("2_ort05")]
-transform = Transform3D(0.56911856, 0, -29.9946, 0, 29.999998, 0, 29.9946, 0, 0.56911856, 0.45680377, 0, -0.4655534)
+transform = Transform3D(29.999998, 0, 0, 0, 29.999998, 0, 0, 0, 29.999998, 0.14425755, 0, -0.4655534)
 visible = false
 
 [node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("3_86gl5")]
-transform = Transform3D(0.11382372, -5.9989204, 2.6222114e-07, 0, -2.6226832e-07, -6, 5.9989204, 0.11382372, -4.9753925e-09, 0.45680377, -2.556282, -0.4655534)
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -1.6477356, -3.361702, -10.124275)
 visible = false
 
 [node name="TeaPot" parent="." unique_id=767970802 instance=ExtResource("5_ttv0q")]
-transform = Transform3D(-0.13279495, 0, 6.99874, 0, 7, 0, -6.99874, 0, -0.13279495, 0.428226, 42.043648, -1.9717063)
+transform = Transform3D(-0.5919445, -5.09676, 4.76158, -1.3157829, 4.7744956, 4.947011, -6.849695, -0.47669375, -1.361781, -38.62315, 23.284332, -1.9717063)
 visible = false
 
 [node name="Monkey" parent="." unique_id=206367581 instance=ExtResource("4_tjq4p")]
-transform = Transform3D(0.11382372, 0, -5.9989204, 0, 6, 0, 5.9989204, 0, 0.11382372, 0.45680377, 8.267044, -0.4655534)
+transform = Transform3D(6, 0, 0, 0, -0.06503004, 5.9996476, 0, -5.9996476, -0.06503004, 0.45680377, -11.703758, -0.4655534)
 visible = false
 
 [node name="CAT" parent="." unique_id=62885664 instance=ExtResource("6_he1xj")]
-transform = Transform3D(0.11382372, 0, -5.9989204, 0, 6, 0, 5.9989204, 0, 0.11382372, 0.45680377, 0, -0.4655534)
+transform = Transform3D(6, 0, 0, 0, -0.74098563, 5.9540696, 0, -5.9540696, -0.74098563, 0.45680377, 0, -0.4655534)
 visible = false
 
 [node name="42" parent="." unique_id=1238640848 instance=ExtResource("9_oe2tf")]
-transform = Transform3D(0.01897062, 0, -0.99982005, 0, 1, 0, 0.99982005, 0, 0.01897062, 0.45680377, 0, -0.4655534)
-visible = false
+transform = Transform3D(0.35180894, -0.9360718, 0, 0.9360718, 0.35180894, 0, 0, 0, 1, 0.45680377, -1.6306458, -0.4655534)
 
 [node name="GLOBE" parent="." unique_id=691411663 instance=ExtResource("7_6q0lk")]
-transform = Transform3D(0.03794124, 1.9996401, 8.7407045e-08, 0, -8.742278e-08, 2, 1.9996401, -0.03794124, -1.6584643e-09, 0.45680377, 3.2343254, -0.4655534)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.45680377, -1.6576042, -0.4655534)
 visible = false
 
 [node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("8_4tn34")]
-transform = Transform3D(0.046195723, 1.7521966, -2.4346814, -0.033240248, 2.4351196, 1.7518809, 2.99946, 1.0179895e-09, 0.056911845, 3.250349, -14.194545, 5.2305803)
+transform = Transform3D(2.9999998, 0, 0, 0, 3, 0, 0, 0, 2.9999998, 3.250349, -3.7336454, 5.2305803)
 visible = false
 
 [node name="Chess" parent="." unique_id=778465654 instance=ExtResource("10_bgbyh")]
-transform = Transform3D(0.03794124, 0, -1.9996401, 0, 2, 0, 1.9996401, 0, 0.03794124, 0.45680377, 0, -0.4655534)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.45680377, 0, -0.4655534)
 visible = false

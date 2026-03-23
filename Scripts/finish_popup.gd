@@ -16,12 +16,14 @@ func _ready() -> void:
 func _process(__delta: float) -> void:
 	if G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Return to selection ":
 		$Blur/Left/buttons/Play_Resume.text = "Return to selection "
-	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Next level ":
+	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Retry " && G.ProgressLvl >= G.maxLvl - 1:
+		$Blur/Left/buttons/Play_Resume.text = "Retry "
+	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Next level " && G.ProgressLvl < G.maxLvl - 1:
 		$Blur/Left/buttons/Play_Resume.text = "Next level "
 	if G.gameState == G.INGAME_WIN && visible == false:
 		visible = true
 		if G.ProgressLvl == G.lvl && G.sandbox == false:
-			if G.ProgressLvl < G.maxLvl:
+			if G.ProgressLvl < G.maxLvl - 1:
 				G.ProgressLvl = G.lvl + 1
 			G.writeData()
 	if G.gameState != G.INGAME_WIN && visible != false:

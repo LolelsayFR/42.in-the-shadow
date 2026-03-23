@@ -11,6 +11,8 @@ func _ready() -> void:
 	readData()
 	
 func _process(_delta: float) -> void:
+	if ProgressLvl >= maxLvl:
+		ProgressLvl -= 1
 	if isFullScreen != resDict[Resolution][1]:
 		isFullScreen = resDict[Resolution][1]
 		if isFullScreen:

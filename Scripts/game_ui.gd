@@ -40,11 +40,10 @@ extends Control
 @onready var _obj_value_3:Label = get_node_or_null("PanelContainer/MarginContainer/VBox/ObjectsCard/Margin/VBox/ObjectsList/Obj3/Value") as Label
 
 var _last_level:int = -1
-var _last_sandbox_like:bool = true
 const MAX_OBJECT_ROWS:int = 3
 const FONT_SIZE_NORMAL:int = 32
 const FONT_SIZE_FOCUS:int = 58
-const CONTROLS_SANDBOX:String = "Controls:\n- Left click drag: rotate\n- Right click drag: precise rotate\n- Shift + click drag: move object"
+var _last_sandbox_like:bool = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -56,18 +55,15 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_update_ui(false)
 
-func _is_sandbox_like() -> bool:
-	return G.sandbox or G.ezmode
-
 func _update_ui(force:bool) -> void:
-	if force or _last_sandbox_like != _is_sandbox_like():
+	if force or G.sandbox or G.ezmode:
 		_apply_mode_visibility(force)
 
 	var model_count:int = G.all_percent.size()
 	if model_count <= 0 and G.gameObject != null:
 		model_count = G.gameObject.get_child_count()
 
-	if _is_sandbox_like():
+	if G.sandbox or G.ezmode:
 		_apply_sandbox_detail_visibility(G.ezmode or model_count > 1)
 
 	if force or _last_level != G.lvl:
@@ -85,7 +81,7 @@ func _update_ui(force:bool) -> void:
 	if G.sandbox:
 		_mode_label.text = "Mode: Sandbox"
 	elif G.ezmode:
-		_mode_label.text = "Mode: EZ"
+		_mode_label.text = "   Mode: Easy"
 	else:
 		_mode_label.text = "Mode: Classic"
 	_rot_label.text = "Rotation: %s" % G.rotMod
@@ -97,7 +93,7 @@ func _update_ui(force:bool) -> void:
 	_selected_label.text = "Selected: %s" % ("-" if selected_index < 0 else str(selected_index))
 	_controls_label.text = _build_controls_text(model_count)
 
-	if _is_sandbox_like():
+	if G.sandbox or G.ezmode:
 		_selected_bar.value = clampf(G.percent, 0.0, 100.0)
 		_selected_value_label.text = "#%s | %d%%" % (["-" if selected_index < 0 else str(selected_index), G.percent])
 
@@ -107,14 +103,14 @@ func _update_ui(force:bool) -> void:
 		_update_object_rows(selected_index)
 
 func _apply_mode_visibility(force:bool) -> void:
-	var sandbox_like:bool = _is_sandbox_like()
+	var sandbox_like:bool = G.sandbox or G.ezmode
 	if not force and _last_sandbox_like == sandbox_like:
 		return
 
 	_last_sandbox_like = sandbox_like
 
 	_level_label.visible = true
-	_mode_label.visible = sandbox_like
+	_mode_label.visible = true
 	_win_target_label.visible = sandbox_like
 	_selected_label.visible = not sandbox_like
 	_selected_card.visible = sandbox_like
@@ -130,18 +126,13 @@ func _apply_sandbox_detail_visibility(show_percentages:bool) -> void:
 	_objects_card.visible = show_percentages
 
 func _build_controls_text(model_count:int) -> String:
-	if _is_sandbox_like():
-		return CONTROLS_SANDBOX
-
 	var can_move:bool = false
 	var can_rot_vert:bool = false
 
 	if G.gameObject != null and G.lvl >= 0 and G.lvl < G.gameObject.get_child_count():
 		var lvl_node:Node = G.gameObject.get_child(G.lvl)
-		if lvl_node.has_meta("CanMove"):
-			can_move = bool(lvl_node.get_meta("CanMove"))
-		if lvl_node.has_meta("CanRotVert"):
-			can_rot_vert = bool(lvl_node.get_meta("CanRotVert"))
+		can_move = bool(lvl_node.get_meta("CanMove"))
+		can_rot_vert = bool(lvl_node.get_meta("CanRotVert"))
 
 	var lines:Array[String] = []
 	lines.append("Controls:")

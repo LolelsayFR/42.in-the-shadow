@@ -17,6 +17,7 @@ general/updates_per_second=100
 config/name="42.in-the-shadows"
 config/version="1.0"
 run/main_scene="uid://cm16ykven5hfs"
+run/disable_stderr=true
 config/features=PackedStringArray("4.6", "Forward Plus")
 run/max_fps=120
 boot_splash/image="uid://bndxjtdflx5ds"

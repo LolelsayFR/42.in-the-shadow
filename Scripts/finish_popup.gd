@@ -14,6 +14,8 @@ func _ready() -> void:
 
 # Called every frame. '_delta' is the elapsed time since the previous frame.
 func _process(__delta: float) -> void:
+	if $Blur/Left/TitlePage.text != "Level %d complete !" % G.lvl:
+		$Blur/Left/TitlePage.text = "Level %d complete !" % G.lvl
 	if G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Return to selection ":
 		$Blur/Left/buttons/Play_Resume.text = "Return to selection "
 	elif not G.sandbox && $Blur/Left/buttons/Play_Resume.text != "Retry " && G.ProgressLvl >= G.maxLvl - 1:

@@ -88,11 +88,11 @@ layout_mode = 2
 size_flags_vertical = 4
 selected = 0
 item_count = 3
-popup/item_0/text = "Potato 🥔"
+popup/item_0/text = "Potato"
 popup/item_0/id = 0
-popup/item_1/text = "Mid 🤝"
+popup/item_1/text = "Middle"
 popup/item_1/id = 1
-popup/item_2/text = "Full 🔥"
+popup/item_2/text = "Full"
 popup/item_2/id = 2
 
 [node name="ScreenOption" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/Left" unique_id=384488221]

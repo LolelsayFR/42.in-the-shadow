@@ -8,11 +8,19 @@
 
 config_version=5
 
+[accessibility]
+
+general/updates_per_second=100
+
 [application]
 
 config/name="42.in-the-shadows"
+config/version="1.0"
 run/main_scene="uid://cm16ykven5hfs"
 config/features=PackedStringArray("4.6", "Forward Plus")
+run/max_fps=120
+boot_splash/image="uid://bndxjtdflx5ds"
+config/icon="uid://bndxjtdflx5ds"
 
 [autoload]
 

@@ -32,22 +32,32 @@ func _ready() -> void:
 	_style_button_selected = load("res://Materials/button_selected.tres")
 	_style_button_disabled = load("res://Materials/button_disabled.tres")
 	_style_button_pressed = load("res://Materials/button_pressed.tres")
+	_buttons.clear()
 	
 	var grid:GridContainer = $PanelContainer/HBoxContainer/GridContainer
+	if grid == null:
+		return
 	for i in range(1, 10):
 		var button:Button = grid.get_node("Lvl%d" % i) as Button
 		if button:
 			_buttons.append(button)
-			button.pressed.connect(_on_level_pressed.bind(i - 1))
+			var level_pressed_cb:Callable = Callable(self, "_on_level_pressed").bind(i - 1)
+			if not button.pressed.is_connected(level_pressed_cb):
+				button.pressed.connect(level_pressed_cb)
 	
 	_play_button = $PanelContainer/HBoxContainer/Play as Button
 	if _play_button:
-		_play_button.pressed.connect(_on_play_pressed)
+		var play_pressed_cb:Callable = Callable(self, "_on_play_pressed")
+		if not _play_button.pressed.is_connected(play_pressed_cb):
+			_play_button.pressed.connect(play_pressed_cb)
 	
 	_return_button = $"PanelContainer/HBoxContainer/Return to main" as Button
 	if _return_button:
-		_return_button.pressed.connect(_on_return_to_main_pressed)
+		var return_pressed_cb:Callable = Callable(self, "_on_return_to_main_pressed")
+		if not _return_button.pressed.is_connected(return_pressed_cb):
+			_return_button.pressed.connect(return_pressed_cb)
 	
+	_needs_update = true
 	_apply_button_styles()
 	_update_buttons()
 

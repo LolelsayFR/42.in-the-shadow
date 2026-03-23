@@ -13,6 +13,9 @@ extends MeshInstance3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	if _buttons_3d == null || _selector_2d == null:
+		return
+
 	var button_names:Array[String] = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "Play", "Back"]
 	
 	for mesh_name: String in button_names:
@@ -20,26 +23,31 @@ func _ready() -> void:
 		if mesh_button == null:
 			continue
 
-		var click_body:StaticBody3D = StaticBody3D.new()
-		click_body.name = "ClickBody"
-		click_body.input_ray_pickable = true
+		var click_body:StaticBody3D = mesh_button.get_node_or_null("ClickBody") as StaticBody3D
+		if click_body == null:
+			click_body = StaticBody3D.new()
+			click_body.name = "ClickBody"
+			click_body.input_ray_pickable = true
 
-		var collision_shape:CollisionShape3D = CollisionShape3D.new()
-		var box_shape:BoxShape3D = BoxShape3D.new()
-		var mesh_aabb:AABB = mesh_button.get_aabb()
-		var half_extents:Vector3 = mesh_aabb.size * 0.5
+			var collision_shape:CollisionShape3D = CollisionShape3D.new()
+			var box_shape:BoxShape3D = BoxShape3D.new()
+			var mesh_aabb:AABB = mesh_button.get_aabb()
+			var half_extents:Vector3 = mesh_aabb.size * 0.5
 
-		box_shape.size = Vector3(
-			max(mesh_aabb.size.x, 0.02),
-			max(mesh_aabb.size.y, 0.02),
-			max(mesh_aabb.size.z, 0.02)
-		)
-		collision_shape.shape = box_shape
-		collision_shape.position = mesh_aabb.position + half_extents
+			box_shape.size = Vector3(
+				max(mesh_aabb.size.x, 0.02),
+				max(mesh_aabb.size.y, 0.02),
+				max(mesh_aabb.size.z, 0.02)
+			)
+			collision_shape.shape = box_shape
+			collision_shape.position = mesh_aabb.position + half_extents
 
-		click_body.add_child(collision_shape)
-		mesh_button.add_child(click_body)
-		click_body.input_event.connect(_on_click_body_input_event.bind(mesh_name))
+			click_body.add_child(collision_shape)
+			mesh_button.add_child(click_body)
+
+		var input_event_cb:Callable = Callable(self, "_on_click_body_input_event").bind(mesh_name)
+		if not click_body.input_event.is_connected(input_event_cb):
+			click_body.input_event.connect(input_event_cb)
 
 
 func _on_click_body_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int, button_name: String) -> void:

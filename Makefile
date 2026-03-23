@@ -27,14 +27,14 @@ check-tools:
 hello:
 	@printf "\033[48;2;100;0;100;1m Export pipeline for %s\033[0m\n\n" "$(NAME)"
 
-$(GODOT_BIN): check-tools
+$(GODOT_BIN): | check-tools
 	@mkdir -p "$(DOWNLOADS)" "$(dir $(GODOT_BIN))"
 	@printf "\033[48;2;0;155;0;1m Download Godot editor binary\033[0m\n"
 	@curl -fL "$(RELEASE_URL_BASE)/$(notdir $(GODOT_ZIP))" -o "$(GODOT_ZIP)"
 	@unzip -q -o "$(GODOT_ZIP)" -d "$(dir $(GODOT_BIN))"
 	@chmod +x "$(GODOT_BIN)"
 
-$(EXPORT_TEMPLATE_DIR)/linux_release.x86_64: check-tools
+$(EXPORT_TEMPLATE_DIR)/linux_release.x86_64: | check-tools
 	@mkdir -p "$(DOWNLOADS)" "$(EXPORT_TEMPLATE_DIR)"
 	@printf "\033[48;2;0;155;0;1m Download and install light Linux export template\033[0m\n"
 	@curl -fL "$(RELEASE_URL_BASE)/$(notdir $(TEMPLATES_TPZ))" -o "$(TEMPLATES_TPZ)"

@@ -30,8 +30,6 @@ func _process(_delta: float) -> void:
 	if not G.ViewAxis:
 		if localTransparency < 1:
 			axysSetTransparency(localTransparency + 0.1)
-	else:
-		axysSetTransparency(0)
 	if Input.is_action_pressed("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove") :
 		$Y.visible = false
 		$X.visible = false
@@ -41,7 +39,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove"):
 		localState = ""
 		$"2D".visible = false
-	if localState != G.rotMod:
+	if localState != G.rotMod || G.ViewAxis:
 		localState = G.rotMod
 		$Y.visible = false
 		$X.visible = false

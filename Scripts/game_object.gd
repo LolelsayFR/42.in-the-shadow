@@ -138,17 +138,26 @@ func _compare_quaternion_and_pos(model: Node3D, model_index: int) -> float:
 	similarity_rot = clampf(similarity_rot, 0.0, 1.0)
 
 	var dist:float = model.position.distance_to(model_base_pos)
-	if model_index > 0 and tracked_lvl != null and tracked_lvl.get_child_count() > 0:
-		var reference_model:Node3D = tracked_lvl.get_child(0) as Node3D
-		if reference_model != null:
-			var expected_delta:Vector3 = model.basePos - reference_model.basePos
-			var actual_delta:Vector3 = model.position - reference_model.position
-			dist = actual_delta.distance_to(expected_delta)
+	if tracked_lvl != null and tracked_lvl.get_child_count() > 1:
+		var pair_count:int = 0
+		var dist_sum:float = 0.0
+		for other_index in range(tracked_lvl.get_child_count()):
+			if other_index == model_index:
+				continue
+			var other_model:Node3D = tracked_lvl.get_child(other_index) as Node3D
+			if other_model == null:
+				continue
+			var expected_delta:Vector3 = model.basePos - other_model.basePos
+			var actual_delta:Vector3 = model.position - other_model.position
+			dist_sum += actual_delta.distance_to(expected_delta)
+			pair_count += 1
+		if pair_count > 0:
+			dist = dist_sum / float(pair_count)
 	var similarity_pos:float = 1.0
 	if moveStrength > 0.0:
 		similarity_pos = 1.0 - clampf(dist / moveStrength, 0.0, 1.0)
 
-	return clampf((similarity_rot * 0.9 + similarity_pos * 0.1), 0.0, 1.0)
+	return clampf((similarity_rot * 0.7 + similarity_pos * 0.3), 0.0, 1.0)
 
 func setLvl(nlvl:int) -> void:
 	lvl = nlvl

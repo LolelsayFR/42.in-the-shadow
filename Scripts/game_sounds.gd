@@ -16,7 +16,7 @@ var moveVol:float = 0
 var meloVol:float = 0
 var kickVol:float = 1
 var drumsVol:float = 1
-var bassVol:float = 0
+var bassVol:float = 1
 var muffler:float = MUFFLER_NORMAL_TARGET
 
 # Called when the node enters the scene tree for the first time.

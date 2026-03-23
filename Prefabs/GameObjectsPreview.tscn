@@ -40,6 +40,7 @@ visible = false
 
 [node name="42" parent="." unique_id=1238640848 instance=ExtResource("9_oe2tf")]
 transform = Transform3D(0.35180894, -0.9360718, 0, 0.9360718, 0.35180894, 0, 0, 0, 1, 0.45680377, -1.6306458, -0.4655534)
+visible = false
 
 [node name="GLOBE" parent="." unique_id=691411663 instance=ExtResource("7_6q0lk")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.45680377, -1.6576042, -0.4655534)

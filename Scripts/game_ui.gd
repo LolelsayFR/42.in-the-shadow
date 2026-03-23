@@ -44,6 +44,7 @@ const MAX_OBJECT_ROWS:int = 3
 const FONT_SIZE_NORMAL:int = 32
 const FONT_SIZE_FOCUS:int = 58
 var _last_sandbox_like:bool = false
+var sandbox_like:bool = G.sandbox or G.ezmode
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -54,6 +55,8 @@ func _ready() -> void:
 # Called every frame. '_delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	_update_ui(false)
+	sandbox_like = G.sandbox or G.ezmode
+	_apply_mode_visibility(false)
 
 func _update_ui(force:bool) -> void:
 	if force or G.sandbox or G.ezmode:
@@ -103,7 +106,6 @@ func _update_ui(force:bool) -> void:
 		_update_object_rows(selected_index)
 
 func _apply_mode_visibility(force:bool) -> void:
-	var sandbox_like:bool = G.sandbox or G.ezmode
 	if not force and _last_sandbox_like == sandbox_like:
 		return
 

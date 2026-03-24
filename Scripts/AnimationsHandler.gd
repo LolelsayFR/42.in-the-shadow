@@ -7,8 +7,8 @@
 # ===============================================================
 extends AnimationPlayer
 
-const LOGO_PARALLAX_X_DIVISOR:float = 10000.0
-const LOGO_PARALLAX_Y_DIVISOR:float = 5000.0
+const LOGO_PARALLAX_X_DIVISOR:float = 100000.0
+const LOGO_PARALLAX_Y_DIVISOR:float = 50000.0
 const LOGO_X_CLAMP_RANGE:float = 1.0
 const LOGO_Y_CLAMP_RANGE:float = 8.0
 const CAMERA_ROTATION_SENSITIVITY:float = 1.0 / 400000.0

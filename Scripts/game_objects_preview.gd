@@ -38,6 +38,7 @@ func _moveSpecial(delta:float, node:Node3D, shift:float) -> void:
 func _process(delta: float) -> void:
 	for child in get_children():
 		for i in child.get_child_count():
+			child.get_child(i).position = child.get_child(i).basePos
 			_moveSpecial(delta, child.get_child(i), i)
 	if visible && G.gameState != G.LVL_SELECTOR:
 		visible = false

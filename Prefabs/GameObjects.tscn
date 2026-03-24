@@ -47,3 +47,4 @@ metadata/hint = "Axis & Spherical"
 metadata/hint = "Egypt"
 
 [node name="Axes" parent="." unique_id=1998642599 instance=ExtResource("7_7ma2s")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

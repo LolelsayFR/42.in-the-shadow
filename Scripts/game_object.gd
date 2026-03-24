@@ -161,6 +161,7 @@ func _compare_quaternion_and_pos(model: Node3D, model_index: int) -> float:
 	return clampf((similarity_rot * 0.6 + similarity_pos * 0.4), 0.0, 1.0)
 
 func setLvl(nlvl:int) -> void:
+	G.rotMod = "Y"
 	lvl = nlvl
 	var last_index:int = get_child_count() - 1
 	if nlvl > last_index:

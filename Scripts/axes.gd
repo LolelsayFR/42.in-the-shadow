@@ -6,12 +6,13 @@
 #  EEEEE    M   M   A   A   I    LLLLL    LLLLL    EEEEE      T
 # ===============================================================
 extends Node3D
-var localState:String = ""
+var localState:String = "null"
 var localTransparency:float = 0
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	axysSetTransparency(0)
 	$Y.visible = false
 	$X.visible = false
 	$Z.visible = false
@@ -27,19 +28,21 @@ func axysSetTransparency(val:float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
+	visible = true
 	if not G.ViewAxis:
 		if localTransparency < 1:
 			axysSetTransparency(localTransparency + 0.1)
-	if Input.is_action_pressed("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove") :
+	if Input.is_action_just_pressed("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove") :
+		axysSetTransparency(0)
+		localState = ""
 		$Y.visible = false
 		$X.visible = false
 		$Z.visible = false
 		$"2D".visible = true
-		return
-	if Input.is_action_just_released("object_movement") && $"..".get_child($"..".lvl).get_meta("CanMove"):
-		localState = ""
+	if Input.is_action_just_released("object_movement"):
 		$"2D".visible = false
-	if localState != G.rotMod || G.ViewAxis:
+		axysSetTransparency(0)
+	if (localState != G.rotMod || G.ViewAxis) && not Input.is_action_pressed("object_movement") :
 		localState = G.rotMod
 		$Y.visible = false
 		$X.visible = false
@@ -50,5 +53,4 @@ func _process(_delta: float) -> void:
 			$Y.visible = true
 		if localState.find("Z") != -1:
 			$Z.visible = true
-		visible = true
 		axysSetTransparency(0)

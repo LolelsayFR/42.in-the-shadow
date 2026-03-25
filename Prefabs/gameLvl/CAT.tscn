@@ -100,7 +100,7 @@ script = ExtResource("1_t65fp")
 metadata/moveRange = 0
 metadata/CanRotVert = true
 metadata/CanMove = false
-metadata/hint = "Not a dog"
+metadata/hint = "Meow"
 metadata/canMirrorVert = true
 metadata/winCapPercent = 98.0
 

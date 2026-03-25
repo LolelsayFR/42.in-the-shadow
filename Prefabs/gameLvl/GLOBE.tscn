@@ -120,6 +120,9 @@ script = ExtResource("1_w6jca")
 metadata/moveRange = 10
 metadata/CanRotVert = true
 metadata/CanMove = true
+metadata/hint = "Axis & Spherical"
+metadata/canMirrorVert = true
+metadata/winCapPercent = 95.0
 
 [node name="SPHERE" type="MeshInstance3D" parent="." unique_id=278303234]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)

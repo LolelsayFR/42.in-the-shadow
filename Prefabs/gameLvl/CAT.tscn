@@ -100,6 +100,9 @@ script = ExtResource("1_t65fp")
 metadata/moveRange = 0
 metadata/CanRotVert = true
 metadata/CanMove = false
+metadata/hint = "Not a dog"
+metadata/canMirrorVert = false
+metadata/winCapPercent = 95.0
 
 [node name="cat" type="MeshInstance3D" parent="." unique_id=438544824]
 transform = Transform3D(5.457, 0, 0, 0, 5.457, 0, 0, 0, 5.457, 0.30955982, 0.0056762695, -0.0026855469)

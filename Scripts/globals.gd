@@ -7,6 +7,9 @@
 # ===============================================================
 extends Node
 
+
+var _ui_click_player:AudioStreamPlayer = null
+
 func _ready() -> void:
 	readData()
 	
@@ -45,6 +48,15 @@ func _handle_ingame_input() -> void:
 			rotMod = ROT[(rot_index + 1) % ROT.size()]
 		else:
 			rotMod = ROT[0]
+
+func play_ui_click() -> void:
+	if main == null:
+		return
+
+	var linear_volume:float = clampf(MasterVol * SoundVol, 0.001, 1.0)
+	_ui_click_player.volume_db = linear_to_db(linear_volume)
+	_ui_click_player.pitch_scale = 1.0 * MasterVol
+	_ui_click_player.play(0.08)
 
 
 enum {

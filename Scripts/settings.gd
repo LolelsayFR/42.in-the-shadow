@@ -20,6 +20,7 @@ func _process(_delta: float) -> void:
 		_on_close_button_pressed()
 
 func _on_close_button_pressed() -> void:
+	G.play_ui_click()
 	visible = false
 	G.writeData()
 	if G.gameState == G.INGAME_SETTINGS:
@@ -41,6 +42,7 @@ func on_open_button_pressed() -> void:
 	setSettingsVisualValue()
 
 func _on_reset_button_pressed() -> void:
+	G.play_ui_click()
 	G.Quality = G.defaultQuality
 	G.Resolution = G.defaultResolution
 	G.MasterVol = G.defaultMasterVol
@@ -67,6 +69,7 @@ func _on_view_axis_toggled(toggled_on: bool) -> void:
 	G.ViewAxis = toggled_on
 
 func _on_undobutton_pressed() -> void:
+	G.play_ui_click()
 	G.readData()
 	setSettingsVisualValue()
 

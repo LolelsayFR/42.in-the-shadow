@@ -21,7 +21,7 @@ var muffler:float = MUFFLER_NORMAL_TARGET
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-
+	G._ui_click_player = $Click
 	pass
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:

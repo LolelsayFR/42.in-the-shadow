@@ -22,10 +22,12 @@ func _process(_delta:float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_quit_pressed() -> void:
+	G.play_ui_click()
 	G.gameState = G.QUIT
 
 
 func _on_play_resume_pressed() -> void:
+	G.play_ui_click()
 	G.sandbox = false
 	G.gameState = G.INGAME
 	G.lvl = G.ProgressLvl
@@ -34,20 +36,24 @@ func _on_play_resume_pressed() -> void:
 
 
 func _on_settings_pressed() -> void:
+	G.play_ui_click()
 	G.sandbox = false
 	G.gameState = G.SETTINGS
 
 
 func _on_level_selector_pressed() -> void:
+	G.play_ui_click()
 	G.sandbox = false
 	G.gameState = G.LVL_SELECTOR
 
 
 func _on_sandbox_pressed() -> void:
+	G.play_ui_click()
 	G.sandbox = true
 	G.gameState = G.LVL_SELECTOR
 
 
 func _on_reset_pressed() -> void:
+	G.play_ui_click()
 	G.ProgressLvl = 0
 	G.writeData()

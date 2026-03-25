@@ -14,14 +14,17 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _on_play_resume_pressed() -> void:
+	G.play_ui_click()
 	visible = false
 	G.gameState = G.INGAME
 
 
 func _on_settings_pressed() -> void:
+	G.play_ui_click()
 	$"../Settings".on_open_button_pressed()
 	G.gameState = G.INGAME_SETTINGS
 
 
 func _on_main_pressed() -> void:
+	G.play_ui_click()
 	G.gameState = G.MAIN

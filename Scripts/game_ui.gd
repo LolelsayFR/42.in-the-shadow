@@ -73,8 +73,8 @@ func _update_ui(force:bool) -> void:
 		_last_level = G.lvl
 		_level_label.text = "Lvl: %d" % (G.lvl + 1)
 
-	if G.gameObject != null and G.gameObject.has_meta("winCapPercent"):
-		var win_target:int = int(G.gameObject.get_meta("winCapPercent"))
+	if G.gameObject != null and G.gameObject.get_child(G.lvl).has_meta("winCapPercent"):
+		var win_target:int = int(G.gameObject.get_child(G.lvl).get_meta("winCapPercent"))
 		_win_target_label.text = "Target: %d%%" % win_target
 	else:
 		_win_target_label.text = "Target: -"

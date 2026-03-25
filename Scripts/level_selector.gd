@@ -130,6 +130,7 @@ func _apply_button_theme(button:Button) -> void:
 func _on_level_pressed(index:int) -> void:
 	if not (_is_level_unlocked(index)):
 		return
+	G.play_ui_click()
 	G.lvl = index
 
 func _is_level_unlocked(index: int) -> bool:
@@ -138,9 +139,11 @@ func _is_level_unlocked(index: int) -> bool:
 	return index <= G.ProgressLvl
 
 func _on_play_pressed() -> void:
+	G.play_ui_click()
 	G.gameState = G.INGAME
 	if G.main != null:
 		G.main.loadLevel(G.lvl)
 
 func _on_return_to_main_pressed() -> void:
+	G.play_ui_click()
 	G.gameState = G.MAIN

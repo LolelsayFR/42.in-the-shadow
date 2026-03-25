@@ -120,6 +120,9 @@ script = ExtResource("1_j440l")
 metadata/moveRange = 0
 metadata/CanRotVert = true
 metadata/CanMove = false
+metadata/hint = "char c = '*'"
+metadata/canMirrorVert = false
+metadata/winCapPercent = 95.0
 
 [node name="Logo4" type="MeshInstance3D" parent="." unique_id=278303234]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3147545, 0.76754034, 0)

@@ -35,6 +35,7 @@ func _process(__delta: float) -> void:
 
 
 func _on_play_resume_pressed() -> void:
+	G.play_ui_click()
 	if not G.sandbox:
 		if G.lvl < G.ProgressLvl:
 			G.lvl += 1
@@ -46,8 +47,10 @@ func _on_play_resume_pressed() -> void:
 
 
 func _on_main_pressed() -> void:
+	G.play_ui_click()
 	G.gameState = G.MAIN
 
 
 func _on_quit_pressed() -> void:
+	G.play_ui_click()
 	G.gameState = G.QUIT

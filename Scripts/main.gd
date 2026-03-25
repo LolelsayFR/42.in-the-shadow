@@ -82,5 +82,6 @@ func loadLevel(lvl:int) -> void:
 
 
 func _on_pause_button_pressed() -> void:
+	G.play_ui_click()
 	G.gameState = G.PAUSE
 	pass # Replace with function body.

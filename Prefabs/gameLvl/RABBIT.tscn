@@ -100,6 +100,9 @@ script = ExtResource("1_s6u1a")
 metadata/moveRange = 5
 metadata/CanRotVert = true
 metadata/CanMove = false
+metadata/hint = "Long-Eared"
+metadata/canMirrorVert = true
+metadata/winCapPercent = 95.0
 
 [node name="Rabbit" type="MeshInstance3D" parent="." unique_id=1343622139]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)

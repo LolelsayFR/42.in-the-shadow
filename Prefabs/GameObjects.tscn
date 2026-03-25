@@ -15,54 +15,35 @@
 [node name="GameObjects" type="Node3D" unique_id=1321775524]
 script = ExtResource("1_amxin")
 metadata/randomCapPercent = 20.0
-metadata/winCapPercent = 95.0
 metadata/lvl = 0
 metadata/isLvlPreview = false
 
 [node name="ITS" parent="." unique_id=378115487 instance=ExtResource("5_40rhp")]
 visible = false
-metadata/hint = "THIS GAME"
-metadata/canMirrorVert = false
 
 [node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("10_omcav")]
 visible = false
-metadata/hint = "Dumbo"
-metadata/canMirrorVert = true
 
 [node name="TeaPot" parent="." unique_id=767970802 instance=ExtResource("8_f256q")]
 visible = false
-metadata/hint = "With once of milk"
-metadata/canMirrorVert = true
 
 [node name="Monkey" parent="." unique_id=206367581 instance=ExtResource("6_qxibg")]
 visible = false
-metadata/hint = "Bloons killer"
-metadata/canMirrorVert = true
 
 [node name="CAT" parent="." unique_id=62885664 instance=ExtResource("3_2b83n")]
 visible = false
-metadata/hint = "Not a dog"
-metadata/canMirrorVert = false
 
 [node name="Rabbit" parent="." unique_id=1351593373 instance=ExtResource("7_pjo7h")]
 visible = false
-metadata/hint = "Long-Eared"
-metadata/canMirrorVert = true
 
 [node name="42" parent="." unique_id=1238640848 instance=ExtResource("2_glgge")]
 visible = false
-metadata/hint = "char c = '*'"
-metadata/canMirrorVert = false
 
 [node name="GLOBE" parent="." unique_id=691411663 instance=ExtResource("11_40rhp")]
 visible = false
-metadata/hint = "Axis & Spherical"
-metadata/canMirrorVert = true
 
 [node name="Pyra" parent="." unique_id=778465654 instance=ExtResource("4_omcav")]
 visible = false
-metadata/hint = "The angles adjacent to the base are equal "
-metadata/canMirrorVert = true
 
 [node name="Axes" parent="." unique_id=1998642599 instance=ExtResource("7_7ma2s")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)

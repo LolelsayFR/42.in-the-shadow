@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 		if G.camera.fov < 90:
 			G.camera.fov = 90
 	if not (Input.is_action_pressed("mouse_click") || Input.is_action_pressed("mouse_click2")):
-		_win_target_reached = G.total_percent > $GameObjects.get_meta("winCapPercent")
+		_win_target_reached = G.total_percent >= $GameObjects.get_child(G.lvl).get_meta("winCapPercent")
 	else :
 		_win_target_reached = false
 		$Timer.stop()

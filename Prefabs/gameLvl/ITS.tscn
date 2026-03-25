@@ -12,6 +12,9 @@ script = ExtResource("1_7ktks")
 metadata/moveRange = 0
 metadata/CanRotVert = false
 metadata/CanMove = false
+metadata/hint = "THIS GAME"
+metadata/canMirrorVert = false
+metadata/winCapPercent = 95.0
 
 [node name="Intheshadows" type="MeshInstance3D" parent="." unique_id=455314491]
 transform = Transform3D(27.5, 0, 0, 0, 27.5, 0, 0, 0, 10, 0, 0, 0)

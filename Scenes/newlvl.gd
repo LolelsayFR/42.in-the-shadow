@@ -9,7 +9,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if G.notifyNewLvl && G.gameState == G.MAIN:
-		$PanelContainer/Blur/Left/TitlePage.text = "New level : %d" % G.ProgressLvl
+		$PanelContainer/Blur/Left/TitlePage.text = "New level : %d" % (G.ProgressLvl + 1)
 		visible = true
 		G.lvl = G.ProgressLvl
 		G.notifyNewLvl = false

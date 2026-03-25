@@ -102,7 +102,7 @@ metadata/CanRotVert = true
 metadata/CanMove = false
 metadata/hint = "Bloons killer"
 metadata/canMirrorVert = true
-metadata/winCapPercent = 95.0
+metadata/winCapPercent = 98.0
 
 [node name="Monkey" type="MeshInstance3D" parent="." unique_id=438544824]
 transform = Transform3D(5.528, 0, 0, 0, 5.528, 0, 0, 0, 5.5, 0.3110857, 0, 0)

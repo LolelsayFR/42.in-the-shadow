@@ -8,8 +8,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 const tips:Array[String] = [
-	"Tips: Just like in the original game, you sometimes need to flip the orientation of the visible shadow to make it valid.",
-	"Tips: Try rotating on one axis at a time—small adjustments can change the shadow a lot.",
+	"Tips: Try rotating on one axis at a time, small adjustments can change the shadow a lot.",
 	"Tips: When you're close, avoid big moves and use tiny rotations to fine-tune.",
 	"Note: This game was developed as part of a specialization project at 42 Le Havre.",
 	"Tips: Be sure to check out the original game: Shadowmatic",

@@ -18,7 +18,7 @@ albedo_texture = SubResource("ViewportTexture_ak3nd")
 [sub_resource type="QuadMesh" id="QuadMesh_nrlqv"]
 
 [node name="lvlSelectormesh" type="MeshInstance3D" unique_id=867550847]
-transform = Transform3D(20.248487, 0.086027324, -0.007636547, -0.06553681, 21.053392, 0.6850701, 0.07078326, -5.1164255, 2.8188407, 0, 0, 0)
+transform = Transform3D(20.248487, 0.086027324, -0.007636547, -0.06553681, 21.053392, 0.6850701, 0.07078326, -5.1164255, 2.8188407, -41.485485, 32.50552, -28.283388)
 mesh = SubResource("QuadMesh_lwjeb")
 surface_material_override/0 = SubResource("StandardMaterial3D_dfir5")
 script = ExtResource("1_74v5m")
@@ -32,79 +32,80 @@ size = Vector2i(1000, 1000)
 [node name="LevelSelector" parent="Sv" unique_id=979591820 instance=ExtResource("1_skpuh")]
 
 [node name="3DButton" type="Node3D" parent="." unique_id=1394295467]
+transform = Transform3D(1.0000001, -5.820766e-11, 0, -3.4924597e-10, 1.0000001, 1.8626451e-09, 0, -1.1920929e-07, 1.0000001, -5.722046e-05, 0.016043663, 0.029121876)
 
 [node name="1" type="MeshInstance3D" parent="3DButton" unique_id=1820541621]
-transform = Transform3D(0.32683307, -5.820766e-11, 0, -1.4551915e-10, 0.27832237, 1.8626451e-09, 4.656613e-10, 0, 0.29357177, -0.33607042, 0.35913423, 0.09979576)
+transform = Transform3D(0.32683307, -5.820766e-11, 2.910383e-11, -7.566996e-10, 0.2783225, 4.656613e-09, 2.7939677e-09, -5.9604645e-08, 0.2935719, -0.3361415, 0.36935973, 0.026823342)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="2" type="MeshInstance3D" parent="3DButton" unique_id=1670607157]
-transform = Transform3D(0.32683307, 0, 0, 0, 0.2783223, 0, 0, 0, 0.29357177, -0.0014892025, 0.36037564, 0.1)
+transform = Transform3D(0.32683307, -2.910383e-11, 2.910383e-11, -6.1118044e-10, 0.27832243, 3.7252903e-09, 1.8626451e-09, -8.940697e-08, 0.29357186, -0.0015601664, 0.37060115, 0.027027667)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="3" type="MeshInstance3D" parent="3DButton" unique_id=664633303]
-transform = Transform3D(0.32683307, -5.820766e-11, 0, -1.4551915e-10, 0.27832237, 1.8626451e-09, 4.656613e-10, 0, 0.29357177, 0.33229536, 0.36161432, 0.10021895)
+transform = Transform3D(0.32683307, -5.820766e-11, 2.910383e-11, -7.566996e-10, 0.2783225, 4.656613e-09, 2.7939677e-09, -5.9604645e-08, 0.2935719, 0.33222455, 0.3718398, 0.027246535)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="4" type="MeshInstance3D" parent="3DButton" unique_id=1570257017]
-transform = Transform3D(0.32683307, 2.910383e-11, 0, -1.4551915e-10, 0.27832234, 1.8626451e-09, 4.656613e-10, -2.9802322e-08, 0.29357177, -0.3347661, 0.068242826, 0.09979575)
+transform = Transform3D(0.32683307, -1.1641532e-10, 2.910383e-11, -7.566996e-10, 0.27832246, 4.656613e-09, 2.7939677e-09, -8.940697e-08, 0.2935719, -0.33483714, 0.07846819, 0.026823476)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="5" type="MeshInstance3D" parent="3DButton" unique_id=26156895]
-transform = Transform3D(0.32683307, 0, 0, 0, 0.27832237, 0, 0, 0, 0.29357177, -0.00018481127, 0.06948441, 0.1)
+transform = Transform3D(0.32683307, 5.820766e-11, 2.910383e-11, -6.1118044e-10, 0.2783225, 3.7252903e-09, 1.8626451e-09, -5.9604645e-08, 0.29357186, -0.00025577523, 0.07970976, 0.027027622)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="6" type="MeshInstance3D" parent="3DButton" unique_id=484423414]
-transform = Transform3D(0.32683307, 2.910383e-11, 0, -1.4551915e-10, 0.27832234, 1.8626451e-09, 4.656613e-10, -2.9802322e-08, 0.29357177, 0.33359963, 0.07072301, 0.10021889)
+transform = Transform3D(0.32683307, -1.1641532e-10, 2.910383e-11, -7.566996e-10, 0.27832246, 4.656613e-09, 2.7939677e-09, -8.940697e-08, 0.2935719, 0.33352882, 0.08094835, 0.027246565)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="7" type="MeshInstance3D" parent="3DButton" unique_id=2134072505]
-transform = Transform3D(0.32683307, 0, 0, -1.4551915e-10, 0.27832243, 1.8626451e-09, 4.656613e-10, -5.9604645e-08, 0.29357177, -0.33363447, -0.21174932, 0.09979579)
+transform = Transform3D(0.32692125, -5.820766e-11, 2.910383e-11, -9.313226e-10, 0.25578362, 5.5879354e-09, 3.259629e-09, -8.940697e-08, 0.28779408, -0.33370566, -0.20150793, 0.026853561)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="8" type="MeshInstance3D" parent="3DButton" unique_id=1738031623]
-transform = Transform3D(0.32683307, 0, 0, 0, 0.2783223, 0, 0, 0, 0.29357177, 0.000946803, -0.21050769, 0.1)
+transform = Transform3D(0.32692125, -1.1641532e-10, 1.4551915e-11, -7.566996e-10, 0.25578356, 4.656613e-09, 2.7939677e-09, -8.940697e-08, 0.28779402, 0.00087571144, -0.20028245, 0.027028084)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="9" type="MeshInstance3D" parent="3DButton" unique_id=218014788]
-transform = Transform3D(0.32683307, -5.820766e-11, 0, -1.4551915e-10, 0.27832237, 1.8626451e-09, 4.656613e-10, 0, 0.29357177, 0.3347313, -0.20926914, 0.10021892)
+transform = Transform3D(0.32692125, -5.820766e-11, 2.910383e-11, -9.313226e-10, 0.25578362, 5.5879354e-09, 3.259629e-09, 0, 0.28779408, 0.33466053, -0.19906032, 0.027216911)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="Play" type="MeshInstance3D" parent="3DButton" unique_id=616593171]
-transform = Transform3D(1.0138437, -2.1827873e-11, 0, -9.895302e-10, 0.07041311, 1.8626451e-09, 1.8626451e-09, 7.450581e-09, 0.24416041, 0.0017132518, -0.3880145, 0.10718346)
+transform = Transform3D(1.0138438, -7.275958e-12, 0, -2.9685907e-09, 0.07041314, 4.1909516e-09, 5.5879354e-09, 7.450581e-09, 0.24416047, 0.0016603495, -0.3789298, 0.069256544)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0
 mesh = SubResource("QuadMesh_nrlqv")
 
 [node name="Back" type="MeshInstance3D" parent="3DButton" unique_id=1414577405]
-transform = Transform3D(1.0138437, -2.1827873e-11, 7.275958e-12, -7.566996e-10, 0.07041311, 9.313226e-10, 1.8626451e-09, 7.450581e-09, 0.2441604, 0.0021266085, -0.46645588, 0.11801195)
+transform = Transform3D(1.0138438, -4.3655746e-11, 4.3655746e-11, -2.1536835e-09, 0.07041314, 1.8626451e-09, 1.8626451e-09, 7.450581e-09, 0.24416047, 0.0020556448, -0.45623082, 0.045039535)
 material_override = SubResource("StandardMaterial3D_am6jr")
 transparency = 1.0
 cast_shadow = 0

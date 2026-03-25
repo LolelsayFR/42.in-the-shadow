@@ -65,7 +65,7 @@ func _process(_delta: float) -> void:
 			G.SETTINGS: $Settings.visible = true
 			G.MAIN: $MainMenu.visible = true
 			G.PAUSE: $Pause.visible = true
-			G.LVL_SELECTOR: $Main3D/LevelSelector.visible = true
+			G.LVL_SELECTOR: $Main3D/LevelSelector.visible = true ; G.lvl = 0
 	if G.gameState != G.INGAME:
 		if $Main3D.visible != true && G.gameState != G.INGAME_SETTINGS && G.gameState != G.PAUSE:
 			$Main3D.visible = true

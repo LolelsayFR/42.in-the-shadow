@@ -30,6 +30,8 @@ func _process(__delta: float) -> void:
 			if G.ProgressLvl < G.maxLvl - 1:
 				G.ProgressLvl = G.lvl + 1
 				G.notifyNewLvl = true
+			else:
+				G.notifyNewLvl = false
 			G.writeData()
 	if G.gameState != G.INGAME_WIN && visible != false:
 		visible = false

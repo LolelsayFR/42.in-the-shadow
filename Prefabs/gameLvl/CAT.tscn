@@ -101,7 +101,7 @@ metadata/moveRange = 0
 metadata/CanRotVert = true
 metadata/CanMove = false
 metadata/hint = "Not a dog"
-metadata/canMirrorVert = false
+metadata/canMirrorVert = true
 metadata/winCapPercent = 98.0
 
 [node name="cat" type="MeshInstance3D" parent="." unique_id=438544824]

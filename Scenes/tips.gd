@@ -13,6 +13,7 @@ const tips:Array[String] = [
 	"Tips: When you're close, avoid big moves and use tiny rotations to fine-tune.",
 	"Note: This game was developed as part of a specialization project at 42 Le Havre.",
 	"Tips: Be sure to check out the original game: Shadowmatic",
+	"Tips: All objects should be visible at the same time in the final layout.",
 ]
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

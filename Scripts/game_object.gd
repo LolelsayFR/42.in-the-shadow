@@ -43,7 +43,9 @@ func _update_tracked_model() -> void:
 	tracked_model_target = models[selected_index]
 
 func _get_model_percent(model: Node3D, model_index: int = 0) -> int:
-	return int(round(_compare_quaternion_and_pos(model, model_index) * 100.0))
+	if get_child(G.lvl).get_meta("canMirrorVert") == true:
+		return int(max(round(_compare_quaternion_and_pos(model, model_index, false) * 100.0), round(_compare_quaternion_and_pos(model, model_index, true) * 100.0)))
+	return int(round(_compare_quaternion_and_pos(model, model_index, false) * 100.0))
 
 func _get_average_percent(percents: Array[int]) -> int:
 	if percents.is_empty():
@@ -106,7 +108,7 @@ func _randomize_model_pos(model: Node3D, canMove: bool) -> void:
 		)
 
 
-func _randomize_model_angle(model: Node3D, canRotVer: bool) -> void:
+func _randomize_model_angle(model: Node3D, canRotVer: bool, canMirrorVert: bool = false) -> void:
 	if model == null || tracked_lvl == null:
 		return
 
@@ -114,26 +116,36 @@ func _randomize_model_angle(model: Node3D, canRotVer: bool) -> void:
 		await tracked_lvl.ready
 
 	var model_base_quaternion:Quaternion = model.baseQuaternion
-	var base_euler:Vector3 = model_base_quaternion.get_euler()
+	if canMirrorVert and randf() < 0.5:
+		var mirror_rotation:Quaternion = Quaternion.from_euler(Vector3(0.0, PI, 0.0))
+		model_base_quaternion = mirror_rotation * model_base_quaternion
+
 	var random_cap_percent:float = clampf(float(get_meta("randomCapPercent")), 0.0, 99.9)
 	var min_opposite_offset:float = (random_cap_percent / 200.0) * TAU
 	var max_opposite_offset:float = TAU - min_opposite_offset
-	var random_euler:Vector3 = Vector3(
-		wrapf(base_euler.x + (randf_range(min_opposite_offset, max_opposite_offset) if canRotVer else 0.0), 0.0, TAU),
-		wrapf(base_euler.y + randf_range(min_opposite_offset, max_opposite_offset), 0.0, TAU),
+	var random_offset_euler:Vector3 = Vector3(
+		(randf_range(min_opposite_offset, max_opposite_offset) if canRotVer else 0.0),
+		randf_range(min_opposite_offset, max_opposite_offset),
 		0.0
 	)
-	var random_quat:Quaternion = Quaternion.from_euler(random_euler)
-	model.quaternion = model_base_quaternion * random_quat
+	var random_offset_quat:Quaternion = Quaternion.from_euler(random_offset_euler)
+	model.quaternion = model_base_quaternion * random_offset_quat
 
 		
-func _compare_quaternion_and_pos(model: Node3D, model_index: int) -> float:
+func _compare_quaternion_and_pos(model: Node3D, model_index: int, isMirror:bool) -> float:
 	if model == null:
 		return 0.0
 
 	var model_base_quaternion:Quaternion = model.baseQuaternion
 	var model_base_pos:Vector3 = model.basePos
-	var angle_diff:float = model_base_quaternion.angle_to(model.quaternion)
+
+	# The expected orientation is the base pose, optionally mirrored by 180deg on Y.
+	var expected_quaternion:Quaternion = model_base_quaternion
+	if isMirror:
+		var mirror_rotation:Quaternion = Quaternion.from_euler(Vector3(0.0, PI, 0.0))
+		expected_quaternion = mirror_rotation * model_base_quaternion
+
+	var angle_diff:float = expected_quaternion.angle_to(model.quaternion)
 	var similarity_rot:float = 1.0 - (angle_diff / PI)
 	similarity_rot = clampf(similarity_rot, 0.0, 1.0)
 
@@ -141,6 +153,7 @@ func _compare_quaternion_and_pos(model: Node3D, model_index: int) -> float:
 	if tracked_lvl != null and tracked_lvl.get_child_count() > 1:
 		var pair_count:int = 0
 		var dist_sum:float = 0.0
+		# Use relative offsets to other pieces so global translation is not penalized.
 		for other_index in range(tracked_lvl.get_child_count()):
 			if other_index == model_index:
 				continue
@@ -188,7 +201,12 @@ func setLvl(nlvl:int) -> void:
 		moveStrength = tracked_lvl.get_meta("moveRange")
 		var can_rot_vert:bool = tracked_lvl.get_meta("CanRotVert")
 		var can_move:bool = tracked_lvl.get_meta("CanMove")
-		await _randomize_model_angle(tracked_lvl.get_child(0), can_rot_vert)
+		var can_mirror_vert:bool = false
+		if tracked_lvl.has_meta("canMirrorVert"):
+			can_mirror_vert = tracked_lvl.get_meta("canMirrorVert")
+		elif tracked_lvl.has_meta("CanMirrorVert"):
+			can_mirror_vert = tracked_lvl.get_meta("CanMirrorVert")
+		await _randomize_model_angle(tracked_lvl.get_child(0), can_rot_vert, can_mirror_vert)
 		for model in tracked_lvl.get_children():
 			model.quaternion = tracked_lvl.get_child(0).quaternion
 			await _randomize_model_pos(model, can_move)

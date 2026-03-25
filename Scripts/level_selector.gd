@@ -139,7 +139,7 @@ func _is_level_unlocked(index: int) -> bool:
 	return index <= G.ProgressLvl
 
 func _on_play_pressed() -> void:
-	if G.lvl > G.ProgressLvl : return
+	if G.lvl > G.ProgressLvl && not G.sandbox : return
 	G.play_ui_click()
 	G.gameState = G.INGAME
 	if G.main != null:

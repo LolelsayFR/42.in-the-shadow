@@ -20,6 +20,7 @@ metadata/isLvlPreview = false
 
 [node name="ITS" parent="." unique_id=378115487 instance=ExtResource("5_40rhp")]
 visible = false
+metadata/winCapPercent = 90.0
 
 [node name="Elephant" parent="." unique_id=836850119 instance=ExtResource("10_omcav")]
 visible = false

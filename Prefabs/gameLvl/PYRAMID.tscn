@@ -145,13 +145,13 @@ metadata/canMirrorVert = true
 metadata/winCapPercent = 95.0
 
 [node name="Head" type="MeshInstance3D" parent="." unique_id=278303234]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(4.6, 0, 0, 0, 4.6, 0, 0, 0, 4.6, 0.23094457, -1.1662191, 0)
 material_override = SubResource("ShaderMaterial_jd1jd")
 mesh = ExtResource("2_urafg")
 script = ExtResource("3_pnufd")
 
 [node name="Corps" type="MeshInstance3D" parent="." unique_id=1466942171]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(4.2, 0, 0, 0, 4.2, 0, 0, 0, 4.2, 0, -0.5118923, 0)
 material_override = SubResource("ShaderMaterial_iv4f0")
 mesh = ExtResource("4_vof5d")
 script = ExtResource("3_pnufd")

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://buybf8g3p8sno"]
+
+[ext_resource type="Script" uid="uid://dv6o4ltb8cb64" path="res://Scenes/newlvl.gd" id="1_ir6hg"]
+[ext_resource type="StyleBox" uid="uid://gmdnusvelryd" path="res://Materials/ui_corner.tres" id="2_gdjt6"]
+[ext_resource type="Material" uid="uid://dnac7erwr6mhh" path="res://Materials/ui_back.tres" id="3_j7btq"]
+
+[node name="NEWLVL" type="Control" unique_id=1923062008]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ir6hg")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1698266589]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_gdjt6")
+
+[node name="Blur" type="PanelContainer" parent="PanelContainer" unique_id=1527646403]
+material = ExtResource("3_j7btq")
+layout_mode = 2
+
+[node name="Left" type="VBoxContainer" parent="PanelContainer/Blur" unique_id=1063921603]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 22
+alignment = 1
+
+[node name="TitlePage" type="Label" parent="PanelContainer/Blur/Left" unique_id=1359951553]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.4627451)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 140
+text = "New level  : "
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="PanelContainer/Blur/Left" unique_id=672128667]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Play_Resume" type="Button" parent="PanelContainer/Blur/Left" unique_id=1303135166]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+text = "Continue "
+icon_alignment = 2
+
+[connection signal="pressed" from="PanelContainer/Blur/Left/Play_Resume" to="." method="_on_play_resume_pressed"]

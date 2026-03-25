@@ -128,6 +128,7 @@ var resDict:Dictionary =  {
 }
 
 var lvl:int = 0
+var notifyNewLvl:bool = false
 var maxLvl:int = 0
 var gameState:int = MAIN
 var rotMod:String = ROT[0]

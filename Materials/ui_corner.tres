@@ -1,8 +1,7 @@
 [gd_resource type="StyleBoxFlat" format=3 uid="uid://gmdnusvelryd"]
 
 [resource]
-bg_color = Color(0.25882354, 0.25882354, 0.25882354, 0.78431374)
-draw_center = false
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 0.47058824)
 corner_detail = 20
 shadow_size = 10
 anti_aliasing = false

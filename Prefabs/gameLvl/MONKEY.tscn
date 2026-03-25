@@ -100,7 +100,7 @@ script = ExtResource("1_rinnx")
 metadata/moveRange = 0
 metadata/CanRotVert = true
 metadata/CanMove = false
-metadata/hint = "Bloons killer"
+metadata/hint = "Primate"
 metadata/canMirrorVert = true
 metadata/winCapPercent = 98.0
 

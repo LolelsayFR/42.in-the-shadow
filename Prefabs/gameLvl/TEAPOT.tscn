@@ -100,7 +100,7 @@ script = ExtResource("1_sstmf")
 metadata/moveRange = 0
 metadata/CanRotVert = true
 metadata/CanMove = false
-metadata/hint = "With once of milk"
+metadata/hint = "Container with a lid for tea"
 metadata/canMirrorVert = true
 metadata/winCapPercent = 98.0
 

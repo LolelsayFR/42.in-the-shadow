@@ -12,7 +12,7 @@ script = ExtResource("1_7ktks")
 metadata/moveRange = 0
 metadata/CanRotVert = false
 metadata/CanMove = false
-metadata/hint = "THIS GAME"
+metadata/hint = "THIS GAME NAME"
 metadata/canMirrorVert = false
 metadata/winCapPercent = 95.0
 
